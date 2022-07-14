@@ -1,9 +1,14 @@
 package hr.tvz.thesis.bookstore.domain;
 
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,4 +53,25 @@ public class Book {
 
   @Column(name = "image_path")
   private String imagePath;
+
+  @ManyToOne
+  @JoinColumn(name = "author_id")
+  private Author author;
+
+  @ManyToOne
+  @JoinColumn(name = "publisher_id")
+  private Publisher publisher;
+
+  @OneToOne
+  private Discount discount;
+
+  @ManyToOne
+  @JoinColumn(name = "language_id")
+  private Language language;
+
+  @ManyToMany(targetEntity = Category.class, mappedBy = "books")
+  private List<Category> categories;
+
+  @ManyToMany(targetEntity = Order.class, mappedBy = "books")
+  private List<Order> orders;
 }

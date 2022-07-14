@@ -1,8 +1,14 @@
 package hr.tvz.thesis.bookstore.domain;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,4 +46,13 @@ public class User {
 
   private String city;
 
+  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+  private List<Order> orders;
+
+  @ManyToMany(targetEntity = Role.class, mappedBy = "users")
+  private List<Role> roles;
+
+  @ManyToOne
+  @JoinColumn(name = "country_id")
+  private Country country;
 }

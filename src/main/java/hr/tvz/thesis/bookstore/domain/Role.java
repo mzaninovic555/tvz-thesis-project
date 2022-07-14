@@ -16,18 +16,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Category {
+public class Role {
 
   @Id
   private Long id;
 
   private String name;
 
-  @ManyToMany(targetEntity = Book.class)
+  @ManyToMany(targetEntity = User.class)
   @JoinTable(
       name = "book_category",
       joinColumns = { @JoinColumn(name = "book_id") },
       inverseJoinColumns = { @JoinColumn(name = "category_id") }
   )
-  private List<Book> books;
+  private List<User> users;
 }
