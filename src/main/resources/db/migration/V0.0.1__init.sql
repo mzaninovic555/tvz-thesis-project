@@ -19,21 +19,21 @@ CREATE TABLE IF NOT EXISTS `author` (
     `first_name` VARCHAR(100) NOT NULL,
     `last_name` VARCHAR(100) NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = tis620 COLLATE = tis620_bin;
+) ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `book`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `book` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `format` VARCHAR(20) NOT NULL,
-    `page_number` TINYINT NOT NULL,
+    `page_number` SMALLINT NOT NULL,
     `binding` VARCHAR(20) NOT NULL,
     `mass` DOUBLE NOT NULL,
     `barcode` CHAR(13) NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `price` DECIMAL(6, 2) NOT NULL,
     `description` TEXT NOT NULL,
-    `publishing_year` CHAR(4) NOT NULL,
+    `publishing_year` INT(4) NOT NULL,
     `stock` TINYINT NOT NULL,
     `is_discount` BIT NOT NULL,
     `isbn` VARCHAR(13) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `country` (
     `name` VARCHAR(45) NOT NULL,
     `country_code` CHAR(2) NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = tis620 COLLATE = tis620_bin;
+) ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
@@ -151,4 +151,4 @@ CREATE TABLE IF NOT EXISTS `discount` (
     PRIMARY KEY (`id`),
     INDEX `fk_discount_book1_idx` (`book_id` ASC) VISIBLE,
     CONSTRAINT `fk_discount_book1` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB DEFAULT CHARACTER SET = tis620 COLLATE = tis620_bin;
+) ENGINE = InnoDB;
