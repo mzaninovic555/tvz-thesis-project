@@ -24,7 +24,7 @@ jobs:
       # Then run your tests!
       - run:
           name: Test
-          command: mvn test -Dspring.profiles.active=inmemdb.properties
+          command: mvn test -Dspring.profiles.active=inmemdb
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
