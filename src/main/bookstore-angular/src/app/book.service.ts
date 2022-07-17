@@ -10,6 +10,6 @@ export class BookService {
   constructor() { }
 
   getBooks(): Observable<Book[]> {
-    return null;
+    return new Observable<Book[]>();
   }
 }
