@@ -2,6 +2,10 @@
   width: 60%;
 }
 
+.navbar {
+  height: 60px;
+}
+
 .input-group > input {
   flex: none;
   width: 40%;
@@ -9,4 +13,17 @@
 
 .badge {
   font-size: 8px;
+}
+
+.form-control {
+  border-radius: 40px;
+}
+
+.input-group > .btn {
+  border-radius: 60px;
+}
+
+.form-control:focus,.btn-success:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
 }
