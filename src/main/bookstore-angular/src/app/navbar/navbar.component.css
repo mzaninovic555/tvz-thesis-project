@@ -15,12 +15,12 @@
   font-size: 8px;
 }
 
-.form-control {
-  border-radius: 40px;
-}
-
 .input-group > .btn {
   border-radius: 60px;
+}
+
+.form-control {
+  border-radius: 40px;
 }
 
 .form-control:focus,.btn-success:focus {
