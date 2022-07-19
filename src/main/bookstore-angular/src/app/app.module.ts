@@ -7,6 +7,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarContentComponent } from './navbar-content/navbar-content.component';
 import { BooksComponent } from './books/books.component';
 import { FooterBookstoreComponent } from './footer-bookstore/footer-bookstore.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { FooterBookstoreComponent } from './footer-bookstore/footer-bookstore.co
     NavbarComponent,
     NavbarContentComponent,
     BooksComponent,
-    FooterBookstoreComponent
+    FooterBookstoreComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

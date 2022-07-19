@@ -14,6 +14,7 @@ export class BooksComponent implements OnInit {
   constructor(bookService: BookService) {
     this.bookService = bookService;
     this.getBooks();
+    console.log("Book service initialized.");
   }
 
   ngOnInit(): void {
