@@ -16,5 +16,15 @@
 }
 
 .carousel-indicators {
-  bottom: -16%;
+  bottom: -45px;
+}
+
+.carousel {
+  margin-top: 7%;
+}
+
+.carousel > h1 {
+  font-size: 35px;
+  color: #424242;
+  font-family: Bahnschrift, sans-serif;
 }
