@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `author` (
 CREATE TABLE IF NOT EXISTS `book` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `format` VARCHAR(20) NOT NULL,
-    `page_number` TINYINT NOT NULL,
+    `page_number` SMALLINT NOT NULL,
     `binding` VARCHAR(20) NOT NULL,
     `mass` DOUBLE NOT NULL,
     `barcode` CHAR(13) NOT NULL,

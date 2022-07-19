@@ -18,8 +18,8 @@ export interface Book {
   isDiscount: boolean;
   isbn: string;
   imagePath: string;
+  language: string;
   author: Author;
   publisher: Publisher;
-  language: string;
   categories: Category[];
 }

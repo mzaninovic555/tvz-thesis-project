@@ -38,8 +38,8 @@ public class Order {
   @ManyToMany(targetEntity = Book.class)
   @JoinTable(
       name = "order_book",
-      joinColumns = { @JoinColumn(name = "order_id") },
-      inverseJoinColumns = { @JoinColumn(name = "book_id") }
+      joinColumns = { @JoinColumn(name = "book_id") },
+      inverseJoinColumns = { @JoinColumn(name = "order_id") }
   )
   private List<Book> books;
 }

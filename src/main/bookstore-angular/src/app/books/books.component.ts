@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from "../book";
 import {BookService} from "../book.service";
+import {Constants} from "../constants";
 
 @Component({
   selector: 'app-books',
@@ -10,11 +11,11 @@ import {BookService} from "../book.service";
 export class BooksComponent implements OnInit {
   bookService: BookService;
   books!: Book[];
+  imagePath = Constants.IMAGE_PATH;
 
   constructor(bookService: BookService) {
     this.bookService = bookService;
     this.getBooks();
-    console.log("Book service initialized.");
   }
 
   ngOnInit(): void {
@@ -27,5 +28,4 @@ export class BooksComponent implements OnInit {
           this.books = books;
         });
   }
-
 }

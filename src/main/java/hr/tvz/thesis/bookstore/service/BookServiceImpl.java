@@ -51,6 +51,9 @@ public class BookServiceImpl implements BookService {
         .isDiscount(book.getIsDiscount())
         .isbn(book.getIsbn())
         .imagePath(book.getImagePath())
+        .author(book.getAuthor())
+        .publisher(book.getPublisher())
+        .categories(book.getCategories())
         .build();
   }
 }

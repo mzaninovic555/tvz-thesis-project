@@ -5,68 +5,13 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="row">
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/35c8c1fc-cfc1-40c4-b63f-cc5e7b0e4a21.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/a4a3aa64-d196-4b8b-b837-7512c4b20dde.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/f094b793-8937-4efd-92bf-532f1a9aee02.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/4782b952-7bce-4414-8a7f-86c73f04aeca.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/9d531f9f-f175-40a0-9f5c-315cc0c34c07.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/35c8c1fc-cfc1-40c4-b63f-cc5e7b0e4a21.jpg">
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="row">
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/35c8c1fc-cfc1-40c4-b63f-cc5e7b0e4a21.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/a4a3aa64-d196-4b8b-b837-7512c4b20dde.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/f094b793-8937-4efd-92bf-532f1a9aee02.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/4782b952-7bce-4414-8a7f-86c73f04aeca.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/9d531f9f-f175-40a0-9f5c-315cc0c34c07.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/35c8c1fc-cfc1-40c4-b63f-cc5e7b0e4a21.jpg">
-          </div>
-        </div>
-
-      </div>
-      <div class="carousel-item">
-        <div class="row">
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/35c8c1fc-cfc1-40c4-b63f-cc5e7b0e4a21.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/a4a3aa64-d196-4b8b-b837-7512c4b20dde.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/f094b793-8937-4efd-92bf-532f1a9aee02.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/4782b952-7bce-4414-8a7f-86c73f04aeca.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/9d531f9f-f175-40a0-9f5c-315cc0c34c07.jpg">
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 img-container">
-            <img src="https://znanje.hr/product-images/35c8c1fc-cfc1-40c4-b63f-cc5e7b0e4a21.jpg">
+          <div *ngFor="let book of books" class="col-lg-2 col-md-4 col-sm-6">
+            <div class="img-container">
+              <img src="{{imagePath}}/{{book.imagePath}}">
+            </div>
+            <p> {{book.title}} </p>
+            <p> {{book.author.firstName}} </p>
+            <p> {{book.price}} </p>
           </div>
         </div>
       </div>
