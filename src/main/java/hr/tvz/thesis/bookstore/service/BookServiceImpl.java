@@ -1,5 +1,6 @@
 package hr.tvz.thesis.bookstore.service;
 
+import hr.tvz.thesis.bookstore.common.DTOConverters;
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.repository.BookRepository;
@@ -20,40 +21,13 @@ public class BookServiceImpl implements BookService {
   public List<BookDTO> findAll() {
     return bookRepository.findAll()
         .stream()
-        .map(this::mapBookToBookDTO)
+        .map(DTOConverters::mapBookToBookDTO)
         .toList();
   }
 
   @Override
   public Optional<BookDTO> findById(Long id) {
     return bookRepository.findById(id)
-        .map(this::mapBookToBookDTO);
-  }
-
-  /**
-   * Converts {@link Book} object to {@link BookDTO}.
-   * @param book book to be converted
-   * @return returns converted BookDTO object
-   */
-  public BookDTO mapBookToBookDTO(Book book) {
-    return BookDTO.builder()
-        .id(book.getId())
-        .format(book.getFormat())
-        .pageNumber(book.getPageNumber())
-        .binding(book.getBinding())
-        .mass(book.getMass())
-        .barcode(book.getBarcode())
-        .title(book.getTitle())
-        .price(book.getPrice())
-        .description(book.getDescription())
-        .publishingYear(book.getPublishingYear())
-        .stock(book.getStock())
-        .isDiscount(book.getIsDiscount())
-        .isbn(book.getIsbn())
-        .imagePath(book.getImagePath())
-        .author(book.getAuthor())
-        .publisher(book.getPublisher())
-        .categories(book.getCategories())
-        .build();
+        .map(DTOConverters::mapBookToBookDTO);
   }
 }

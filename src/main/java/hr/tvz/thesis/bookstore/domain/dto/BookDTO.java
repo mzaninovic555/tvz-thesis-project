@@ -46,9 +46,9 @@ public class BookDTO {
 
   private String imagePath;
 
-  private Author author;
+  private AuthorDTO author;
 
-  private Publisher publisher;
+  private PublisherDTO publisher;
 
-  private List<Category> categories;
+  private List<CategoryDTO> categories;
 }
