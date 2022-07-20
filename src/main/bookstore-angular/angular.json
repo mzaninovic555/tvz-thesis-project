@@ -105,5 +105,7 @@
       }
     }
   },
-  "defaultProject": "bookstore-angular"
+  "cli": {
+    "analytics": "0bddad3c-1bfe-4c5e-a196-3f73b3682bf6"
+  }
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, SecurityContext} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,8 +8,9 @@ import { NavbarContentComponent } from './navbar-content/navbar-content.componen
 import { BooksComponent } from './books/books.component';
 import { FooterBookstoreComponent } from './footer-bookstore/footer-bookstore.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { BookDetailsComponent } from './book-details/book-details.component';
+import {MarkdownModule} from "ngx-markdown";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { BookDetailsComponent } from './book-details/book-details.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MarkdownModule,
+    MarkdownModule.forRoot({ loader: HttpClient, sanitize: SecurityContext.NONE })
   ],
   providers: [],
   bootstrap: [AppComponent]
