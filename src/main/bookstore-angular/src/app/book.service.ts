@@ -17,11 +17,18 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   getBooks(): Observable<Book[]> {
-
     return this.http.get<Book[]>(this.bookURL)
     .pipe(
         tap(_ => console.log('Fetched books')),
         catchError(this.handleError<Book[]>('getBooks', []))
+    );
+  }
+
+  getBookById(id: string): Observable<Book> {
+    return this.http.get<Book>(`${this.bookURL}/${id}`)
+    .pipe(
+        tap(_ => console.log('Fetched books')),
+        catchError(this.handleError<Book>('getBook'))
     );
   }
 

@@ -23,9 +23,7 @@ public class BookController {
 
   @GetMapping
   public List<BookDTO> findAll() {
-    List<BookDTO> cum = bookService.findAll();
-
-    return cum;
+    return bookService.findAll();
   }
 
   @GetMapping("/{id}")

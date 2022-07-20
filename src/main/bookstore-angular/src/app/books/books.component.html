@@ -1,3 +1,4 @@
+<app-navbar-content> </app-navbar-content>
 <article class="container">
   <div id="carouselExampleIndicators" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
     <h1>Popularne knjige kek</h1>
@@ -5,13 +6,16 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="row">
-          <div *ngFor="let book of books" class="col-lg-2 col-md-4 col-sm-6 book-container">
-            <div class="img-container">
-              <img src="{{imagePath}}/{{book.imagePath}}">
-            </div>
-            <p> {{book.title}} </p>
-            <p> {{book.author.firstName}} {{book.author.lastName}} </p>
+          <div *ngFor="let book of books" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+            <a routerLink="book/{{book.id}}" class="">
+              <div class="img-container">
+                <img src="{{imagePath}}/{{book.imagePath}}">
+              </div>
+            </a>
+            <a routerLink="book/{{book.id}}" class=""> <p> {{book.title}} </p> </a>
+            <a routerLink="book/{{book.id}}" class=""> <p> {{book.author.firstName}} {{book.author.lastName}} </p> </a>
             <p> {{book.price}} kn </p>
+
           </div>
         </div>
       </div>

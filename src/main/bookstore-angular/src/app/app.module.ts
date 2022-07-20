@@ -9,6 +9,7 @@ import { BooksComponent } from './books/books.component';
 import { FooterBookstoreComponent } from './footer-bookstore/footer-bookstore.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {HttpClientModule} from "@angular/common/http";
     NavbarContentComponent,
     BooksComponent,
     FooterBookstoreComponent,
-    HomePageComponent
+    HomePageComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,
