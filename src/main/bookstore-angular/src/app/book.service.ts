@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {Book} from "./book";
 import {catchError, Observable, of, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Author} from "./author";
+import {Constants} from "./constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
-  private bookURL = 'http://localhost:8080/books';
+  private URL = Constants.SPRING_URL;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,7 +19,7 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.bookURL)
+    return this.http.get<Book[]>(`${this.URL}/books`)
     .pipe(
         tap(_ => console.log('Fetched books')),
         catchError(this.handleError<Book[]>('getBooks', []))
@@ -25,11 +27,27 @@ export class BookService {
   }
 
   getBookById(id: string): Observable<Book> {
-    return this.http.get<Book>(`${this.bookURL}/${id}`)
+    return this.http.get<Book>(`${this.URL}/books/${id}`)
     .pipe(
         tap(_ => console.log('Fetched books')),
         catchError(this.handleError<Book>('getBook'))
     );
+  }
+
+  getBooksByAuthorId(id: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.URL}/api/books/author/${id}`)
+    .pipe(
+        tap(_ => console.log('Fetched books by author id')),
+        catchError(this.handleError<Book[]>('getBookByAuthorId'))
+    );
+  }
+
+  getAuthorById(id: string): Observable<Author> {
+    return this.http.get<Author>(`${this.URL}/author/${id}`)
+      .pipe(
+          tap(_ => console.log('Fetched author by id')),
+          catchError(this.handleError<Author>('getAuthorById'))
+      )
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

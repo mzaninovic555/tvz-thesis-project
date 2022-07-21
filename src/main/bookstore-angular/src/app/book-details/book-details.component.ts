@@ -11,7 +11,7 @@ import {Constants} from "../constants";
 })
 export class BookDetailsComponent implements OnInit {
 
-  book?:Book;
+  book?: Book;
   imagePath = Constants.IMAGE_PATH;
 
   constructor(private route: ActivatedRoute, private bookService: BookService) { }
@@ -28,5 +28,4 @@ export class BookDetailsComponent implements OnInit {
       console.error(`ID can't be null.`);
     }
   }
-
 }

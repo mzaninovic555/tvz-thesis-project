@@ -1,3 +1,7 @@
+* {
+  font-family: Bahnschrift, sans-serif;
+}
+
 .img-container {
   margin-bottom: 10px;
 }
@@ -20,7 +24,7 @@
 }
 
 .carousel-indicators {
-  bottom: -45px;
+  bottom: -65px;
 }
 
 .carousel {
@@ -37,4 +41,27 @@
   font-family: Bahnschrift, sans-serif;
   color: #424242;
   margin: 0;
+}
+
+.book-author {
+  color: rgba(40, 167, 69, 1.0);
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: #424242;
+  transition: all 0.07s linear;
+}
+
+a:hover{
+  opacity: 0.6;
+}
+
+a > div {
+  transition: all 0.2s linear;
+}
+
+a > div:hover {
+  transform: scale(1.1);
 }

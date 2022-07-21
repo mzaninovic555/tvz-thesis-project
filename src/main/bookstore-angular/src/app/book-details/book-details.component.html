@@ -5,18 +5,56 @@
     </div>
     <div class="col-lg-8 col-md-6 col-sm-12 ms-5">
       <h2>{{book?.title}}</h2>
-      <h4>{{book?.author!.firstName}} {{book?.author!.lastName}}</h4>
+      <a routerLink="../../author/{{book?.author?.id}}">
+        <h4>{{book?.author?.firstName}} {{book?.author?.lastName}}</h4>
+      </a>
+      <h5>{{book?.price}}kn</h5>
       <hr>
-      <div class="row">
-        <div class="col-4">
-          <input type="number" class="form-control" placeholder="Količina">
+      <div class="row align-items-center">
+        <div class="col-3">
+          <input *ngIf="book?.stock != 0" type="number" class="form-control" placeholder="Količina">
+          <input *ngIf="book?.stock == 0" type="number" class="form-control disabled-input" placeholder="Nedostupno" disabled>
         </div>
-        <div class="col-4 text-end">
-          <button type="button" class="btn btn-success">Dodaj u košaricu</button>
+        <div class="col-2">
+          <span *ngIf="book?.stock != 0" ><i class="fa-solid fa-circle-check"></i>  Dostupno</span>
+          <span *ngIf="book?.stock == 0"> <i class="fa-solid fa-circle-xmark"> </i>  Nedostupno</span>
+        </div>
+        <div class="col-2 text-end">
+          <button *ngIf="book?.stock != 0" type="button" class="btn btn-success">Dodaj u košaricu  <i class="bi bi-cart4"></i></button>
+          <button *ngIf="book?.stock == 0" type="button" class="btn btn-dark" disabled>Nedostupno</button>
         </div>
       </div>
       <hr>
       <markdown>{{book?.description}}</markdown>
+      <hr>
+      <div class="row">
+        <div class="col-lg-4 col-md-4">
+          <span class="book-detail-title">Godina izdanja</span><br>
+          <span class="book-detail-body">{{book?.publishingYear}}</span><br>
+
+          <span class="book-detail-title">Broj stranica</span><br>
+          <span class="book-detail-body">{{book?.pageNumber}}</span><br>
+
+          <span class="book-detail-title">Uvez</span><br>
+          <span class="book-detail-body">{{book?.binding}}</span><br>
+
+          <span class="book-detail-title">Masa</span><br>
+          <span class="book-detail-body">{{book?.mass}}kg</span><br>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <span class="book-detail-title">Format</span><br>
+          <span class="book-detail-body">{{book?.format}}</span><br>
+
+          <span class="book-detail-title">Barkod</span><br>
+          <span class="book-detail-body">{{book?.barcode}}</span><br>
+
+          <span class="book-detail-title">ISBN</span><br>
+          <span class="book-detail-body">{{book?.isbn}}</span><br>
+
+          <span class="book-detail-title">Izdavač</span><br>
+          <a href="#"> <span class="book-detail-body">{{book?.publisher!.name}}</span><br> </a>
+        </div>
+      </div>
     </div>
   </div>
 </article>
