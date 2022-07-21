@@ -1,0 +1,16 @@
+<app-navbar-content></app-navbar-content>
+<article class="container mt-3">
+  <h2>{{author?.firstName}}  {{author?.lastName}}</h2>
+  <div class="row mt-5  align-items-end">
+    <div *ngFor="let book of books" class="col-lg-2 col-md-4 col-sm-6 book-container text-center ">
+      <a routerLink="../../book/{{book.id}}" class="">
+        <div class="img-container">
+          <img src="{{imagePath}}/{{book.imagePath}}">
+        </div>
+      </a>
+      <a routerLink="../../book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+      <a href="#" class="book-author link-disabled"> {{book.author.firstName}} {{book.author.lastName}} </a>
+      <p> {{book.price}} kn </p>
+    </div>
+  </div>
+</article>
