@@ -35,4 +35,9 @@ public class BookController {
   public List<BookDTO> findByAuthorId(@PathVariable final Long id) {
     return bookService.findByAuthorId(id);
   }
+
+  @GetMapping("api/books/publisher/{id}")
+  public List<BookDTO> findByPublisherId(@PathVariable final Long id) {
+    return bookService.findByPublisherId(id);
+  }
 }

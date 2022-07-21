@@ -52,7 +52,7 @@
           <span class="book-detail-body">{{book?.isbn}}</span><br>
 
           <span class="book-detail-title">Izdavač</span><br>
-          <a href="#"> <span class="book-detail-body">{{book?.publisher!.name}}</span><br> </a>
+          <a routerLink="../../publisher/{{book?.publisher?.id}}"> <span class="book-detail-body">{{book?.publisher!.name}}</span><br> </a>
         </div>
       </div>
     </div>

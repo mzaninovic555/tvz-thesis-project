@@ -12,6 +12,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { BookDetailsComponent } from './book-details/book-details.component';
 import {MarkdownModule} from "ngx-markdown";
 import { AuthorComponent } from './author/author.component';
+import { PublisherComponent } from './publisher/publisher.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthorComponent } from './author/author.component';
     FooterBookstoreComponent,
     HomePageComponent,
     BookDetailsComponent,
-    AuthorComponent
+    AuthorComponent,
+    PublisherComponent
   ],
   imports: [
     BrowserModule,

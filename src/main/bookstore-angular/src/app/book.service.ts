@@ -4,6 +4,7 @@ import {catchError, Observable, of, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Author} from "./author";
 import {Constants} from "./constants";
+import {Publisher} from "./publisher";
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,22 @@ export class BookService {
           tap(_ => console.log('Fetched author by id')),
           catchError(this.handleError<Author>('getAuthorById'))
       )
+  }
+
+  getBooksByPublisherId(id: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.URL}/api/books/publisher/${id}`)
+    .pipe(
+        tap(_ => console.log('Fetched books by Publisher id')),
+        catchError(this.handleError<Book[]>('getBookByPublisherId'))
+    );
+  }
+
+  getPublisherById(id: string): Observable<Publisher> {
+    return this.http.get<Publisher>(`${this.URL}/publisher/${id}`)
+    .pipe(
+        tap(_ => console.log('Fetched Publisher by id')),
+        catchError(this.handleError<Publisher>('getPublisherById'))
+    )
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -1,7 +1,6 @@
 package hr.tvz.thesis.bookstore.service;
 
 import hr.tvz.thesis.bookstore.common.DTOConverters;
-import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.repository.BookRepository;
 import java.util.List;
@@ -34,6 +33,14 @@ public class BookServiceImpl implements BookService {
   @Override
   public List<BookDTO> findByAuthorId(Long id) {
     return bookRepository.findByAuthorId(id)
+        .stream()
+        .map(DTOConverters::mapBookToBookDTO)
+        .toList();
+  }
+
+  @Override
+  public List<BookDTO> findByPublisherId(Long id) {
+    return bookRepository.findByPublisherId(id)
         .stream()
         .map(DTOConverters::mapBookToBookDTO)
         .toList();
