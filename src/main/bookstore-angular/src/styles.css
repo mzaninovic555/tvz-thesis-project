@@ -3,7 +3,7 @@
   color: rgba(40, 167, 69, 0.80) !important;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 768px) {
   * {
     margin: 0 auto;
   }
