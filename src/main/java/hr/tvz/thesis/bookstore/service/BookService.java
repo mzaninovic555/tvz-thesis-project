@@ -9,4 +9,6 @@ public interface BookService {
   List<BookDTO> findAll();
 
   Optional<BookDTO> findById(Long id);
+
+  List<BookDTO> findByAuthorId(Long id);
 }

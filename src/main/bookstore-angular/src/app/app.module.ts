@@ -11,6 +11,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { BookDetailsComponent } from './book-details/book-details.component';
 import {MarkdownModule} from "ngx-markdown";
+import { AuthorComponent } from './author/author.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MarkdownModule} from "ngx-markdown";
     BooksComponent,
     FooterBookstoreComponent,
     HomePageComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    AuthorComponent
   ],
   imports: [
     BrowserModule,

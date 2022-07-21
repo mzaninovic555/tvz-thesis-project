@@ -30,4 +30,12 @@ public class BookServiceImpl implements BookService {
     return bookRepository.findById(id)
         .map(DTOConverters::mapBookToBookDTO);
   }
+
+  @Override
+  public List<BookDTO> findByAuthorId(Long id) {
+    return bookRepository.findByAuthorId(id)
+        .stream()
+        .map(DTOConverters::mapBookToBookDTO)
+        .toList();
+  }
 }
