@@ -1,7 +1,7 @@
 <app-navbar-content> </app-navbar-content>
 <article class="container">
   <div id="popularBooksCarousel" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
-    <h1>Popularne knjige kek</h1>
+    <h1>Popularne knjige</h1>
     <hr>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -41,7 +41,7 @@
   </div>
 
   <div id="carouselExampleIndicators2" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <h1>Nove knjige kek</h1>
+    <h1>Nove knjige</h1>
     <hr>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -81,13 +81,14 @@
   </div>
 
   <div id="carouselExampleIndicators3" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <h1>Knjige na popustu kek</h1>
+    <h1>Knjige na popustu</h1>
     <hr>
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="row align-items-end">
           <div *ngFor="let book of discountBooks" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
             <a routerLink="book/{{book.id}}" class="">
+              <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
               <div class="img-container">
                 <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}">
               </div>
