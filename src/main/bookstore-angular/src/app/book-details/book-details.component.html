@@ -8,7 +8,12 @@
       <a routerLink="../../author/{{book?.author?.id}}">
         <h4>{{book?.author?.firstName}} {{book?.author?.lastName}}</h4>
       </a>
-      <h5>{{book?.price}}kn</h5>
+      <ng-container *ngIf="book?.discountPrice != 0">
+        <h5 class="discount-details"> {{book?.price}} kn </h5>
+        <h5 style="display: inline; margin-left: 10px"> {{book?.discountPrice}} kn </h5>
+        <span class="badge bg-success"> Popust vrijedi do {{book?.discountExpiration | date: 'dd.MM.yyyy.'}} </span>
+      </ng-container>
+      <h5 *ngIf="book?.discountPrice == 0"> {{book?.price}} kn </h5>
       <hr>
       <div class="row align-items-center">
         <div class="col-3">

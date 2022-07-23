@@ -8,6 +8,7 @@ import hr.tvz.thesis.bookstore.domain.dto.AuthorDTO;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class DTOConverters {
@@ -27,10 +28,11 @@ public class DTOConverters {
         .barcode(book.getBarcode())
         .title(book.getTitle())
         .price(book.getPrice())
+        .discountPrice(book.getDiscount() != null ? book.getDiscount().getDiscountPrice() : BigDecimal.ZERO)
+        .discountExpiration((book.getDiscount() != null ? book.getDiscount().getEndsAt() : null))
         .description(book.getDescription())
         .publishingYear(book.getPublishingYear())
         .stock(book.getStock())
-        .isDiscount(book.getIsDiscount())
         .isbn(book.getIsbn())
         .imagePath(book.getImagePath())
         .dateAdded(book.getDateAdded())

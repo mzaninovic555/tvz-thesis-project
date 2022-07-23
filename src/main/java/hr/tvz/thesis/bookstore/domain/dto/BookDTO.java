@@ -32,13 +32,15 @@ public class BookDTO {
 
   private BigDecimal price;
 
+  private BigDecimal discountPrice;
+
+  private LocalDate discountExpiration;
+
   private String description;
 
   private Integer publishingYear;
 
   private Integer stock;
-
-  private Boolean isDiscount;
 
   private String isbn;
 

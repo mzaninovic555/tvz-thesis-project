@@ -44,3 +44,9 @@ a:hover{
 .disabled-input::placeholder {
   color: white;
 }
+
+.discount-details {
+  display: inline;
+  text-decoration: line-through;
+  color: #424242;
+}

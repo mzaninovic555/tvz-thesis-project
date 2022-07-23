@@ -48,9 +48,6 @@ public class Book {
 
   private Integer stock;
 
-  @Column(name = "is_discount")
-  private Boolean isDiscount;
-
   private String isbn;
 
   @Column(name = "image_path")

@@ -12,10 +12,11 @@ export interface Book {
   barcode: string;
   title: string;
   price: number;
+  discountPrice: number;
+  discountExpiration: Date;
   description: string;
   publishingYear: number;
   stock: number;
-  isDiscount: boolean;
   isbn: string;
   imagePath: string;
   dateAdded: Date;

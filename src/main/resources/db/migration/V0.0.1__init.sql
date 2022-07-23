@@ -41,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `book` (
     `description` TEXT NOT NULL,
     `publishing_year` CHAR(4) NOT NULL,
     `stock` TINYINT NOT NULL,
-    `is_discount` BIT NOT NULL,
     `isbn` VARCHAR(13) NOT NULL,
     `image_path` TEXT NOT NULL,
     `date_added` DATE NOT NULL,

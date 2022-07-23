@@ -10,7 +10,11 @@
       </a>
       <a routerLink="../../book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
       <a routerLink="../../author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-      <p> {{book.price}} kn </p>
+      <ng-container *ngIf="book.discountPrice != 0">
+        <br><span class="discount"> {{book.price}} kn </span>
+        <span> {{book.discountPrice}} kn </span>
+      </ng-container>
+      <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
     </div>
   </div>
 </article>

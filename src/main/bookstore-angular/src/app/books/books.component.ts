@@ -12,6 +12,7 @@ export class BooksComponent implements OnInit {
   bookService: BookService;
   books!: Book[];
   newBooks!: Book[];
+  discountBooks!: Book[];
   imagePath = Constants.IMAGE_PATH;
 
   constructor(bookService: BookService) {
@@ -32,12 +33,13 @@ export class BooksComponent implements OnInit {
           console.log("Puca mi kurac vise.")
         },
         complete: () => {
-          this.getBooksByDateNewest()
+          this.sortBooksByDateNewest();
+          this.filterBooksByDiscount();
         },
       })
   }
 
-  getBooksByDateNewest() {
+  sortBooksByDateNewest() {
     this.newBooks = this.books.map(b => Object.assign({}, b));
     this.newBooks.sort((a, b)=> {
       if (a.dateAdded < b.dateAdded) {
@@ -48,5 +50,9 @@ export class BooksComponent implements OnInit {
       }
       return 0;
     });
+  }
+
+  filterBooksByDiscount() {
+    this.discountBooks = this.books.filter(b => b.discountPrice != 0);
   }
 }

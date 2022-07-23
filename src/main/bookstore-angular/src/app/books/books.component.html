@@ -14,7 +14,11 @@
             </a>
             <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
             <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-            <p> {{book.price}} kn </p>
+            <ng-container *ngIf="book.discountPrice != 0">
+              <br><span class="discount"> {{book.price}} kn </span>
+              <span> {{book.discountPrice}} kn </span>
+            </ng-container>
+            <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
           </div>
         </div>
       </div>
@@ -50,7 +54,11 @@
             </a>
             <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
             <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-            <p> {{book.price}} kn </p>
+            <ng-container *ngIf="book.discountPrice != 0">
+              <br><span class="discount"> {{book.price}} kn </span>
+              <span> {{book.discountPrice}} kn </span>
+            </ng-container>
+            <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
           </div>
         </div>
       </div>
@@ -78,7 +86,7 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="row align-items-end">
-          <div *ngFor="let book of newBooks" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+          <div *ngFor="let book of discountBooks" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
             <a routerLink="book/{{book.id}}" class="">
               <div class="img-container">
                 <img src="{{imagePath}}/{{book.imagePath}}">
@@ -86,7 +94,8 @@
             </a>
             <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
             <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-            <p> {{book.price}} kn </p>
+            <br><span class="discount"> {{book.price}} kn </span>
+            <span> {{book.discountPrice}} kn </span>
           </div>
         </div>
       </div>
