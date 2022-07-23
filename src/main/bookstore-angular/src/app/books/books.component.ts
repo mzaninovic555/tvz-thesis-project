@@ -11,6 +11,7 @@ import {Constants} from "../constants";
 export class BooksComponent implements OnInit {
   bookService: BookService;
   books!: Book[];
+  newBooks!: Book[];
   imagePath = Constants.IMAGE_PATH;
 
   constructor(bookService: BookService) {
@@ -23,9 +24,29 @@ export class BooksComponent implements OnInit {
 
   getBooks(): void {
     this.bookService.getBooks()
-      .subscribe(
-        books => {
-          this.books = books;
-        });
+      .subscribe({
+        next: (books) => {
+          this.books = books
+        },
+        error: () => {
+          console.log("Puca mi kurac vise.")
+        },
+        complete: () => {
+          this.getBooksByDateNewest()
+        },
+      })
+  }
+
+  getBooksByDateNewest() {
+    this.newBooks = this.books.map(b => Object.assign({}, b));
+    this.newBooks.sort((a, b)=> {
+      if (a.dateAdded < b.dateAdded) {
+        return 1
+      }
+      if (a.dateAdded > b.dateAdded) {
+        return -1;
+      }
+      return 0;
+    });
   }
 }

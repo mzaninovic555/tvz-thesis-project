@@ -30,7 +30,7 @@
       <div class="row">
         <div class="col-lg-4 col-md-4">
           <span class="book-detail-title">Dodano</span><br>
-          <span class="book-detail-body">{{book?.dateAdded}}</span><br>
+          <span class="book-detail-body">{{book?.dateAdded | date: 'dd.MM.yyyy.'}}</span><br>
 
           <span class="book-detail-title">Godina izdanja</span><br>
           <span class="book-detail-body">{{book?.publishingYear}}</span><br>
