@@ -9,7 +9,7 @@
           <div *ngFor="let book of books" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
             <a routerLink="book/{{book.id}}" class="">
               <div class="img-container">
-                <img src="{{imagePath}}/{{book.imagePath}}">
+                <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
               </div>
             </a>
             <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -49,7 +49,7 @@
           <div *ngFor="let book of newBooks" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
             <a routerLink="book/{{book.id}}" class="">
               <div class="img-container">
-                <img src="{{imagePath}}/{{book.imagePath}}">
+                <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}">
               </div>
             </a>
             <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -89,7 +89,7 @@
           <div *ngFor="let book of discountBooks" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
             <a routerLink="book/{{book.id}}" class="">
               <div class="img-container">
-                <img src="{{imagePath}}/{{book.imagePath}}">
+                <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}">
               </div>
             </a>
             <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
