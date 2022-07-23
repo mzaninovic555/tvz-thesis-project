@@ -33,6 +33,7 @@ public class DTOConverters {
         .isDiscount(book.getIsDiscount())
         .isbn(book.getIsbn())
         .imagePath(book.getImagePath())
+        .dateAdded(book.getDateAdded())
         .author(DTOConverters.mapAuthorToAuthorDTO(book.getAuthor()))
         .publisher(DTOConverters.mapPublisherToPublisherDTO(book.getPublisher()))
         .categories(DTOConverters.mapCategoriesToCategoriesDTO(book.getCategories()))

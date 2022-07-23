@@ -37,6 +37,17 @@
   font-family: Bahnschrift, sans-serif;
 }
 
+.book-container {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-container img {
+  height: 280px;
+  width: auto;
+}
+
 .book-container > p {
   font-family: Bahnschrift, sans-serif;
   color: #424242;
@@ -64,4 +75,18 @@ a > div {
 
 a > div:hover {
   transform: scale(1.1);
+}
+
+@media screen and (max-width: 992px) {
+  .book-container img {
+    height: 300px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .book-container img {
+    height: 100%;
+    width: 100%;
+  }
 }

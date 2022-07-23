@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `book` (
     `is_discount` BIT NOT NULL,
     `isbn` VARCHAR(13) NOT NULL,
     `image_path` TEXT NOT NULL,
+    `date_added` DATE NOT NULL,
     `publisher_id` INT NOT NULL,
     `language_id` INT NOT NULL,
     `author_id` INT NOT NULL,

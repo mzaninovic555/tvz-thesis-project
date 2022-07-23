@@ -1,6 +1,5 @@
 * {
   font-family: Bahnschrift, sans-serif;
-  color: #424242;
 }
 
 .img-container {
@@ -12,8 +11,41 @@
   height: 100%;
 }
 
-.link-disabled {
-  pointer-events: none;
+.carousel-control-prev {
+  left: -10%;
+  color: black;
+  font-size: 30px;
+}
+
+.carousel-control-next {
+  right: -10%;
+  color: black;
+  font-size: 30px;
+}
+
+.carousel-indicators {
+  bottom: -65px;
+}
+
+.carousel {
+  margin-top: 7%;
+}
+
+.carousel > h1 {
+  font-size: 35px;
+  color: #424242;
+  font-family: Bahnschrift, sans-serif;
+}
+
+.book-container {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-container img {
+  height: 280px;
+  width: auto;
 }
 
 .book-container > p {
@@ -43,4 +75,18 @@ a > div {
 
 a > div:hover {
   transform: scale(1.1);
+}
+
+@media screen and (max-width: 992px) {
+  .book-container img {
+    height: 300px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .book-container img {
+    height: 100%;
+    width: 100%;
+  }
 }

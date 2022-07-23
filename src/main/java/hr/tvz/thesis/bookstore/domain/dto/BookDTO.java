@@ -1,9 +1,7 @@
 package hr.tvz.thesis.bookstore.domain.dto;
 
-import hr.tvz.thesis.bookstore.domain.Author;
-import hr.tvz.thesis.bookstore.domain.Category;
-import hr.tvz.thesis.bookstore.domain.Publisher;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,6 +43,8 @@ public class BookDTO {
   private String isbn;
 
   private String imagePath;
+
+  private LocalDate dateAdded;
 
   private AuthorDTO author;
 

@@ -1,6 +1,7 @@
 package hr.tvz.thesis.bookstore.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -54,6 +55,9 @@ public class Book {
 
   @Column(name = "image_path")
   private String imagePath;
+
+  @Column(name = "date_added")
+  private LocalDate dateAdded;
 
   @ManyToOne
   @JoinColumn(name = "author_id")

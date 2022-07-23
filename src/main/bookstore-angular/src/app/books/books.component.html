@@ -6,7 +6,7 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="row align-items-end">
-          <div *ngFor="let book of books" class="col-lg-2 col-md-4 col-sm-6 book-container text-center ">
+          <div *ngFor="let book of books" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
             <a routerLink="book/{{book.id}}" class="">
               <div class="img-container">
                 <img src="{{imagePath}}/{{book.imagePath}}">

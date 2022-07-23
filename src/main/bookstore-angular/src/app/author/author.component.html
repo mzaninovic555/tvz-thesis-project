@@ -9,7 +9,7 @@
         </div>
       </a>
       <a routerLink="../../book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-      <a href="#" class="book-author link-disabled"> {{book.author.firstName}} {{book.author.lastName}} </a>
+      <a routerLink="../{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
       <p> {{book.price}} kn </p>
     </div>
   </div>
