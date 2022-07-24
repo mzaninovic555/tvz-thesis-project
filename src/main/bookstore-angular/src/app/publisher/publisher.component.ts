@@ -14,7 +14,10 @@ export class PublisherComponent implements OnInit {
 
   publisher?: Publisher;
   books!: Book[];
+  filteredBooks!: Book[];
   imagePath = Constants.IMAGE_PATH;
+  filteredBookTitle = "";
+  filteredBookAuthor = "";
 
   constructor(private route: ActivatedRoute, private bookService: BookService) {
   }
@@ -29,13 +32,48 @@ export class PublisherComponent implements OnInit {
       });
 
       this.bookService.getBooksByPublisherId(id)
-      .subscribe(books => {
-        this.books = books;
-      });
+        .subscribe({
+          next: (books) => {
+            this.books = books;
+          },
+          error: () => {
+            console.log("Error")
+          },
+          complete: () => {
+            this.filteredBooks = this.books;
+          }
+        });
     } else {
       console.error(`ID can't be null.`);
     }
   }
 
+  searchBookTitle(data: string) {
+    this.filteredBookTitle = data;
+    this.filterBooks();
+  }
 
+  searchBookAuthor(data: string) {
+    this.filteredBookAuthor = data;
+    this.filterBooks();
+  }
+
+  filterBooks() {
+    this.filteredBooks = this.books;
+
+    if (this.filteredBookTitle !== "") {
+      this.filteredBooks = this.filteredBooks
+        .filter(b => b.title.toLowerCase().includes(this.filteredBookTitle.toLowerCase()));
+    }
+
+    if (this.filteredBookAuthor !== "") {
+      this.filteredBooks = this.filteredBooks
+        .filter(b => (`${b.author.firstName} ${b.author.lastName}`).toLowerCase()
+          .includes(this.filteredBookAuthor.toLowerCase()));
+    }
+
+    if (this.filteredBookTitle === "" && this.filteredBookAuthor === "") {
+      this.filteredBooks = this.books;
+    }
+  }
 }

@@ -18,6 +18,17 @@
   font-size:30px;
 }
 
+
+.form-control {
+  margin-top: 5px;
+  border-radius: 40px;
+}
+
+.form-control:focus,.btn-success:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
+}
+
 @media screen and (max-width: 1199px) {
   .discount-icon {
     left:70px;

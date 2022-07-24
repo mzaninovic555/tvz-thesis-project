@@ -77,6 +77,12 @@ a > div:hover {
   transform: scale(1.1);
 }
 
+h2 {
+  font-size: 35px;
+  color: #424242;
+  font-family: Bahnschrift, sans-serif;
+}
+
 @media screen and (max-width: 992px) {
   .book-container img {
     height: 300px;

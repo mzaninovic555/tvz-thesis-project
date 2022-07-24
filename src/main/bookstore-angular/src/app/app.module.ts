@@ -13,6 +13,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import {MarkdownModule} from "ngx-markdown";
 import { AuthorComponent } from './author/author.component';
 import { PublisherComponent } from './publisher/publisher.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PublisherComponent } from './publisher/publisher.component';
     AppRoutingModule,
     HttpClientModule,
     MarkdownModule,
-    MarkdownModule.forRoot({ loader: HttpClient, sanitize: SecurityContext.NONE })
+    MarkdownModule.forRoot({loader: HttpClient, sanitize: SecurityContext.NONE}),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,25 @@
 <app-navbar-content></app-navbar-content>
 <article class="container mt-3">
   <h2>{{publisher?.name}}</h2>
+  <form class="row">
+    <div class="col-2">
+      <input type="text" id="bookTitle" class="form-control"
+             [(ngModel)]="filteredBookTitle"
+             (ngModelChange)="searchBookTitle($event)"
+             placeholder="Naslov..."
+             name="filterTitle">
+    </div>
+    <div class="col-2">
+      <input type="text" id="author" class="form-control"
+             [(ngModel)]="filteredBookAuthor"
+             (ngModelChange)="searchBookAuthor($event)"
+             placeholder="Autor..."
+             name="filterAuthor">
+    </div>
+  </form>
+
   <div class="row mt-5  align-items-end">
-    <div *ngFor="let book of books" class="col-lg-2 col-md-4 col-sm-6 book-container text-center ">
+    <div *ngFor="let book of filteredBooks" class="col-lg-2 col-md-4 col-sm-6 book-container text-center ">
       <a routerLink="../../book/{{book.id}}" class="">
         <div class="img-container">
           <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book?.title}}">
