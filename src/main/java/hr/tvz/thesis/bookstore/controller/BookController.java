@@ -40,4 +40,9 @@ public class BookController {
   public List<BookDTO> findByPublisherId(@PathVariable final Long id) {
     return bookService.findByPublisherId(id);
   }
+
+  @GetMapping("/api/books/search-by-title/{searchTerm}")
+  public List<BookDTO> findByTitle(@PathVariable final String searchTerm) {
+    return bookService.findByTitle(searchTerm);
+  }
 }

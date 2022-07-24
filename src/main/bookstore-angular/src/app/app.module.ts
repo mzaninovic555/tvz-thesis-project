@@ -14,6 +14,7 @@ import {MarkdownModule} from "ngx-markdown";
 import { AuthorComponent } from './author/author.component';
 import { PublisherComponent } from './publisher/publisher.component';
 import {FormsModule} from "@angular/forms";
+import { BookSearchComponent } from './book-search/book-search.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {FormsModule} from "@angular/forms";
     HomePageComponent,
     BookDetailsComponent,
     AuthorComponent,
-    PublisherComponent
+    PublisherComponent,
+    BookSearchComponent
   ],
   imports: [
     BrowserModule,

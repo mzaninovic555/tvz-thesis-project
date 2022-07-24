@@ -4,6 +4,7 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {BookDetailsComponent} from "./book-details/book-details.component";
 import {AuthorComponent} from "./author/author.component";
 import {PublisherComponent} from "./publisher/publisher.component";
+import {BookSearchComponent} from "./book-search/book-search.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'publisher/:id',
     component: PublisherComponent
+  },
+  {
+    path: 'book/search/:searchTerm',
+    component: BookSearchComponent
   }
 ];
 

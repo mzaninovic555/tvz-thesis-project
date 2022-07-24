@@ -45,4 +45,12 @@ public class BookServiceImpl implements BookService {
         .map(DTOConverters::mapBookToBookDTO)
         .toList();
   }
+
+  @Override
+  public List<BookDTO> findByTitle(String searchTerm) {
+    return bookRepository.findByTitleContainsIgnoreCase(searchTerm)
+        .stream()
+        .map(DTOConverters::mapBookToBookDTO)
+        .toList();
+  }
 }

@@ -13,4 +13,6 @@ public interface BookService {
   List<BookDTO> findByAuthorId(Long id);
 
   List<BookDTO> findByPublisherId(Long id);
+
+  List<BookDTO> findByTitle(String searchTerm);
 }

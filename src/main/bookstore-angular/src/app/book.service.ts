@@ -35,6 +35,14 @@ export class BookService {
     );
   }
 
+  getBooksByTitle(searchTerm: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.URL}/api/books/search-by-title/${searchTerm}`)
+    .pipe(
+        tap(_ => console.log('Fetched books by title')),
+        catchError(this.handleError<Book[]>('getBooksByTitle'))
+    );
+  }
+
   getBooksByAuthorId(id: string): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.URL}/api/books/author/${id}`)
     .pipe(
