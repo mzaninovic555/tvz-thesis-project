@@ -1,6 +1,6 @@
 <app-navbar-content></app-navbar-content>
 <article class="container mt-3">
-  <h2></h2>
+  <h2>{{category?.name}}</h2>
 
   <form class="row">
     <div class="col-2">
@@ -34,7 +34,7 @@
         </div>
       </a>
       <a routerLink="../../book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-      <a routerLink="../{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+      <a routerLink="../../author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
       <ng-container *ngIf="book.discountPrice != 0">
         <br><span class="discount"> {{book.price}} kn </span>
         <span> {{book.discountPrice}} kn </span>

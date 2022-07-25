@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {BookService} from "../book.service";
 import {Book} from "../book";
@@ -13,20 +13,22 @@ export class BookSearchComponent implements OnInit {
 
   books!: Book[];
   filteredBooks!: Book[];
+  searchTerm!: string;
   imagePath = Constants.IMAGE_PATH;
   filteredBookTitle = "";
   filteredBookAuthor = "";
   filteredBookPublisher = "";
+  filteredBookCategory = "";
 
   constructor(private route: ActivatedRoute, private bookService: BookService) { }
 
   ngOnInit(): void {
-    const searchTerm = this.route.snapshot.paramMap.get("searchTerm") || "";
-    this.bookService.getBooksByTitle(searchTerm)
+    this.searchTerm = this.route.snapshot.paramMap.get("searchTerm") || "";
+    this.bookService.getBooksByTitle(this.searchTerm)
       .subscribe();
 
-    if (searchTerm != null) {
-      this.bookService.getBooksByTitle(searchTerm)
+    if (this.searchTerm != null) {
+      this.bookService.getBooksByTitle(this.searchTerm)
         .subscribe({
           next: (books) => {
             this.books = books;
@@ -58,27 +60,41 @@ export class BookSearchComponent implements OnInit {
     this.filterBooks();
   }
 
+  searchBookCategory(data: string) {
+    this.filteredBookCategory = data;
+    this.filterBooks();
+  }
 
   filterBooks() {
     this.filteredBooks = this.books;
 
     if (this.filteredBookTitle !== "") {
       this.filteredBooks = this.filteredBooks
-      .filter(b => b.title.toLowerCase().includes(this.filteredBookTitle.toLowerCase()));
+        .filter(b => b.title.toLowerCase().includes(this.filteredBookTitle.toLowerCase()));
     }
 
     if (this.filteredBookAuthor !== "") {
       this.filteredBooks = this.filteredBooks
-      .filter(b => (`${b.author.firstName} ${b.author.lastName}`).toLowerCase()
-      .includes(this.filteredBookAuthor.toLowerCase()));
+        .filter(b => (`${b.author.firstName} ${b.author.lastName}`).toLowerCase()
+          .includes(this.filteredBookAuthor.toLowerCase()));
     }
 
     if (this.filteredBookPublisher !== "") {
       this.filteredBooks = this.filteredBooks
-      .filter(b => b.publisher.name.toLowerCase().includes(this.filteredBookPublisher.toLowerCase()));
+        .filter(b => b.publisher.name.toLowerCase().includes(this.filteredBookPublisher.toLowerCase()));
     }
 
-    if (this.filteredBookTitle === "" && this.filteredBookAuthor === "" && this.filteredBookPublisher === "") {
+    if (this.filteredBookCategory !== "") {
+      this.filteredBooks = this.filteredBooks
+        .filter(b => b.categories.some(c => {
+          return c.name.toLowerCase().includes(this.filteredBookCategory.toLowerCase());
+        }));
+    }
+
+    if (this.filteredBookTitle === ""
+        && this.filteredBookAuthor === ""
+        && this.filteredBookPublisher === ""
+        && this.filteredBookCategory === "") {
       this.filteredBooks = this.books;
     }
   }

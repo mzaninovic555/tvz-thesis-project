@@ -18,6 +18,7 @@ export class PublisherComponent implements OnInit {
   imagePath = Constants.IMAGE_PATH;
   filteredBookTitle = "";
   filteredBookAuthor = "";
+  filteredBookCategory = "";
 
   constructor(private route: ActivatedRoute, private bookService: BookService) {
   }
@@ -58,6 +59,11 @@ export class PublisherComponent implements OnInit {
     this.filterBooks();
   }
 
+  searchBookCategory(data: string) {
+    this.filteredBookCategory = data;
+    this.filterBooks();
+  }
+
   filterBooks() {
     this.filteredBooks = this.books;
 
@@ -72,7 +78,14 @@ export class PublisherComponent implements OnInit {
           .includes(this.filteredBookAuthor.toLowerCase()));
     }
 
-    if (this.filteredBookTitle === "" && this.filteredBookAuthor === "") {
+    if (this.filteredBookCategory !== "") {
+      this.filteredBooks = this.filteredBooks
+      .filter(b => b.categories.some(c => {
+        return c.name.toLowerCase().includes(this.filteredBookCategory.toLowerCase());
+      }));
+    }
+
+    if (this.filteredBookTitle === "" && this.filteredBookAuthor === "" && this.filteredBookCategory === "") {
       this.filteredBooks = this.books;
     }
   }

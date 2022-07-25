@@ -3,19 +3,26 @@
   <h2>{{author?.firstName}}  {{author?.lastName}}</h2>
 
   <form class="row">
-    <div class="col-2">
+    <div class="col-lg-2 col-md-2 col-sm-12">
       <input type="text" id="bookTitle" class="form-control"
              [(ngModel)]="filteredBookTitle"
              (ngModelChange)="searchBookTitle($event)"
              placeholder="Naslov..."
              name="filterTitle">
     </div>
-    <div class="col-2">
+    <div class="col-lg-2 col-md-2 col-sm-12">
       <input type="text" id="publisher" class="form-control"
              [(ngModel)]="filteredBookPublisher"
              (ngModelChange)="searchBookPublisher($event)"
              placeholder="Izdavač..."
              name="filterPublisher">
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-12">
+      <input type="text" id="category" class="form-control"
+             [(ngModel)]="filteredBookCategory"
+             (ngModelChange)="searchBookCategory($event)"
+             placeholder="Kategorija..."
+             name="filterCategory">
     </div>
   </form>
 

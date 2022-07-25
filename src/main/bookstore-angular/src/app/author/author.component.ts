@@ -18,9 +18,9 @@ export class AuthorComponent implements OnInit {
   imagePath = Constants.IMAGE_PATH;
   filteredBookTitle = "";
   filteredBookPublisher = "";
+  filteredBookCategory = "";
 
-  constructor(private route: ActivatedRoute, private bookService: BookService) {
-  }
+  constructor(private route: ActivatedRoute, private bookService: BookService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -58,6 +58,11 @@ export class AuthorComponent implements OnInit {
     this.filterBooks();
   }
 
+  searchBookCategory(data: string) {
+    this.filteredBookCategory = data;
+    this.filterBooks();
+  }
+
   filterBooks() {
     this.filteredBooks = this.books;
 
@@ -71,7 +76,17 @@ export class AuthorComponent implements OnInit {
       .filter(b => b.publisher.name.toLowerCase().includes(this.filteredBookPublisher.toLowerCase()));
     }
 
-    if (this.filteredBookTitle === "" && this.filteredBookPublisher === "") {
+
+    if (this.filteredBookCategory !== "") {
+      this.filteredBooks = this.filteredBooks
+      .filter(b => b.categories.some(c => {
+        return c.name.toLowerCase().includes(this.filteredBookCategory.toLowerCase());
+      }));
+    }
+
+    if (this.filteredBookTitle === ""
+        && this.filteredBookPublisher === ""
+        && this.filteredBookCategory === "") {
       this.filteredBooks = this.books;
     }
   }
