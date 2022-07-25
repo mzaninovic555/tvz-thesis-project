@@ -61,18 +61,26 @@ export class BookService {
 
   getBooksByPublisherId(id: string): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.URL}/api/books/publisher/${id}`)
-    .pipe(
-        tap(_ => console.log('Fetched books by Publisher id')),
-        catchError(this.handleError<Book[]>('getBookByPublisherId'))
-    );
+      .pipe(
+          tap(_ => console.log('Fetched books by Publisher id')),
+          catchError(this.handleError<Book[]>('getBookByPublisherId'))
+      );
   }
 
   getPublisherById(id: string): Observable<Publisher> {
     return this.http.get<Publisher>(`${this.URL}/publisher/${id}`)
-    .pipe(
-        tap(_ => console.log('Fetched Publisher by id')),
-        catchError(this.handleError<Publisher>('getPublisherById'))
-    )
+      .pipe(
+          tap(_ => console.log('Fetched Publisher by id')),
+          catchError(this.handleError<Publisher>('getPublisherById'))
+      );
+  }
+
+  getBooksByCategoryId(id: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.URL}/api/books/category/${id}`)
+      .pipe(
+          tap(_ => console.log('Fetched books by category id')),
+          catchError(this.handleError<Book[]>('getBooksByCategoryId'))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

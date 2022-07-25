@@ -60,7 +60,17 @@ public class DTOConverters {
   public static List<CategoryDTO> mapCategoriesToCategoriesDTO(List<Category> categories) {
     return categories
         .stream()
-        .map(c -> CategoryDTO.builder().id(c.getId()).name(c.getName()).build())
-        .toList();
+        .map(c -> CategoryDTO.builder()
+            .id(c.getId())
+            .name(c.getName())
+            .build()
+        ).toList();
+  }
+
+  public static CategoryDTO mapCategoryToCategoryDTO(Category category) {
+    return CategoryDTO.builder()
+        .id(category.getId())
+        .name(category.getName())
+        .build();
   }
 }
