@@ -76,6 +76,14 @@ export class BookService {
       );
   }
 
+  getAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.URL}/category`)
+    .pipe(
+        tap(_ => console.log('Fetched all categories')),
+        catchError(this.handleError<Category[]>('getAllCategories'))
+    );
+  }
+
   getBooksWithCategoryId(id: string): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.URL}/api/books/category/${id}`)
       .pipe(

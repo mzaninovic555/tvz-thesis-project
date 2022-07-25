@@ -3,6 +3,7 @@ package hr.tvz.thesis.bookstore.controller;
 
 import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
 import hr.tvz.thesis.bookstore.service.CategoryService;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,11 @@ public class CategoryController {
 
   public CategoryController(CategoryService categoryService) {
     this.categoryService = categoryService;
+  }
+
+  @GetMapping
+  public List<CategoryDTO> findAll() {
+    return categoryService.getAll();
   }
 
   @GetMapping("{id}")

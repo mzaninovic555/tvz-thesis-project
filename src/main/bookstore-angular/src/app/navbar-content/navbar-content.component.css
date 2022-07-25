@@ -20,3 +20,7 @@
   outline: none;
   box-shadow: none;
 }
+
+li > a:active {
+  background-color: rgba(40, 167, 69, 0.80);
+}

@@ -29,8 +29,8 @@ export class BooksComponent implements OnInit {
         next: (books) => {
           this.books = books
         },
-        error: () => {
-          console.log("Puca mi kurac vise.")
+        error: (err) => {
+          console.error(err)
         },
         complete: () => {
           this.sortBooksByDateNewest();

@@ -8,9 +8,11 @@
             Književnost
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Povijesne')}}">Povijesne knjige</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Kriminalističke')}}">Kriminalističke knjige</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Romantični')}}">Ljubavni knjige</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Sci-fi')}}">Sci-fi</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Horor')}}">Horor</a></li>
           </ul>
         </li>
         <li class="pe-2 ps-2 dropdown">
@@ -18,28 +20,18 @@
             Publicistika
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Publicistika')}}">Publicistika</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Samopomoć')}}">Samopomoć</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Psihologija')}}">Psihologija</a></li>
           </ul>
         </li>
         <li class="pe-2 ps-2 dropdown">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Strane knjige
+            Stripovi
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="pe-2 ps-2 dropdown">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Test
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Stripovi')}}">Stripovi</a></li>
+            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Manga')}}">Manga</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
