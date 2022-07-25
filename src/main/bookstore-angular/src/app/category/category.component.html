@@ -1,1 +1,45 @@
-<p>category works!</p>
+<app-navbar-content></app-navbar-content>
+<article class="container mt-3">
+  <h2></h2>
+
+  <form class="row">
+    <div class="col-2">
+      <input type="text" id="bookTitle" class="form-control"
+             [(ngModel)]="filteredBookTitle"
+             (ngModelChange)="searchBookTitle($event)"
+             placeholder="Naslov..."
+             name="filterTitle">
+    </div>
+    <div class="col-2">
+      <input type="text" id="author" class="form-control"
+             [(ngModel)]="filteredBookAuthor"
+             (ngModelChange)="searchBookAuthor($event)"
+             placeholder="Autor..."
+             name="filterAuthor">
+    </div>
+    <div class="col-2">
+      <input type="text" id="publisher" class="form-control"
+             [(ngModel)]="filteredBookPublisher"
+             (ngModelChange)="searchBookPublisher($event)"
+             placeholder="Izdavač..."
+             name="filterPublisher">
+    </div>
+  </form>
+
+  <div class="row mt-5  align-items-end">
+    <div *ngFor="let book of filteredBooks" class="col-lg-2 col-md-4 col-sm-6 book-container text-center ">
+      <a routerLink="../../book/{{book.id}}" class="">
+        <div class="img-container">
+          <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book?.title}}">
+        </div>
+      </a>
+      <a routerLink="../../book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+      <a routerLink="../{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+      <ng-container *ngIf="book.discountPrice != 0">
+        <br><span class="discount"> {{book.price}} kn </span>
+        <span> {{book.discountPrice}} kn </span>
+      </ng-container>
+      <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+    </div>
+  </div>
+</article>

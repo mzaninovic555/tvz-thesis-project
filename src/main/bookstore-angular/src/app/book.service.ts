@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Author} from "./author";
 import {Constants} from "./constants";
 import {Publisher} from "./publisher";
+import {Category} from "./category";
 
 @Injectable({
   providedIn: 'root'
@@ -75,11 +76,19 @@ export class BookService {
       );
   }
 
-  getBooksByCategoryId(id: string): Observable<Book[]> {
+  getBooksWithCategoryId(id: string): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.URL}/api/books/category/${id}`)
       .pipe(
           tap(_ => console.log('Fetched books by category id')),
-          catchError(this.handleError<Book[]>('getBooksByCategoryId'))
+          catchError(this.handleError<Book[]>('getBooksWithCategoryId'))
+      );
+  }
+
+  getCategoryById(id: string): Observable<Category> {
+    return this.http.get<Category>(`${this.URL}/category/${id}`)
+      .pipe(
+          tap(_ => console.log('Fetched category by id')),
+          catchError(this.handleError<Category>('getCategoryById'))
       );
   }
 

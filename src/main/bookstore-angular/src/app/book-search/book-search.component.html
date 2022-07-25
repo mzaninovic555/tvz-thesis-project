@@ -28,12 +28,12 @@
 
   <div class="row mt-5  align-items-end">
     <div *ngFor="let book of filteredBooks" class="col-lg-2 col-md-4 col-sm-6 book-container text-center ">
-      <a routerLink="../../book/{{book.id}}" class="">
+      <a routerLink="../../../book/{{book.id}}" class="">
         <div class="img-container">
           <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book?.title}}">
         </div>
       </a>
-      <a routerLink="../../book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+      <a routerLink="../../../book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
       <a routerLink="../{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
       <ng-container *ngIf="book.discountPrice != 0">
         <br><span class="discount"> {{book.price}} kn </span>
