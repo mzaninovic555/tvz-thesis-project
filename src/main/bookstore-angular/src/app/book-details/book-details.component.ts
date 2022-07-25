@@ -21,8 +21,16 @@ export class BookDetailsComponent implements OnInit {
 
     if (id != null) {
       this.bookService.getBookById(id)
-        .subscribe(book => {
-          this.book = book;
+        .subscribe({
+          next: (book) => {
+            this.book = book;
+          },
+          error: err => console.error(err),
+          complete: () => {
+            this.book?.categories.sort((a, b) => {
+              return a.name.localeCompare(b.name);
+            })
+          }
         });
     } else {
       console.error(`ID can't be null.`);

@@ -26,8 +26,8 @@ public class Category {
   @ManyToMany(targetEntity = Book.class)
   @JoinTable(
       name = "book_category",
-      joinColumns = { @JoinColumn(name = "book_id") },
-      inverseJoinColumns = { @JoinColumn(name = "category_id") }
+      joinColumns = { @JoinColumn(name = "category_id") },
+      inverseJoinColumns = { @JoinColumn(name = "book_id") }
   )
   private List<Book> books;
 }

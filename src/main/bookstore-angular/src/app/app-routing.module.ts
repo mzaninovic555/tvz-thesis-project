@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'book/search/:searchTerm',
     component: BookSearchComponent
-  }
+  }/*,
+  {
+    path: 'category/:id',
+    component: CategoryComponent
+  }*/
 ];
 
 @NgModule({
