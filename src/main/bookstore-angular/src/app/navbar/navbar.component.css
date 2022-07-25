@@ -17,6 +17,7 @@
 
 .input-group > .btn {
   border-radius: 60px;
+  margin-top: 5px;
 }
 
 @media screen and (max-width: 768px) {

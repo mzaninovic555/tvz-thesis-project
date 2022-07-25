@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Constants} from "../constants";
 
@@ -16,10 +16,23 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  searchForBooks() {
-    if (this.book !== "") {
-      this.router.navigate([`book/search/${this.book}`]);
+  @HostListener('document:keypress', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.searchForBooks();
     }
   }
 
+  searchForBooks() {
+    if (this.book !== "") {
+      if (this.router.url.includes("/book/search/")) {
+        this.router.navigate([`book/search/${this.book}`])
+          .then(() => {
+            window.location.reload();
+          });
+      } else {
+        this.router.navigate([`book/search/${this.book}`]);
+      }
+    }
+  }
 }
