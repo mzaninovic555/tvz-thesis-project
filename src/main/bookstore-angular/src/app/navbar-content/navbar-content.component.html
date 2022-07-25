@@ -1,41 +1,43 @@
-<hr class="m-0 mt-1" style="opacity: 0.10">
-<div class="container">
-  <nav class="navbar navbar-expand-md navbar-light">
-    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent2">
-      <ul class="navbar-nav">
-        <li class="pe-2 ps-2 dropdown">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Književnost
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Povijesne')}}">Povijesne knjige</a></li>
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Kriminalističke')}}">Kriminalističke knjige</a></li>
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Romantični')}}">Ljubavni knjige</a></li>
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Sci-fi')}}">Sci-fi</a></li>
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Horor')}}">Horor</a></li>
-          </ul>
-        </li>
-        <li class="pe-2 ps-2 dropdown">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Publicistika
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Publicistika')}}">Publicistika</a></li>
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Samopomoć')}}">Samopomoć</a></li>
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Psihologija')}}">Psihologija</a></li>
-          </ul>
-        </li>
-        <li class="pe-2 ps-2 dropdown">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Stripovi
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Stripovi')}}">Stripovi</a></li>
-            <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Manga')}}">Manga</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+<ng-container *ngIf="isLoaded">
+  <hr class="m-0 mt-1" style="opacity: 0.10">
+  <div class="container">
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent2">
+        <ul class="navbar-nav">
+          <li class="pe-2 ps-2 dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Književnost
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Povijesne')}}">Povijesne</a></li>
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Kriminalističke')}}">Kriminalističke</a></li>
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Ljubavne')}}">Ljubavne</a></li>
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Sci-fi')}}">Sci-fi</a></li>
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Fantasy')}}">Fantasy</a></li>
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Horor')}}">Horor</a></li>
+            </ul>
+          </li>
+          <li class="pe-2 ps-2 dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Publicistika
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Publicistika')}}">Publicistika</a></li>
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Samopomoć')}}">Samopomoć</a></li>
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Psihologija')}}">Psihologija</a></li>
+            </ul>
+          </li>
+          <li class="pe-2 ps-2 dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Stripovi
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Stripovi')}}">Stripovi</a></li>
+              <li><a class="dropdown-item" routerLink="/category/{{filterByCategory('Manga')}}">Manga</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</ng-container>

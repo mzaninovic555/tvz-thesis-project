@@ -1,251 +1,253 @@
-<app-navbar-content> </app-navbar-content>
-<article class="container">
-  <div id="popularBooksCarousel" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
-    <h1>Popularne knjige</h1>
-    <hr>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="row align-items-end">
-          <div *ngFor="let book of books; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
-            <ng-container *ngIf="i < 6">
-              <a routerLink="book/{{book.id}}" class="">
-                <div class="img-container">
-                  <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
-                </div>
-              </a>
-              <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-              <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-              <ng-container *ngIf="book.discountPrice != 0">
-                <br><span class="discount"> {{book.price}} kn </span>
-                <span> {{book.discountPrice}} kn </span>
+<ng-container *ngIf="kurac">
+  <app-navbar-content> </app-navbar-content>
+  <article class="container">
+    <div id="popularBooksCarousel" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
+      <h1>Popularne knjige</h1>
+      <hr>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row align-items-end">
+            <div *ngFor="let book of books; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+              <ng-container *ngIf="i < 6">
+                <a routerLink="book/{{book.id}}" class="">
+                  <div class="img-container">
+                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                  </div>
+                </a>
+                <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+                <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+                <ng-container *ngIf="book.discountPrice != 0">
+                  <br><span class="discount"> {{book.price}} kn </span>
+                  <span> {{book.discountPrice}} kn </span>
+                </ng-container>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
               </ng-container>
-              <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
-            </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" *ngIf="books.length > 12">
+          <div class="row align-items-end">
+            <div *ngFor="let book of books | slice:12; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+              <ng-container *ngIf="i < 18">
+                <a routerLink="book/{{book.id}}" class="">
+                  <div class="img-container">
+                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                  </div>
+                </a>
+                <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+                <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+                <ng-container *ngIf="book.discountPrice != 0">
+                  <br><span class="discount"> {{book.price}} kn </span>
+                  <span> {{book.discountPrice}} kn </span>
+                </ng-container>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" *ngIf="books.length > 6">
+          <div class="row align-items-end">
+            <div *ngFor="let book of books | slice:6; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+              <ng-container *ngIf="i < 12">
+                <a routerLink="book/{{book.id}}" class="">
+                  <div class="img-container">
+                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                  </div>
+                </a>
+                <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+                <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+                <ng-container *ngIf="book.discountPrice != 0">
+                  <br><span class="discount"> {{book.price}} kn </span>
+                  <span> {{book.discountPrice}} kn </span>
+                </ng-container>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+              </ng-container>
+            </div>
           </div>
         </div>
       </div>
-      <div class="carousel-item" *ngIf="books.length > 12">
-        <div class="row align-items-end">
-          <div *ngFor="let book of books | slice:12; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
-            <ng-container *ngIf="i < 18">
-              <a routerLink="book/{{book.id}}" class="">
-                <div class="img-container">
-                  <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
-                </div>
-              </a>
-              <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-              <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-              <ng-container *ngIf="book.discountPrice != 0">
-                <br><span class="discount"> {{book.price}} kn </span>
-                <span> {{book.discountPrice}} kn </span>
-              </ng-container>
-              <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
-            </ng-container>
-          </div>
+      <ng-container *ngIf="books.length > 6">
+        <button class="carousel-control-prev" type="button" data-bs-target="#popularBooksCarousel" data-bs-slide="prev">
+          <i class="fa-solid fa-angle-left"></i>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#popularBooksCarousel" data-bs-slide="next">
+          <i class="fa-solid fa-angle-right"></i>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#popularBooksCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#popularBooksCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#popularBooksCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-      </div>
-      <div class="carousel-item" *ngIf="books.length > 6">
-        <div class="row align-items-end">
-          <div *ngFor="let book of books | slice:6; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
-            <ng-container *ngIf="i < 12">
-              <a routerLink="book/{{book.id}}" class="">
-                <div class="img-container">
-                  <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
-                </div>
-              </a>
-              <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-              <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-              <ng-container *ngIf="book.discountPrice != 0">
-                <br><span class="discount"> {{book.price}} kn </span>
-                <span> {{book.discountPrice}} kn </span>
-              </ng-container>
-              <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
-            </ng-container>
-          </div>
-        </div>
-      </div>
+      </ng-container>
     </div>
-    <ng-container *ngIf="books.length > 6">
-      <button class="carousel-control-prev" type="button" data-bs-target="#popularBooksCarousel" data-bs-slide="prev">
-        <i class="fa-solid fa-angle-left"></i>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#popularBooksCarousel" data-bs-slide="next">
-        <i class="fa-solid fa-angle-right"></i>
-        <span class="visually-hidden">Next</span>
-      </button>
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#popularBooksCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#popularBooksCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#popularBooksCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-    </ng-container>
-  </div>
 
-  <div id="carouselExampleIndicators2" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <h1>Nove knjige</h1>
-    <hr>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="row align-items-end">
-          <div *ngFor="let book of newBooks; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
-            <ng-container *ngIf="i < 6">
-              <a routerLink="book/{{book.id}}" class="">
-                <div class="img-container">
-                  <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
-                </div>
-              </a>
-              <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-              <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-              <ng-container *ngIf="book.discountPrice != 0">
-                <br><span class="discount"> {{book.price}} kn </span>
-                <span> {{book.discountPrice}} kn </span>
+    <div id="carouselExampleIndicators2" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <h1>Nove knjige</h1>
+      <hr>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row align-items-end">
+            <div *ngFor="let book of newBooks; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+              <ng-container *ngIf="i < 6">
+                <a routerLink="book/{{book.id}}" class="">
+                  <div class="img-container">
+                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                  </div>
+                </a>
+                <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+                <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+                <ng-container *ngIf="book.discountPrice != 0">
+                  <br><span class="discount"> {{book.price}} kn </span>
+                  <span> {{book.discountPrice}} kn </span>
+                </ng-container>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
               </ng-container>
-              <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
-            </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" *ngIf="newBooks.length > 12">
+          <div class="row align-items-end">
+            <div *ngFor="let book of newBooks | slice:12; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+              <ng-container *ngIf="i < 18">
+                <a routerLink="book/{{book.id}}" class="">
+                  <div class="img-container">
+                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                  </div>
+                </a>
+                <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+                <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+                <ng-container *ngIf="book.discountPrice != 0">
+                  <br><span class="discount"> {{book.price}} kn </span>
+                  <span> {{book.discountPrice}} kn </span>
+                </ng-container>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" *ngIf="newBooks.length > 6">
+          <div class="row align-items-end">
+            <div *ngFor="let book of newBooks | slice:6; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+              <ng-container *ngIf="i < 12">
+                <a routerLink="book/{{book.id}}" class="">
+                  <div class="img-container">
+                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                  </div>
+                </a>
+                <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+                <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+                <ng-container *ngIf="book.discountPrice != 0">
+                  <br><span class="discount"> {{book.price}} kn </span>
+                  <span> {{book.discountPrice}} kn </span>
+                </ng-container>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+              </ng-container>
+            </div>
           </div>
         </div>
       </div>
-      <div class="carousel-item" *ngIf="newBooks.length > 12">
-        <div class="row align-items-end">
-          <div *ngFor="let book of newBooks | slice:12; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
-            <ng-container *ngIf="i < 18">
-              <a routerLink="book/{{book.id}}" class="">
-                <div class="img-container">
-                  <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
-                </div>
-              </a>
-              <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-              <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-              <ng-container *ngIf="book.discountPrice != 0">
-                <br><span class="discount"> {{book.price}} kn </span>
-                <span> {{book.discountPrice}} kn </span>
-              </ng-container>
-              <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
-            </ng-container>
-          </div>
+      <ng-container *ngIf="newBooks.length > 6">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+          <i class="fa-solid fa-angle-left"></i>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+          <i class="fa-solid fa-angle-right"></i>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-      </div>
-      <div class="carousel-item" *ngIf="newBooks.length > 6">
-        <div class="row align-items-end">
-          <div *ngFor="let book of newBooks | slice:6; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
-            <ng-container *ngIf="i < 12">
-              <a routerLink="book/{{book.id}}" class="">
-                <div class="img-container">
-                  <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
-                </div>
-              </a>
-              <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-              <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-              <ng-container *ngIf="book.discountPrice != 0">
-                <br><span class="discount"> {{book.price}} kn </span>
-                <span> {{book.discountPrice}} kn </span>
-              </ng-container>
-              <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
-            </ng-container>
-          </div>
-        </div>
-      </div>
+      </ng-container>
     </div>
-    <ng-container *ngIf="newBooks.length > 6">
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
-        <i class="fa-solid fa-angle-left"></i>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
-        <i class="fa-solid fa-angle-right"></i>
-        <span class="visually-hidden">Next</span>
-      </button>
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-    </ng-container>
-  </div>
 
-  <div id="carouselExampleIndicators3" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <h1>Knjige na popustu</h1>
-    <hr>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="row align-items-end">
-          <div *ngFor="let book of discountBooks; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
-            <ng-container *ngIf="i < 6">
-              <a routerLink="book/{{book.id}}" class="">
-                <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
-                <div class="img-container">
-                  <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
-                </div>
-              </a>
-              <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-              <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-              <ng-container *ngIf="book.discountPrice != 0">
-                <br><span class="discount"> {{book.price}} kn </span>
-                <span> {{book.discountPrice}} kn </span>
+    <div id="carouselExampleIndicators3" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <h1>Knjige na popustu</h1>
+      <hr>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row align-items-end">
+            <div *ngFor="let book of discountBooks; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+              <ng-container *ngIf="i < 6">
+                <a routerLink="book/{{book.id}}" class="">
+                  <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
+                  <div class="img-container">
+                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                  </div>
+                </a>
+                <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+                <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+                <ng-container *ngIf="book.discountPrice != 0">
+                  <br><span class="discount"> {{book.price}} kn </span>
+                  <span> {{book.discountPrice}} kn </span>
+                </ng-container>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
               </ng-container>
-              <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
-            </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" *ngIf="discountBooks.length > 12">
+          <div class="row align-items-end">
+            <div *ngFor="let book of discountBooks | slice:12; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+              <ng-container *ngIf="i < 18">
+                <a routerLink="book/{{book.id}}" class="">
+                  <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
+                  <div class="img-container">
+                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                  </div>
+                </a>
+                <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+                <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+                <ng-container *ngIf="book.discountPrice != 0">
+                  <br><span class="discount"> {{book.price}} kn </span>
+                  <span> {{book.discountPrice}} kn </span>
+                </ng-container>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" *ngIf="discountBooks.length > 6">
+          <div class="row align-items-end">
+            <div *ngFor="let book of discountBooks | slice:6; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+              <ng-container *ngIf="i < 12">
+                <a routerLink="book/{{book.id}}" class="">
+                  <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
+                  <div class="img-container">
+                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                  </div>
+                </a>
+                <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
+                <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
+                <ng-container *ngIf="book.discountPrice != 0">
+                  <br><span class="discount"> {{book.price}} kn </span>
+                  <span> {{book.discountPrice}} kn </span>
+                </ng-container>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+              </ng-container>
+            </div>
           </div>
         </div>
       </div>
-      <div class="carousel-item" *ngIf="discountBooks.length > 12">
-        <div class="row align-items-end">
-          <div *ngFor="let book of discountBooks | slice:12; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
-            <ng-container *ngIf="i < 18">
-              <a routerLink="book/{{book.id}}" class="">
-                <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
-                <div class="img-container">
-                  <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
-                </div>
-              </a>
-              <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-              <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-              <ng-container *ngIf="book.discountPrice != 0">
-                <br><span class="discount"> {{book.price}} kn </span>
-                <span> {{book.discountPrice}} kn </span>
-              </ng-container>
-              <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
-            </ng-container>
-          </div>
+      <ng-container *ngIf="discountBooks.length > 6">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="prev">
+          <i class="fa-solid fa-angle-left"></i>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="next">
+          <i class="fa-solid fa-angle-right"></i>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-      </div>
-      <div class="carousel-item" *ngIf="discountBooks.length > 6">
-        <div class="row align-items-end">
-          <div *ngFor="let book of discountBooks | slice:6; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
-            <ng-container *ngIf="i < 12">
-              <a routerLink="book/{{book.id}}" class="">
-                <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
-                <div class="img-container">
-                  <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
-                </div>
-              </a>
-              <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
-              <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
-              <ng-container *ngIf="book.discountPrice != 0">
-                <br><span class="discount"> {{book.price}} kn </span>
-                <span> {{book.discountPrice}} kn </span>
-              </ng-container>
-              <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
-            </ng-container>
-          </div>
-        </div>
-      </div>
+      </ng-container>
     </div>
-    <ng-container *ngIf="discountBooks.length > 6">
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="prev">
-        <i class="fa-solid fa-angle-left"></i>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="next">
-        <i class="fa-solid fa-angle-right"></i>
-        <span class="visually-hidden">Next</span>
-      </button>
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-    </ng-container>
-  </div>
-</article>
+  </article>
+</ng-container>

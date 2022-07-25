@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class NavbarContentComponent implements OnInit {
 
   categories!: Category[];
+  isLoaded: boolean = false;
 
   constructor(private bookService: BookService, private router: Router) { }
   ngOnInit(): void {
@@ -20,14 +21,22 @@ export class NavbarContentComponent implements OnInit {
       .subscribe({
         next: categories => {
           this.categories = categories;
+        },
+        error: err => console.log(err),
+        complete: () => {
+          this.isLoaded = true;
         }
       });
   }
 
   filterByCategory(category: string): number {
-    for (const categoryElement of category) {
+    if (this.isLoaded) {
+      let cat = this.categories.filter(c => c.name === category)[0]?.id;
 
+      if (cat !== undefined)
+        return cat
     }
-    return this.categories.filter(c => c.name === category)[0].id;
+
+    return 0;
   }
 }
