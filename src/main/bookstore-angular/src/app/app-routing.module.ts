@@ -5,6 +5,7 @@ import {BookDetailsComponent} from "./book-details/book-details.component";
 import {AuthorComponent} from "./author/author.component";
 import {PublisherComponent} from "./publisher/publisher.component";
 import {BookSearchComponent} from "./book-search/book-search.component";
+import {CategoryComponent} from "./category/category.component";
 
 const routes: Routes = [
   {
@@ -26,11 +27,11 @@ const routes: Routes = [
   {
     path: 'book/search/:searchTerm',
     component: BookSearchComponent
-  }/*,
+  },
   {
     path: 'category/:id',
     component: CategoryComponent
-  }*/
+  }
 ];
 
 @NgModule({
