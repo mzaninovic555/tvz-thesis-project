@@ -18,7 +18,20 @@
       </div>
       <ul class="navbar-nav">
         <li class="border-end pe-2">
-          <a href="#" class="nav-link">Prijava/Registracija</a>
+          <div class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Prijava/Registracija</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li>
+                <form class="p-3">
+                  <label for="username" class="form-label">Korisničko ime:</label>
+                  <input type="text" class="form-control" id="username">
+                  <label for="password">Lozinka:</label>
+                  <input type="password" class="form-control" id="password">
+                  <button type="button" class="btn btn-success mt-2">Prijava</button>
+                </form>
+              </li>
+            </ul>
+          </div>
         </li>
         <li class="border-end pe-2 ps-2">
           <a href="#" class="nav-link">
