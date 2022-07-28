@@ -9,8 +9,11 @@ import {Router} from "@angular/router";
 export class NavbarComponent implements OnInit {
 
   book = "";
+  cartItems!: number
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.cartItems = JSON.parse(localStorage.getItem('cart') || '[]').length;
+  }
 
   ngOnInit(): void {
   }
@@ -23,6 +26,8 @@ export class NavbarComponent implements OnInit {
   }
 
   searchForBooks() {
+    this.router.navigate([`book/search/${this.book}`]);
+
     if (this.book !== "") {
       if (this.router.url.includes("/book/search/")) {
         this.router.navigate([`book/search/${this.book}`])

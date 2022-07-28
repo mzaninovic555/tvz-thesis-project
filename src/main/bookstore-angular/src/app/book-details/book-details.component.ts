@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Book} from "../book";
 import {BookService} from "../book.service";
 import {ActivatedRoute} from "@angular/router";
@@ -12,6 +12,7 @@ import {Constants} from "../constants";
 export class BookDetailsComponent implements OnInit {
 
   book?: Book;
+  cartAmount!: number;
   imagePath = Constants.IMAGE_PATH;
 
   constructor(private route: ActivatedRoute, private bookService: BookService) { }
@@ -35,5 +36,20 @@ export class BookDetailsComponent implements OnInit {
     } else {
       console.error(`ID can't be null.`);
     }
+  }
+
+  addToCart(bookId: number) {
+    let cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    console.log(this.cartAmount);
+    if (this.cartAmount) {
+      for (const i of new Array(this.cartAmount)) {
+        cartItems.push(bookId);
+      }
+    } else {
+      cartItems.push(bookId);
+    }
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    location.reload();
   }
 }

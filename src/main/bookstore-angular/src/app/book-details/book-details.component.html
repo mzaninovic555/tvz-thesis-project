@@ -17,7 +17,7 @@
       <hr>
       <div class="row align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-6">
-          <input *ngIf="book?.stock != 0" type="number" class="form-control" placeholder="Količina">
+          <input *ngIf="book?.stock != 0" type="number" class="form-control" placeholder="Količina" [(ngModel)]="cartAmount">
           <input *ngIf="book?.stock == 0" type="number" class="form-control disabled-input" placeholder="Nedostupno" disabled>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6">
@@ -25,7 +25,7 @@
           <span *ngIf="book?.stock == 0"> <i class="fa-solid fa-circle-xmark"> </i>  Nedostupno</span>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-12 text-end">
-          <button *ngIf="book?.stock != 0" type="button" class="btn btn-success">Dodaj u košaricu  <i class="bi bi-cart4"></i></button>
+          <button *ngIf="book?.stock != 0" type="button" class="btn btn-success" (click)="addToCart(book!.id)">Dodaj u košaricu  <i class="bi bi-cart4"></i></button>
           <button *ngIf="book?.stock == 0" type="button" class="btn btn-dark" disabled>Nedostupno</button>
         </div>
       </div>
