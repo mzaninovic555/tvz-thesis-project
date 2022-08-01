@@ -16,6 +16,7 @@ import { PublisherComponent } from './publisher/publisher.component';
 import {FormsModule} from "@angular/forms";
 import { BookSearchComponent } from './book-search/book-search.component';
 import { CategoryComponent } from './category/category.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CategoryComponent } from './category/category.component';
     AuthorComponent,
     PublisherComponent,
     BookSearchComponent,
-    CategoryComponent
+    CategoryComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
