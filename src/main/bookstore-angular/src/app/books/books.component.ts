@@ -14,7 +14,7 @@ export class BooksComponent implements OnInit {
   newBooks!: Book[];
   discountBooks!: Book[];
   imagePath = Constants.IMAGE_PATH;
-  kurac: boolean = false;
+  isCompleted: boolean = false;
 
   constructor(bookService: BookService) {
     this.bookService = bookService;
@@ -36,7 +36,7 @@ export class BooksComponent implements OnInit {
         complete: () => {
           this.sortBooksByDateNewest();
           this.filterBooksByDiscount();
-          this.kurac = true;
+          this.isCompleted = true;
         },
       })
   }

@@ -1,10 +1,12 @@
+import {Book} from "./book";
+
 export class CartItem {
 
-  itemId: number;
+  book: Book;
   amount: number;
 
-  constructor(itemId: number, amount: number) {
-    this.itemId = itemId;
+  constructor(book: Book, amount: number) {
+    this.book = book;
     this.amount = amount;
   }
 }

@@ -1,5 +1,19 @@
 <article class="container mb-5">
-  <div class="row mt-5">
-
+  <div *ngIf="!localStorageCart">
+    <h2>Nemate proivoda u košarici</h2>
+  </div>
+  <div *ngIf="localStorageCart" class="row w-50">
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of cartItems" class="list-group-item">
+        <div class="row align-items-center">
+          <div class="col-2">
+            <img src="{{imagePath}}/{{item.book.imagePath}}" alt="{{item.book.title}}">
+          </div>
+          <div class="col">
+            <h5>{{item.book.title}}</h5>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </article>
