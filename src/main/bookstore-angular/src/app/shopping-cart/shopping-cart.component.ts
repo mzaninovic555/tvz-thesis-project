@@ -63,6 +63,9 @@ export class ShoppingCartComponent implements OnInit {
   amountChanged(book: Book, event: any) {
 
     let newAmount = event.target.value;
+    if (newAmount > book.stock) {
+      newAmount = book.stock;
+    }
     let localStorageTemp = JSON.parse(localStorage['cart'] || '[]');
     localStorageTemp = localStorageTemp.filter((c: number) => c !== book.id);
 

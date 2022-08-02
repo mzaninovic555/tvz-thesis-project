@@ -43,6 +43,9 @@ export class BookDetailsComponent implements OnInit {
 
     console.log(this.cartAmount);
     if (this.cartAmount) {
+      if (this.cartAmount > this.book!.stock) {
+        this.cartAmount = this.book!.stock;
+      }
       for (const i of new Array(this.cartAmount)) {
         cartItems.push(bookId);
       }
