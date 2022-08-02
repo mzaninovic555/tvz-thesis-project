@@ -5,11 +5,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +23,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "Orders")
 public class Order {
 
   @Id
@@ -37,7 +41,7 @@ public class Order {
 
   @ManyToMany(targetEntity = Book.class)
   @JoinTable(
-      name = "order_book",
+      name = "orders_book",
       joinColumns = { @JoinColumn(name = "book_id") },
       inverseJoinColumns = { @JoinColumn(name = "order_id") }
   )

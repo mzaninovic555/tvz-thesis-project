@@ -3,6 +3,10 @@ import {CartItem} from "../cart-item";
 import {BookService} from "../book.service";
 import {Book} from "../book";
 import {Constants} from "../constants";
+import {OrderService} from "../order.service";
+import {Order} from "../order";
+import {Router} from "@angular/router";
+import {User} from "../user";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -16,7 +20,7 @@ export class ShoppingCartComponent implements OnInit {
   books!: Book[];
   imagePath = Constants.IMAGE_PATH;
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private orderService: OrderService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -49,7 +53,6 @@ export class ShoppingCartComponent implements OnInit {
     this.cartItems.sort((a, b) => {
       return b.amount - a.amount;
     });
-    console.log(this.cartItems);
   }
 
   amountChanged(book: Book, event: any) {
@@ -67,6 +70,42 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   purchaseBooks() {
-    alert("Uspješna kupnja");
+
+    if (this.cartItems !== undefined || []) {
+
+      let bookArray: Book[] = [];
+
+      for (let cartItem of this.cartItems) {
+        for (let i of new Array(+cartItem.amount)) {
+          bookArray.push(cartItem.book);
+        }
+      }
+
+      let newOrder = new Order(
+          0,
+          new Date(),
+          this.cartItems.reduce((previous, current) =>
+            previous + current.book.price, 0
+          ),
+          new User(
+              1,
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+          ),
+          bookArray
+      );
+
+      //console.log(newOrder);
+
+      this.orderService.addOrder(newOrder).subscribe();
+      //this.router.navigate(['../../']);
+    }
   }
 }

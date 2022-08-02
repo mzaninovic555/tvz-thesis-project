@@ -12,11 +12,12 @@ public class SecurityConfiguration {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.authorizeRequests()
-        .antMatchers("/h2-console/*").permitAll()
+    http.authorizeRequests().antMatchers("*").permitAll()
+        //.antMatchers("/h2-console/*").permitAll()
         //.anyRequest().authenticated()
         //.anyRequest().authorized()
-        .and().cors();
+        .and().cors()
+        .and().csrf().disable();
 
     return http.build();
   }

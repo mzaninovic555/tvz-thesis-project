@@ -1,0 +1,24 @@
+package hr.tvz.thesis.bookstore.controller;
+
+import hr.tvz.thesis.bookstore.domain.Order;
+import hr.tvz.thesis.bookstore.service.OrderService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
+public class OrderController {
+
+  private final OrderService orderService;
+
+  public OrderController(OrderService orderService) {
+    this.orderService = orderService;
+  }
+
+  @PostMapping ("/api/orders/add")
+  public Order save(@RequestBody final Order order) {
+    return orderService.save(order);
+  }
+}

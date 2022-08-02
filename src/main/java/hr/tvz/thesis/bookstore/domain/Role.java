@@ -2,6 +2,7 @@ package hr.tvz.thesis.bookstore.domain;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,6 +20,7 @@ import lombok.Setter;
 public class Role {
 
   @Id
+  @GeneratedValue
   private Long id;
 
   private String name;

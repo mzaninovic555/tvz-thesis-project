@@ -103,28 +103,28 @@ CREATE TABLE IF NOT EXISTS `user` (
     CONSTRAINT `fk_user_country1` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 -- -----------------------------------------------------
--- Table `order`
+-- Table `orders`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `order` (
+CREATE TABLE IF NOT EXISTS `orders` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `date_placed` DATETIME NOT NULL,
     `total_price` DECIMAL(7, 2) NOT NULL,
     `user_id` INT NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `fk_order_user1_idx` (`user_id` ASC),
-    CONSTRAINT `fk_order_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    INDEX `fk_orders_user1_idx` (`user_id` ASC),
+    CONSTRAINT `fk_orders_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 -- -----------------------------------------------------
--- Table `order_book`
+-- Table `orders_book`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `order_book` (
+CREATE TABLE IF NOT EXISTS `orders_book` (
     `order_id` INT NOT NULL,
     `book_id` INT NOT NULL,
     `quantity` TINYINT NOT NULL,
-    INDEX `fk_order_book_order1_idx` (`order_id` ASC),
-    INDEX `fk_order_book_book1_idx` (`book_id` ASC),
-    CONSTRAINT `fk_order_book_order1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT `fk_order_book_book1` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    INDEX `fk_orders_book_orders1_idx` (`order_id` ASC),
+    INDEX `fk_orders_book_book1_idx` (`book_id` ASC),
+    CONSTRAINT `fk_orders_book_orders1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_orders_book_book1` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 -- -----------------------------------------------------
 -- Table `role`
