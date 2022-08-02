@@ -26,9 +26,9 @@ export class NavbarComponent implements OnInit {
   }
 
   searchForBooks() {
-    this.router.navigate([`book/search/${this.book}`]);
 
     if (this.book !== "") {
+      this.router.navigate([`book/search/${this.book}`]);
       if (this.router.url.includes("/book/search/")) {
         this.router.navigate([`book/search/${this.book}`])
           .then(() => {

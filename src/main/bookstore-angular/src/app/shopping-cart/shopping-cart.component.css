@@ -60,6 +60,7 @@ img {
 }
 
 a {
+  font-size: 20px;
   text-decoration: none;
   color: #424242;
   transition: all 0.07s linear;
@@ -67,6 +68,7 @@ a {
 
 a:hover{
   opacity: 0.6;
+  color: rgba(40, 167, 69, 1.0);
 }
 
 a > div {

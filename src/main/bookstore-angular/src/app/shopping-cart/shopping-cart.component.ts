@@ -46,6 +46,27 @@ export class ShoppingCartComponent implements OnInit {
       this.cartItems.push(new CartItem(book, numberOfElems));
     }
 
+    this.cartItems.sort((a, b) => {
+      return b.amount - a.amount;
+    });
     console.log(this.cartItems);
+  }
+
+  amountChanged(book: Book, event: any) {
+
+    let newAmount = event.target.value;
+    let localStorageTemp = JSON.parse(localStorage['cart'] || '[]');
+    localStorageTemp = localStorageTemp.filter((c: number) => c !== book.id);
+
+    for (const i of new Array(+newAmount)) {
+      localStorageTemp.push(book.id);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(localStorageTemp));
+    location.reload();
+  }
+
+  purchaseBooks() {
+    alert("Uspješna kupnja");
   }
 }
