@@ -1,6 +1,7 @@
 package hr.tvz.thesis.bookstore.controller;
 
 import hr.tvz.thesis.bookstore.domain.Order;
+import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.service.OrderService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class OrderController {
   }
 
   @PostMapping ("/api/orders/add")
-  public Order save(@RequestBody final Order order) {
+  public OrderDTO save(@RequestBody final Order order) {
     return orderService.save(order);
   }
 }

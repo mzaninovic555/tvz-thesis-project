@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -25,7 +26,7 @@ import lombok.Setter;
 public class Book {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String format;
@@ -73,9 +74,9 @@ public class Book {
   @JoinColumn(name = "language_id")
   private Language language;
 
-  @ManyToMany(targetEntity = Category.class, mappedBy = "books")
+  @ManyToMany(mappedBy = "books")
   private List<Category> categories;
 
-  @ManyToMany(targetEntity = Order.class, mappedBy = "books")
+  @ManyToMany(mappedBy = "books")
   private List<Order> orders;
 }

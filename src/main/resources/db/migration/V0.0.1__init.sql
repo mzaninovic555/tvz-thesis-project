@@ -120,7 +120,6 @@ CREATE TABLE IF NOT EXISTS `orders` (
 CREATE TABLE IF NOT EXISTS `orders_book` (
     `order_id` INT NOT NULL,
     `book_id` INT NOT NULL,
-    `quantity` TINYINT NOT NULL,
     INDEX `fk_orders_book_orders1_idx` (`order_id` ASC),
     INDEX `fk_orders_book_book1_idx` (`book_id` ASC),
     CONSTRAINT `fk_orders_book_orders1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,

@@ -1,6 +1,8 @@
 package hr.tvz.thesis.bookstore.service;
 
+import hr.tvz.thesis.bookstore.common.DTOConverters;
 import hr.tvz.thesis.bookstore.domain.Order;
+import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public Order save(Order order) {
-    return orderRepository.save(order);
+  public OrderDTO save(Order order) {
+    return DTOConverters.mapOrderToOrderDTO(orderRepository.save(order));
   }
 }

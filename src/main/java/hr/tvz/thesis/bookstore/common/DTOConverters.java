@@ -3,13 +3,16 @@ package hr.tvz.thesis.bookstore.common;
 import hr.tvz.thesis.bookstore.domain.Author;
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Category;
+import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.Publisher;
 import hr.tvz.thesis.bookstore.domain.dto.AuthorDTO;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
+import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
 import java.math.BigDecimal;
 import java.util.List;
+import org.aspectj.weaver.ast.Or;
 
 public class DTOConverters {
 
@@ -71,6 +74,14 @@ public class DTOConverters {
     return CategoryDTO.builder()
         .id(category.getId())
         .name(category.getName())
+        .build();
+  }
+
+  public static OrderDTO mapOrderToOrderDTO(Order order) {
+    return OrderDTO.builder()
+        .id(order.getId())
+        .datePlaced(order.getDatePlaced())
+        .totalPrice(order.getTotalPrice())
         .build();
   }
 }
