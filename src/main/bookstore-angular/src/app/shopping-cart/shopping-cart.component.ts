@@ -18,6 +18,7 @@ export class ShoppingCartComponent implements OnInit {
   localStorageCart: string[] = localStorage['cart'];
   cartItems: CartItem[] = [];
   books!: Book[];
+  totalCartPrice: number = 0.00;
   imagePath = Constants.IMAGE_PATH;
 
   constructor(private bookService: BookService, private orderService: OrderService, private router: Router) { }
@@ -49,6 +50,10 @@ export class ShoppingCartComponent implements OnInit {
       let book = this.books.filter(b => b.id === +elem)[0];
       this.cartItems.push(new CartItem(book, numberOfElems));
     }
+
+    this.totalCartPrice = this.cartItems.reduce((previous, current) =>
+        current.book.discountPrice !== 0 ? previous + (current.book.discountPrice * current.amount) : previous + (current.book.price * current.amount), 0
+    )
 
     this.cartItems.sort((a, b) => {
       return b.amount - a.amount;
@@ -84,9 +89,7 @@ export class ShoppingCartComponent implements OnInit {
       let newOrder = new Order(
           0,
           new Date(),
-          this.cartItems.reduce((previous, current) =>
-            previous + current.book.price, 0
-          ),
+          this.totalCartPrice,
           new User(
               1,
               "",
@@ -102,10 +105,17 @@ export class ShoppingCartComponent implements OnInit {
           bookArray
       );
 
-      //console.log(newOrder);
+      this.orderService.addOrder(newOrder).subscribe({
+        next: () => {
+          localStorage.removeItem('cart');
 
-      this.orderService.addOrder(newOrder).subscribe();
-      //this.router.navigate(['../../']);
+          this.router.navigate([`../`])
+            .then(() => {
+              window.location.reload();
+          });
+        }
+      });
+
     }
   }
 }

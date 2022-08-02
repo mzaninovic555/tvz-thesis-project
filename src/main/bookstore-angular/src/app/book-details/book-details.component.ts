@@ -50,6 +50,6 @@ export class BookDetailsComponent implements OnInit {
       cartItems.push(bookId);
     }
     localStorage.setItem('cart', JSON.stringify(cartItems));
-    //location.reload();
+    location.reload();
   }
 }

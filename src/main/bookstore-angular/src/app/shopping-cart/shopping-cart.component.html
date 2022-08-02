@@ -16,12 +16,13 @@
             <input type="number" class="form-control" value="{{item.amount}}" (change)="amountChanged(item.book, $event)">
           </div>
           <div class="col">
-            <span>{{(item.book.price * item.amount).toFixed(2)}}</span>
+            <span>{{(item.book.discountPrice !== 0 ? item.book.discountPrice * item.amount : item.book.price * item.amount).toFixed(2)}}</span>
           </div>
         </div>
       </li>
       <li class="list-group list-group-flush mt-3">
         <button type="button" class="w-25 btn btn-success" (click)="purchaseBooks()">Kupnja</button>
+        <span>{{this.totalCartPrice}}</span>
       </li>
     </ul>
   </div>
