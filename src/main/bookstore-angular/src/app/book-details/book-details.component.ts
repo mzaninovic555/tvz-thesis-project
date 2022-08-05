@@ -39,19 +39,22 @@ export class BookDetailsComponent implements OnInit {
   }
 
   addToCart(bookId: number) {
-    let cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+    let cartItems: number[] = JSON.parse(localStorage.getItem('cart') || '[]');
+    let bookQuantity = cartItems.filter(b => b === bookId).length;
 
-    console.log(this.cartAmount);
     if (this.cartAmount) {
-      if (this.cartAmount > this.book!.stock) {
+      if (this.cartAmount > this.book!.stock || bookQuantity + this.cartAmount > this.book!.stock) {
         this.cartAmount = this.book!.stock;
       }
       for (const i of new Array(this.cartAmount)) {
         cartItems.push(bookId);
       }
     } else {
-      cartItems.push(bookId);
+      if (bookQuantity + 1 <= this.book!.stock) {
+        cartItems.push(bookId);
+      }
     }
+
     localStorage.setItem('cart', JSON.stringify(cartItems));
     location.reload();
   }

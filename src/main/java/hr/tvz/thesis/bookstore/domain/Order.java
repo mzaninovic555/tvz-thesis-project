@@ -1,6 +1,5 @@
 package hr.tvz.thesis.bookstore.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;

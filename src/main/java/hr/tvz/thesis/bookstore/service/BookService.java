@@ -17,4 +17,6 @@ public interface BookService {
   List<BookDTO> findByTitle(String searchTerm);
 
   List<BookDTO> findByCategoryId(Long id);
+
+  int updateStock(Long bookId, Integer quantityToReduce);
 }

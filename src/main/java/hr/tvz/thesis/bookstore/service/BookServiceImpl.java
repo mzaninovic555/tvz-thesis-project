@@ -61,4 +61,9 @@ public class BookServiceImpl implements BookService {
         .map(DTOConverters::mapBookToBookDTO)
         .toList();
   }
+
+  @Override
+  public int updateStock(Long bookId, Integer quantityToReduce) {
+    return bookRepository.updateStock(bookId, quantityToReduce);
+  }
 }
