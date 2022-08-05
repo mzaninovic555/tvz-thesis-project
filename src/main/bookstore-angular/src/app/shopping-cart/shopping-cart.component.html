@@ -21,8 +21,10 @@
         </div>
       </li>
       <li class="list-group list-group-flush mt-3">
-        <button type="button" class="w-25 btn btn-success" (click)="purchaseBooks()">Kupnja</button>
-        <span>{{this.totalCartPrice}}</span>
+        <div class="row align-items-center">
+          <button type="button" class="w-25 btn btn-success col-2" (click)="purchaseBooks()">Kupnja</button>
+          <span class="ms-5 col-2">{{this.totalCartPrice}} kn</span>
+        </div>
       </li>
     </ul>
   </div>
