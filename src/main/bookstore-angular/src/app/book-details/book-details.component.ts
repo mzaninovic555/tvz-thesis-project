@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from "../book";
 import {BookService} from "../book.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Constants} from "../constants";
 
 @Component({
@@ -15,7 +15,7 @@ export class BookDetailsComponent implements OnInit {
   cartAmount!: number;
   imagePath = Constants.IMAGE_PATH;
 
-  constructor(private route: ActivatedRoute, private bookService: BookService) { }
+  constructor(private route: ActivatedRoute, private bookService: BookService, private router: Router) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -50,12 +50,15 @@ export class BookDetailsComponent implements OnInit {
         cartItems.push(bookId);
       }
     } else {
-      if (bookQuantity + 1 <= this.book!.stock) {
+      if (bookQuantity + 1 < this.book!.stock) {
         cartItems.push(bookId);
       }
     }
 
     localStorage.setItem('cart', JSON.stringify(cartItems));
-    location.reload();
+    this.router.navigate(['../'])
+      .then(() => {
+        window.location.reload();
+      });
   }
 }

@@ -16,7 +16,7 @@
             <input type="number" class="form-control" value="{{item.amount}}" (change)="amountChanged(item.book, $event)">
           </div>
           <div class="col">
-            <span>{{(item.book.discountPrice !== 0 ? item.book.discountPrice * item.amount : item.book.price * item.amount).toFixed(2)}}</span>
+            <span>{{(item.book.discountPrice !== 0 ? item.book.discountPrice * item.amount : item.book.price * item.amount).toFixed(2)}} kn</span>
           </div>
         </div>
       </li>
