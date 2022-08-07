@@ -17,6 +17,8 @@ import {FormsModule} from "@angular/forms";
 import { BookSearchComponent } from './book-search/book-search.component';
 import { CategoryComponent } from './category/category.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     PublisherComponent,
     BookSearchComponent,
     CategoryComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    PageNotFoundComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,

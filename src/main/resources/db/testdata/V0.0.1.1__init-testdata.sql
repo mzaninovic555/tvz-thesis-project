@@ -2,10 +2,6 @@
 insert into country(name, country_code)
 values('Hrvatska', 'HR');
 
--- User
-insert into user(username, password, email, first_name, last_name, phone_number, address, postal_code, city, country_id)
-values('mzaninovic', 'mzaninovic', 'mzaninovic@gmail.com', 'Marko', 'Zaninovic', '0997973706', 'Kraljvec 23', '10000', 'Zagreb', 1);
-
 -- Category
 insert into category(name)
 values ('Fantasy'),

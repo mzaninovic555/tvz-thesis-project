@@ -36,6 +36,12 @@ const routes: Routes = [
   {
     path: 'cart',
     component: ShoppingCartComponent
+  },
+  {
+    path: 'forbidden'
+  },
+  {
+    path: '**'
   }
 ];
 
