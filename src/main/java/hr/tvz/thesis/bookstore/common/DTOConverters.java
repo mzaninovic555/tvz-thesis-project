@@ -11,6 +11,7 @@ import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public class DTOConverters {
@@ -30,7 +31,8 @@ public class DTOConverters {
         .barcode(book.getBarcode())
         .title(book.getTitle())
         .price(book.getPrice())
-        .discountPrice(book.getDiscount() != null ? book.getDiscount().getDiscountPrice() : BigDecimal.ZERO)
+        .discountPrice(book.getDiscount() != null && book.getDiscount().getEndsAt().isAfter(LocalDate.now())
+            ? book.getDiscount().getDiscountPrice() : BigDecimal.ZERO)
         .discountExpiration((book.getDiscount() != null ? book.getDiscount().getEndsAt() : null))
         .description(book.getDescription())
         .publishingYear(book.getPublishingYear())
