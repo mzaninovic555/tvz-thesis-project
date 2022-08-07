@@ -10,7 +10,7 @@
       </a>
       <ng-container *ngIf="book?.discountPrice != 0">
         <h5 class="discount-details"> {{book?.price}} kn </h5>
-        <h5 style="display: inline; margin-left: 10px"> {{book?.discountPrice}} kn </h5>
+        <h5 style="display: inline; margin-left: 10px; color: darkred;"> {{book?.discountPrice}} kn </h5>
         <span class="badge bg-success"> Popust vrijedi do {{book?.discountExpiration | date: 'dd.MM.yyyy.'}} </span>
       </ng-container>
       <h5 *ngIf="book?.discountPrice == 0"> {{book?.price}} kn </h5>

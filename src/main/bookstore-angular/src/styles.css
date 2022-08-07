@@ -4,9 +4,13 @@
 }
 
 .discount {
-  color: darkgreen;
+  opacity: 0.6;
   text-decoration: line-through;
   margin-right: 3px;
+}
+
+.discount-price {
+  color: darkred;
 }
 
 .discount-icon {
@@ -18,13 +22,22 @@
   font-size:30px;
 }
 
-
 .form-control {
   margin-top: 5px;
   border-radius: 40px;
 }
 
 .form-control:focus,.btn-success:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
+}
+
+.btn {
+  border-radius: 60px;
+  margin-top: 5px;
+}
+
+.btn-success:focus {
   border-color: #28a745;
   box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
 }
