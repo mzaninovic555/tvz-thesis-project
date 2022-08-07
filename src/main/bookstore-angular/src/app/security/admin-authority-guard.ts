@@ -8,14 +8,14 @@ import {
   UrlTree
 } from '@angular/router';
 import {Observable} from 'rxjs';
-import {AuthenticationService} from "./authentication.service";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoggedInGuard implements CanActivate, CanActivateChild {
+export class AdminAuthorityGuard implements CanActivate, CanActivateChild {
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {}
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean | UrlTree {
     return this.canActivateRootAndChild(next, state);
@@ -27,7 +27,11 @@ export class LoggedInGuard implements CanActivate, CanActivateChild {
 
   canActivateRootAndChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
     if (this.authenticationService.isUserAuthenticated()) {
-      return true;
+      if(this.authenticationService.isUserAdmin()) {
+        return true;
+      } else {
+        return this.router.parseUrl('/forbidden')
+      }
     } else {
       return this.router.parseUrl('/login')
     }

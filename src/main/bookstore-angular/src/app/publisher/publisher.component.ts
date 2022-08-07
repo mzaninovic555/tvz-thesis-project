@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Book} from "../book";
 import {Constants} from "../constants";
 import {ActivatedRoute} from "@angular/router";
-import {BookService} from "../book.service";
+import {BookService} from "../services/book.service";
 import {Publisher} from "../publisher";
 
 @Component({

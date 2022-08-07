@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BookService} from "../book.service";
+import {BookService} from "../services/book.service";
 import {Author} from "../author";
 import {Constants} from "../constants";
 import {Book} from "../book";

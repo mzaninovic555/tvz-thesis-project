@@ -19,7 +19,7 @@ import { CategoryComponent } from './category/category.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import {AuthenticationInterceptor} from "./authentication-interceptor";
+import {AuthenticationInterceptor} from "./security/authentication-interceptor";
 
 @NgModule({
   declarations: [

@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Book} from "./book";
+import {Book} from "../book";
 import {catchError, Observable, of, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Author} from "./author";
-import {Constants} from "./constants";
-import {Publisher} from "./publisher";
-import {Category} from "./category";
+import {Author} from "../author";
+import {Constants} from "../constants";
+import {Publisher} from "../publisher";
+import {Category} from "../category";
 
 @Injectable({
   providedIn: 'root'

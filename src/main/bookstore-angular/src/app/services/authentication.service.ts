@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Constants} from "./constants";
+import {Constants} from "../constants";
 import {HttpClient} from "@angular/common/http";
-import {Login} from "./login";
-import {JwtToken} from "./jwt-token";
+import {Login} from "../security/login";
+import {JwtToken} from "../jwt-token";
 import jwt_decode from "jwt-decode";
 
 @Injectable({
