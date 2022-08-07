@@ -20,7 +20,7 @@ public class LoginController {
     this.loginService = loginService;
   }
 
-  @PostMapping("authentication/login")
+  @PostMapping("/authentication/login")
   public LoginDTO login(@RequestBody final Login login) {
     return loginService.login(login)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid credentials"));
