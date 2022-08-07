@@ -1,5 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {Login} from "../security/login";
+import {AuthenticationService} from "../services/authentication.service";
+import {JwtToken} from "../jwt-token";
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +13,9 @@ export class NavbarComponent implements OnInit {
 
   book = "";
   cartItems!: number
+  login = new Login('', '');
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public authenticationService: AuthenticationService) {
     this.cartItems = JSON.parse(localStorage.getItem('cart') || '[]').length;
   }
 
@@ -38,5 +42,16 @@ export class NavbarComponent implements OnInit {
         this.router.navigate([`book/search/${this.book}`]);
       }
     }
+  }
+
+  loginFunction() {
+
+    this.authenticationService.login(this.login)
+      .subscribe({
+        next: (loginResponse: JwtToken) => {
+          this.authenticationService.saveJwtToLocalStorage(loginResponse.jwt);
+          window.location.reload()
+        }
+      })
   }
 }

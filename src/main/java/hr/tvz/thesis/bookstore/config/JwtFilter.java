@@ -41,9 +41,9 @@ public class JwtFilter extends OncePerRequestFilter {
         if (!authenticate) {
           unauthorized(response);
         }
+      } else {
+        unauthorized(response);
       }
-    } else {
-      unauthorized(response);
     }
 
     filterChain.doFilter(request, response);

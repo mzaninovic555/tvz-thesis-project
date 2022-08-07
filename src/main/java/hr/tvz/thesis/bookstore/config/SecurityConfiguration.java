@@ -25,7 +25,7 @@ public class SecurityConfiguration {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.authorizeRequests().antMatchers("**").permitAll()
+    http.authorizeRequests().antMatchers("**", "/authentication/login").permitAll()
         .anyRequest().authenticated()
         .and().headers().frameOptions().disable()
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
