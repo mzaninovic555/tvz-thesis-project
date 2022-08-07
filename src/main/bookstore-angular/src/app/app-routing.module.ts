@@ -7,6 +7,8 @@ import {PublisherComponent} from "./publisher/publisher.component";
 import {BookSearchComponent} from "./book-search/book-search.component";
 import {CategoryComponent} from "./category/category.component";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
+import {ForbiddenComponent} from "./forbidden/forbidden.component";
+import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
@@ -38,10 +40,12 @@ const routes: Routes = [
     component: ShoppingCartComponent
   },
   {
-    path: 'forbidden'
+    path: 'forbidden',
+    component: ForbiddenComponent
   },
   {
-    path: '**'
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

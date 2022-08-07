@@ -39,15 +39,17 @@ export class AuthenticationService {
   getAuthenticatedUserUsername() {
     const decodedToken = this.decodeJwt();
     let username = null;
+
     if (decodedToken != null) {
       const usernameKey = (Object.keys(decodedToken) as (keyof typeof decodedToken)[])
-      .find((key) => {
-        return key === 'sub' && decodedToken[key] != null;
-      });
+        .find((key) => {
+          return key === 'sub' && decodedToken[key] != null;
+        });
       if (usernameKey != null) {
         username = decodedToken[usernameKey]
       }
     }
+
     return username;
   }
 
@@ -55,15 +57,19 @@ export class AuthenticationService {
     const adminRoleName = 'ROLE_ADMIN';
     const decodedToken = this.decodeJwt();
     let authorities: any = null;
+
     if (decodedToken != null) {
-      const usernameKey = (Object.keys(decodedToken) as (keyof typeof decodedToken)[]).find((key) => {
+      const usernameKey = (Object.keys(decodedToken) as (keyof typeof decodedToken)[])
+        .find((key) => {
         // @ts-ignore
-        return key === 'authorities' && decodedToken[key] != null;
-      });
+          return key === 'authorities' && decodedToken[key] != null;
+        });
+
       if (usernameKey != null) {
         authorities = decodedToken[usernameKey]
       }
     }
+
     return authorities != null && authorities.includes(adminRoleName);
   }
 

@@ -12,7 +12,7 @@ export class AppComponent {
 
 
   ngAfterViewInit() {
-    var s = document.createElement("script");
+    let s = document.createElement("script");
     s.type = "text/javascript";
     s.src = "https://kit.fontawesome.com/a5aa6144c0.js";
     this.elementRef.nativeElement.appendChild(s);
