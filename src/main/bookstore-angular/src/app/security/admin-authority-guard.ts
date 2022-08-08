@@ -33,7 +33,7 @@ export class AdminAuthorityGuard implements CanActivate, CanActivateChild {
         return this.router.parseUrl('/forbidden')
       }
     } else {
-      return this.router.parseUrl('/login')
+      return this.router.parseUrl('/')
     }
   }
 }

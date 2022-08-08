@@ -1,5 +1,6 @@
 package hr.tvz.thesis.bookstore.config;
 
+import hr.tvz.thesis.bookstore.common.Constants;
 import hr.tvz.thesis.bookstore.service.JwtService;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -31,7 +32,7 @@ public class JwtFilter extends OncePerRequestFilter {
     request.setCharacterEncoding(StandardCharsets.UTF_8.name());
     response.setCharacterEncoding(StandardCharsets.UTF_8.name());
 
-    if (!isEndpointUnauthenticated(request)) {
+    if (isEndpointAuthenticated(request)) {
       String jwtToken = extractJwt(request);
       log.trace("Filtering for endpoint: {}, resolved JWT: {}", request.getRequestURI(), jwtToken);
 
@@ -61,8 +62,8 @@ public class JwtFilter extends OncePerRequestFilter {
     return null;
   }
 
-  private Boolean isEndpointUnauthenticated(HttpServletRequest request) {
+  private Boolean isEndpointAuthenticated(HttpServletRequest request) {
     String uri = request.getRequestURI();
-    return "/authentication/login".equals(uri);
+    return Constants.AUTHENTICATED_ENDPOINTS.stream().anyMatch(ae -> ae.equals(uri));
   }
 }

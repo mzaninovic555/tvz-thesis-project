@@ -29,7 +29,7 @@ export class LoggedInGuard implements CanActivate, CanActivateChild {
     if (this.authenticationService.isUserAuthenticated()) {
       return true;
     } else {
-      return this.router.parseUrl('/login')
+      return this.router.parseUrl('/')
     }
   }
 }

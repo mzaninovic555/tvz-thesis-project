@@ -7,6 +7,8 @@ import {OrderService} from "../services/order.service";
 import {Order} from "../order";
 import {Router} from "@angular/router";
 import {User} from "../user";
+import {AuthenticationService} from "../services/authentication.service";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,8 +22,14 @@ export class ShoppingCartComponent implements OnInit {
   books!: Book[];
   totalCartPrice: number = 0.00;
   imagePath = Constants.IMAGE_PATH;
+  loggedInUser?: User;
+  isUserLoggedIn!: boolean;
 
-  constructor(private bookService: BookService, private orderService: OrderService, private router: Router) { }
+  constructor(private bookService: BookService,
+              private orderService: OrderService,
+              private router: Router,
+              private authenticationService: AuthenticationService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
 
@@ -36,6 +44,8 @@ export class ShoppingCartComponent implements OnInit {
           },
           complete: () => {
             this.fillCartItems();
+            this.isUserLoggedIn = this.authenticationService.isUserAuthenticated();
+            this.fetchLoggedInUser();
           }
         });
     }
@@ -60,6 +70,20 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
+  fetchLoggedInUser() {
+
+    if (this.isUserLoggedIn) {
+      let username = this.authenticationService.getAuthenticatedUserUsername();
+
+      this.userService.getByUsername(username)
+        .subscribe({
+          next: user => {
+            this.loggedInUser = user;
+          }
+        });
+    }
+  }
+
   amountChanged(book: Book, event: any) {
 
     let newAmount = event.target.value;
@@ -79,10 +103,9 @@ export class ShoppingCartComponent implements OnInit {
 
   purchaseBooks() {
 
-    if (this.cartItems !== undefined || []) {
+    if (this.cartItems !== undefined && this.cartItems !== [] && this.loggedInUser !== undefined) {
 
       let bookArray: Book[] = [];
-
       for (let cartItem of this.cartItems) {
         for (let i of new Array(+cartItem.amount)) {
           bookArray.push(cartItem.book);
@@ -93,32 +116,19 @@ export class ShoppingCartComponent implements OnInit {
           0,
           new Date(),
           this.totalCartPrice,
-          new User(
-              1,
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-          ),
+          this.loggedInUser,
           bookArray
       );
 
       this.orderService.addOrder(newOrder).subscribe({
         next: () => {
           localStorage.removeItem('cart');
-
           this.router.navigate([`../`])
             .then(() => {
               window.location.reload();
           });
         }
       });
-
     }
   }
 }

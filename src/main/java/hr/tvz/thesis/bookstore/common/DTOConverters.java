@@ -5,11 +5,13 @@ import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Category;
 import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.Publisher;
+import hr.tvz.thesis.bookstore.domain.User;
 import hr.tvz.thesis.bookstore.domain.dto.AuthorDTO;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
+import hr.tvz.thesis.bookstore.domain.dto.UserDTO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -83,6 +85,20 @@ public class DTOConverters {
         .id(order.getId())
         .datePlaced(order.getDatePlaced())
         .totalPrice(order.getTotalPrice())
+        .build();
+  }
+
+  public static UserDTO mapUserToUserDTO(User user) {
+    return UserDTO.builder()
+        .id(user.getId())
+        .username(user.getUsername())
+        .email(user.getEmail())
+        .firstName(user.getFirstName())
+        .lastName(user.getLastName())
+        .phoneNumber(user.getPhoneNumber())
+        .address(user.getAddress())
+        .postalCode(user.getPostalCode())
+        .city(user.getCity())
         .build();
   }
 }

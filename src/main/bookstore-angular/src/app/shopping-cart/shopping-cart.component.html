@@ -24,8 +24,16 @@
       </li>
       <li class="list-group list-group-flush mt-3">
         <div class="row align-items-center">
-          <button type="button" class="w-25 btn btn-success col-lg-2 col-md-2 col-sm-6" (click)="purchaseBooks()"><i class="fa-solid fa-bag-shopping me-2"></i>Kupnja</button>
-          <span class="ms-5 col-lg-2 col-md-2 col-sm-6">{{this.totalCartPrice}} kn</span>
+          <button type="button" class="w-25 btn btn-success col-lg-2 col-md-2 col-sm-6" (click)="purchaseBooks()" *ngIf="isUserLoggedIn">
+            <i class="fa-solid fa-bag-shopping me-2"></i>Kupnja
+          </button>
+          <ng-container *ngIf="!isUserLoggedIn">
+            <button type="button" class="w-25 btn btn-dark col-lg-2 col-md-2 col-sm-2" (click)="purchaseBooks()" disabled>
+              <i class="fa-solid fa-bag-shopping me-2"></i>Kupnja
+            </button>
+            <span class="ms-5 col-2">Morate biti prijavljeni za kupnju.</span>
+          </ng-container>
+          <span class="ms-5 col-lg-2 col-md-2 col-sm-2">{{this.totalCartPrice}} kn</span>
         </div>
       </li>
     </ul>

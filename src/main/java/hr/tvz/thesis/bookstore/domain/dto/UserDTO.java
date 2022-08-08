@@ -2,6 +2,7 @@ package hr.tvz.thesis.bookstore.domain.dto;
 
 import javax.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,14 +11,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class UserDTO {
 
   @Id
   private Long id;
 
   private String username;
-
-  private String password;
 
   private String email;
 
