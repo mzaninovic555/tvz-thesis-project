@@ -3,7 +3,6 @@ import {Constants} from "../domain/constants";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
 import {Order} from "../domain/order";
-import {User} from "../domain/user";
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +25,11 @@ export class OrderService {
     );
   }
 
-  getOrdersByUserId(userId: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.URL}api/orders/user/${userId}`)
+  getOrdersByUserId(userId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.URL}/api/orders/user/${userId}`)
     .pipe(
         tap(_ => console.log('Fetched orders by user id')),
-        catchError(this.handleError<User[]>('getOrdersByUserId'))
+        catchError(this.handleError<Order[]>('getOrdersByUserId'))
     );
   }
 

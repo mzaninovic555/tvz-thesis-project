@@ -12,6 +12,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AllBooksComponent} from "./all-books/all-books.component";
 import {UserPageComponent} from "./user-page/user-page.component";
 import {LoggedInGuard} from "./security/logged-in-guard";
+import {OrderDetailsComponent} from "./order-details/order-details.component";
 
 const routes: Routes = [
   {
@@ -49,6 +50,11 @@ const routes: Routes = [
   {
     path: 'user/:username',
     component: UserPageComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'order/:id',
+    component: OrderDetailsComponent,
     canActivate: [LoggedInGuard]
   },
   {

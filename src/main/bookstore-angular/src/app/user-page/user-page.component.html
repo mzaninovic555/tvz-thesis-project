@@ -1,5 +1,5 @@
 <app-navbar-content></app-navbar-content>
-<article class="container mb-5 mt-3">
+<article class="container mb-5 mt-3" *ngIf="user">
   <h5>Dobro došli, {{user.firstName}}  {{user.lastName}}</h5>
   <hr>
   <div class="row" id="group">
@@ -39,7 +39,9 @@
     <div class="col-10 collapse" id="orders" data-bs-parent="#group">
       <h5 class="pb-3 border-bottom">Narudžbe</h5>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Grad: {{user.city}}</li>
+        <li class="list-group-item" *ngFor="let order of orders">
+          <a routerLink="../../order/{{order.id}}"> Narudžba {{fillZeroes(order.id)}} - {{order.totalPrice}} kn, {{order.datePlaced}} </a>
+        </li>
       </ul>
     </div>
   </div>

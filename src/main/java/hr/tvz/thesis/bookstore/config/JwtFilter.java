@@ -64,6 +64,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
   private Boolean isEndpointAuthenticated(HttpServletRequest request) {
     String uri = request.getRequestURI();
-    return Constants.AUTHENTICATED_ENDPOINTS.stream().anyMatch(ae -> ae.equals(uri));
+    return Constants.AUTHENTICATED_ENDPOINTS.stream().anyMatch(uri::contains);
   }
 }
