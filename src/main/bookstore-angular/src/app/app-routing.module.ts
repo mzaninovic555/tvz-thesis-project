@@ -33,7 +33,7 @@ const routes: Routes = [
     component: BookSearchComponent
   },
   {
-    path: 'book/all',
+    path: 'books/all',
     component: AllBooksComponent
   },
   {

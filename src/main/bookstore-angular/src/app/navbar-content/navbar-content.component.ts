@@ -41,6 +41,6 @@ export class NavbarContentComponent implements OnInit {
   }
 
   allBooks() {
-    this.router.navigate([`book/all/`]);
+    this.router.navigate([`books/all`]);
   }
 }

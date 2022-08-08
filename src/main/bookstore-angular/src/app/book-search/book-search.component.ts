@@ -24,8 +24,6 @@ export class BookSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchTerm = this.route.snapshot.paramMap.get("searchTerm") || "";
-    this.bookService.getBooksByTitle(this.searchTerm)
-      .subscribe();
 
     if (this.searchTerm != null) {
       this.bookService.getBooksByTitle(this.searchTerm)
