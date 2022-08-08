@@ -39,4 +39,8 @@ export class NavbarContentComponent implements OnInit {
 
     return 0;
   }
+
+  allBooks() {
+    this.router.navigate([`book/all/`]);
+  }
 }

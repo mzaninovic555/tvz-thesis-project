@@ -14,12 +14,14 @@ export class NavbarComponent implements OnInit {
   book = "";
   cartItems!: number
   login = new Login('', '');
+  authenticationError: boolean = false;
 
   constructor(private router: Router, public authenticationService: AuthenticationService) {
     this.cartItems = JSON.parse(localStorage.getItem('cart') || '[]').length;
   }
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   @HostListener('document:keypress', ['$event'])
@@ -33,24 +35,21 @@ export class NavbarComponent implements OnInit {
 
     if (this.book !== "") {
       this.router.navigate([`book/search/${this.book}`]);
-      if (this.router.url.includes("/book/search/")) {
-        this.router.navigate([`book/search/${this.book}`])
-          .then(() => {
-            window.location.reload();
-          });
-      } else {
-        this.router.navigate([`book/search/${this.book}`]);
-      }
     }
   }
 
   loginFunction() {
+
+    this.authenticationError = false;
 
     this.authenticationService.login(this.login)
       .subscribe({
         next: (loginResponse: JwtToken) => {
           this.authenticationService.saveJwtToLocalStorage(loginResponse.jwt);
           window.location.reload()
+        },
+        error: () => {
+          alert("Krivo korisničko ime ili lozinka.")
         }
       })
   }

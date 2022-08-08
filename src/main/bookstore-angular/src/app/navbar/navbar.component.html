@@ -19,20 +19,35 @@
       <ul class="navbar-nav">
         <li class="border-end pe-2">
           <div class="dropdown" *ngIf="!authenticationService.isUserAuthenticated()">
-            <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Prijava/Registracija</a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLinkLoggedOut"
+               data-bs-toggle="dropdown" aria-expanded="false">Prijava/Registracija
+            </a>
+            <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLinkLoggedOut">
               <li>
                 <form class="p-3" name="authenticationForm">
                   <label for="username" class="form-label">Korisničko ime:</label>
-                  <input type="text" class="form-control" id="username" name="username" [(ngModel)]="login.username">
+                  <input type="text" class="form-control mb-2" id="username" name="username" [(ngModel)]="login.username">
                   <label for="password">Lozinka:</label>
                   <input type="password" class="form-control" id="password" name="password" [(ngModel)]="login.password">
-                  <button type="button" class="btn btn-success mt-2" (click)="loginFunction()">Prijava</button>
+                  <button type="button" class="btn btn-success mt-2" (click)="loginFunction()"><i class="fa-solid fa-door-open me-2"></i>Prijava</button>
                 </form>
               </li>
             </ul>
           </div>
-          <span *ngIf="authenticationService.isUserAuthenticated">{{authenticationService.getAuthenticatedUserUsername()}}</span>
+
+          <div class="dropdown" *ngIf="authenticationService.isUserAuthenticated()">
+            <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLinkLoggedIn"
+               data-bs-toggle="dropdown" aria-expanded="false">{{authenticationService.getAuthenticatedUserUsername()}}
+            </a>
+            <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLinkLoggedIn">
+              <li>
+                <a href="#" class="nav-link"><i class="fa-solid fa-user me-2"></i>Moj račun</a>
+              </li>
+              <li class="pb-1">
+                <button type="button" class="btn btn-success" (click)="authenticationService.logout()"><i class="fa-solid fa-door-closed me-2"></i>Odjava</button>
+              </li>
+            </ul>
+          </div>
         </li>
         <li class="border-end pe-2 ps-2">
           <a routerLink="/cart" class="nav-link">

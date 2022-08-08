@@ -75,6 +75,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('accessToken');
+    window.location.reload();
   }
 
   decodeJwt(): string | null {
