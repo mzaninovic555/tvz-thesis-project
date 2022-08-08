@@ -2,6 +2,7 @@ package hr.tvz.thesis.bookstore.domain.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,4 +21,8 @@ public class OrderDTO {
   private LocalDateTime datePlaced;
 
   private BigDecimal totalPrice;
+
+  private UserDTO user;
+
+  private List<BookDTO> books;
 }

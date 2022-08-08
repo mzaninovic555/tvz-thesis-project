@@ -121,12 +121,9 @@ export class ShoppingCartComponent implements OnInit {
       );
 
       this.orderService.addOrder(newOrder).subscribe({
-        next: () => {
+        next: (order) => {
           localStorage.removeItem('cart');
-          this.router.navigate([`../`])
-            .then(() => {
-              window.location.reload();
-          });
+          this.router.navigate([`../order/${order.id}`]);
         }
       });
     }

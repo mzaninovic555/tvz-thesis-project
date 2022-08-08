@@ -66,4 +66,12 @@ public class BookServiceImpl implements BookService {
   public int updateStock(Long bookId, Integer quantityToReduce) {
     return bookRepository.updateStock(bookId, quantityToReduce);
   }
+
+  @Override
+  public List<BookDTO> findByOrderId(Long id) {
+    return bookRepository.findByOrdersId(id)
+        .stream()
+        .map(DTOConverters::mapBookToBookDTO)
+        .toList();
+  }
 }

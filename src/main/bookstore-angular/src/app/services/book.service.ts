@@ -100,6 +100,14 @@ export class BookService {
       );
   }
 
+  getBooksByOrderId(id: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.URL}/api/books/order/${id}`)
+    .pipe(
+        tap(_ => console.log('Fetched books by category id')),
+        catchError(this.handleError<Book[]>('getBooksWithCategoryId'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(operation);

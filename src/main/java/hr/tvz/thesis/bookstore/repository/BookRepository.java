@@ -20,6 +20,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
   List<Book> findByCategoriesId(Long categoryId);
 
+  List<Book> findByOrdersId(Long ordersId);
+
   @Modifying
   @Query(value =
     """

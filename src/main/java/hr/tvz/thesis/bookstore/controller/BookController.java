@@ -50,4 +50,9 @@ public class BookController {
   public List<BookDTO> findByCategoryId(@PathVariable final Long id) {
     return bookService.findByCategoryId(id);
   }
+
+  @GetMapping("/api/books/order/{id}")
+  public List<BookDTO> findByOrderId(@PathVariable final Long id) {
+    return bookService.findByOrderId(id);
+  }
 }

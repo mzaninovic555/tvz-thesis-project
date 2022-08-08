@@ -19,4 +19,6 @@ public interface BookService {
   List<BookDTO> findByCategoryId(Long id);
 
   int updateStock(Long bookId, Integer quantityToReduce);
+
+  List<BookDTO> findByOrderId(Long id);
 }

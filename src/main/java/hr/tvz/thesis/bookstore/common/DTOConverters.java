@@ -48,6 +48,13 @@ public class DTOConverters {
         .build();
   }
 
+  public static List<BookDTO> mapBooksToBooksDTO(List<Book> books) {
+    return books
+        .stream()
+        .map(DTOConverters::mapBookToBookDTO)
+        .toList();
+  }
+
   public static PublisherDTO mapPublisherToPublisherDTO(Publisher publisher) {
     return PublisherDTO.builder()
         .id(publisher.getId())
@@ -66,11 +73,8 @@ public class DTOConverters {
   public static List<CategoryDTO> mapCategoriesToCategoriesDTO(List<Category> categories) {
     return categories
         .stream()
-        .map(c -> CategoryDTO.builder()
-            .id(c.getId())
-            .name(c.getName())
-            .build()
-        ).toList();
+        .map(DTOConverters::mapCategoryToCategoryDTO)
+        .toList();
   }
 
   public static CategoryDTO mapCategoryToCategoryDTO(Category category) {
@@ -85,6 +89,8 @@ public class DTOConverters {
         .id(order.getId())
         .datePlaced(order.getDatePlaced())
         .totalPrice(order.getTotalPrice())
+        .user(mapUserToUserDTO(order.getUser()))
+        .books(mapBooksToBooksDTO(order.getBooks()))
         .build();
   }
 

@@ -31,6 +31,30 @@
                   aria-controls="allUsers">Korisnici
           </button>
         </li>
+        <li class="nav-item" *ngIf="authenticationService.isUserAdmin()">
+          <button type="button" class="btn btn-success"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#newBook"
+                  aria-expanded="false"
+                  aria-controls="newBook">Nova knjiga
+          </button>
+        </li>
+        <li class="nav-item" *ngIf="authenticationService.isUserAdmin()">
+          <button type="button" class="btn btn-success"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#newAuthor"
+                  aria-expanded="false"
+                  aria-controls="newAuthor">Novi autor
+          </button>
+        </li>
+        <li class="nav-item" *ngIf="authenticationService.isUserAdmin()">
+          <button type="button" class="btn btn-success"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#newPublisher"
+                  aria-expanded="false"
+                  aria-controls="newPublisher">Novi izdavač
+          </button>
+        </li>
       </ul>
     </div>
 
@@ -50,8 +74,13 @@
     <div class="col-10 collapse" id="orders" data-bs-parent="#group">
       <h5 class="pb-3 border-bottom">Narudžbe</h5>
       <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngIf="orders.length == 0">
+          <span class="alert">Nemate izrađenih narudžbi</span>
+        </li>
         <li class="list-group-item" *ngFor="let order of orders">
-          <a routerLink="../../order/{{order.id}}"> Narudžba {{fillZeroes(order.id)}} - {{order.totalPrice}} kn, {{order.datePlaced}} </a>
+          <a routerLink="../../order/{{order.id}}">
+            Narudžba #{{fillZeroes(order.id)}} - {{order.totalPrice}} kn, {{order.datePlaced | date: 'dd.MM.yyyy., HH:mm'}}
+          </a>
         </li>
       </ul>
     </div>
@@ -59,7 +88,9 @@
     <div class="col-10 collapse" id="allUsers" data-bs-parent="#group" *ngIf="authenticationService.isUserAdmin()">
       <h5 class="pb-3 border-bottom">Svi korisnici</h5>
       <ul class="list-group list-group-flush">
-        <a routerLink="../../user/{{user.username}}" *ngFor="let user of allUsers">{{user.username}} - {{user.firstName}} {{user.lastName}}</a>
+        <li class="list-group-item" *ngFor="let user of allUsers">
+          <a routerLink="../../user/{{user.username}}">{{user.username}} - {{user.firstName}} {{user.lastName}}</a>
+        </li>
       </ul>
     </div>
 

@@ -33,6 +33,14 @@ export class OrderService {
     );
   }
 
+  getOrderById(id: string): Observable<Order> {
+    return this.http.get<Order>(`${this.URL}/orders/${id}`)
+      .pipe(
+          tap(_ => console.log('Fetched order by id')),
+          catchError(this.handleError<Order>('getOrderById'))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(operation);

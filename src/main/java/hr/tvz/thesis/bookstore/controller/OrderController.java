@@ -4,6 +4,8 @@ import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.service.OrderService;
 import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,15 +24,26 @@ public class OrderController {
     this.orderService = orderService;
   }
 
-  @PostMapping ("/api/orders/add")
+  @GetMapping("/orders/{id}")
   @Secured({"ROLE_USER", "ROLE_ADMIN"})
-  public OrderDTO save(@RequestBody final Order order) {
-    return orderService.save(order);
+  public ResponseEntity<OrderDTO> getById(@PathVariable final Long id) {
+    return orderService.getById(id)
+        .map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.notFound().build());
   }
 
   @GetMapping("/api/orders/user/{userId}")
   @Secured({"ROLE_USER", "ROLE_ADMIN"})
   public List<OrderDTO> getByUserId(@PathVariable final Long userId) {
     return orderService.getByUserId(userId);
+  }
+
+  @PostMapping ("/api/orders/add")
+  @Secured({"ROLE_USER", "ROLE_ADMIN"})
+  public ResponseEntity<OrderDTO> save(@RequestBody final Order order) {
+    if (order.getBooks().isEmpty()) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+    return ResponseEntity.ok(orderService.save(order));
   }
 }
