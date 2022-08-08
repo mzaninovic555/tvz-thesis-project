@@ -21,6 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import {AuthenticationInterceptor} from "./security/authentication-interceptor";
 import { AllBooksComponent } from './all-books/all-books.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AllBooksComponent } from './all-books/all-books.component';
     ShoppingCartComponent,
     PageNotFoundComponent,
     ForbiddenComponent,
-    AllBooksComponent
+    AllBooksComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

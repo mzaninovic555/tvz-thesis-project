@@ -1,0 +1,52 @@
+<app-navbar-content></app-navbar-content>
+<article class="container mb-5 mt-3">
+  <h5>Dobro došli, {{user.firstName}}  {{user.lastName}}</h5>
+  <hr>
+  <div class="row" id="group">
+    <div class="col-2 border-end">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <button type="button" class="btn btn-success"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#userDetails"
+                  aria-expanded="true"
+                  aria-controls="userDetails">Korisnički podaci
+          </button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="btn btn-success"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#orders"
+                  aria-expanded="false"
+                  aria-controls="orders">Narudžbe
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="col-10 collapse show" id="userDetails" data-bs-parent="#group">
+      <h5 class="pb-3 border-bottom">Korisnički podaci</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Username: {{user.username}}</li>
+        <li class="list-group-item">E-mail: {{user.email}}</li>
+        <li class="list-group-item">Ime: {{user.firstName}}</li>
+        <li class="list-group-item">Prezime: {{user.lastName}}</li>
+        <li class="list-group-item">Broj telefona: {{user.phoneNumber}}</li>
+        <li class="list-group-item">Adresa: {{user.address}}</li>
+        <li class="list-group-item">Poštanski broj: {{user.postalCode}}</li>
+        <li class="list-group-item">Grad: {{user.city}}</li>
+      </ul>
+    </div>
+    <div class="col-10 collapse" id="orders" data-bs-parent="#group">
+      <h5 class="pb-3 border-bottom">Narudžbe</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Grad: {{user.city}}</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<script>
+  jQuery('button').click( function(e) {
+    jQuery('.collapse').collapse('hide');
+  });
+</script>

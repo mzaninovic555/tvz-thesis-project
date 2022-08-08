@@ -10,6 +10,8 @@ import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {ForbiddenComponent} from "./forbidden/forbidden.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AllBooksComponent} from "./all-books/all-books.component";
+import {UserPageComponent} from "./user-page/user-page.component";
+import {LoggedInGuard} from "./security/logged-in-guard";
 
 const routes: Routes = [
   {
@@ -43,6 +45,11 @@ const routes: Routes = [
   {
     path: 'cart',
     component: ShoppingCartComponent
+  },
+  {
+    path: 'user/:username',
+    component: UserPageComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'forbidden',

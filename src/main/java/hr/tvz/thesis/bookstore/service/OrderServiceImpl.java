@@ -40,4 +40,12 @@ public class OrderServiceImpl implements OrderService {
 
     return DTOConverters.mapOrderToOrderDTO(orderRepository.save(order));
   }
+
+  @Override
+  public List<OrderDTO> getByUserId(Long userId) {
+    return orderRepository.getByUserId(userId)
+        .stream()
+        .map(DTOConverters::mapOrderToOrderDTO)
+        .toList();
+  }
 }

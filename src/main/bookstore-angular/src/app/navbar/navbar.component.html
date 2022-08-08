@@ -41,7 +41,7 @@
             </a>
             <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLinkLoggedIn">
               <li>
-                <a href="#" class="nav-link"><i class="fa-solid fa-user me-2"></i>Moj račun</a>
+                <a routerLink="/user/{{authenticationService.getAuthenticatedUserUsername()}}" class="nav-link"><i class="fa-solid fa-user me-2"></i>Moj račun</a>
               </li>
               <li class="pb-1">
                 <button type="button" class="btn btn-success" (click)="authenticationService.logout()"><i class="fa-solid fa-door-closed me-2"></i>Odjava</button>
