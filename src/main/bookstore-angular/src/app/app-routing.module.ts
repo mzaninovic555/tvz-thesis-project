@@ -9,6 +9,7 @@ import {CategoryComponent} from "./category/category.component";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {ForbiddenComponent} from "./forbidden/forbidden.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {AllBooksComponent} from "./all-books/all-books.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'book/search/:searchTerm',
     component: BookSearchComponent
+  },
+  {
+    path: 'book/all',
+    component: AllBooksComponent
   },
   {
     path: 'category/:id',

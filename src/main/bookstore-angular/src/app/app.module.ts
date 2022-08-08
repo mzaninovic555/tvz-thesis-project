@@ -20,6 +20,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import {AuthenticationInterceptor} from "./security/authentication-interceptor";
+import { AllBooksComponent } from './all-books/all-books.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {AuthenticationInterceptor} from "./security/authentication-interceptor";
     CategoryComponent,
     ShoppingCartComponent,
     PageNotFoundComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    AllBooksComponent
   ],
   imports: [
     BrowserModule,
