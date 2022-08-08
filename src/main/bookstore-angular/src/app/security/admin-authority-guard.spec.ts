@@ -1,4 +1,4 @@
-import { AdminAuthorityGuard } from './admin-authority-guard';
+import {AdminAuthorityGuard} from './admin-authority-guard';
 
 describe('AdminAuthorityGuard', () => {
   it('should create an instance', () => {

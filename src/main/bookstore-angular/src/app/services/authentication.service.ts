@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Constants} from "../domain/constants";
 import {HttpClient} from "@angular/common/http";
 import {Login} from "../security/login";

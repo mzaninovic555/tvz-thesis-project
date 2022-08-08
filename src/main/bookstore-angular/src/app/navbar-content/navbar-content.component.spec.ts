@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NavbarContentComponent } from './navbar-content.component';
+import {NavbarContentComponent} from './navbar-content.component';
 
 describe('NavbarContentComponent', () => {
   let component: NavbarContentComponent;

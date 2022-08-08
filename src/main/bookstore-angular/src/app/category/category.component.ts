@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Category} from "../domain/category";
 import {Book} from "../domain/book";
 import {Constants} from "../domain/constants";
