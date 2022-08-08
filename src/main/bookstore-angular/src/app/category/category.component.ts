@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Category} from "../category";
-import {Book} from "../book";
-import {Constants} from "../constants";
+import {Category} from "../domain/category";
+import {Book} from "../domain/book";
+import {Constants} from "../domain/constants";
 import {ActivatedRoute} from "@angular/router";
 import {BookService} from "../services/book.service";
 

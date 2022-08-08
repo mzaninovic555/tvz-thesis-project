@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from "../services/book.service";
-import {Author} from "../author";
-import {Constants} from "../constants";
-import {Book} from "../book";
+import {Author} from "../domain/author";
+import {Constants} from "../domain/constants";
+import {Book} from "../domain/book";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

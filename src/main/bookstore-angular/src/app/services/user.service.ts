@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Constants} from "../constants";
+import {Constants} from "../domain/constants";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
-import {User} from "../user";
+import {User} from "../domain/user";
 
 @Injectable({
   providedIn: 'root'

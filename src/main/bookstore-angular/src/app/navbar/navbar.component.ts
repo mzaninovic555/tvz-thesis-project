@@ -2,7 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Login} from "../security/login";
 import {AuthenticationService} from "../services/authentication.service";
-import {JwtToken} from "../jwt-token";
+import {JwtToken} from "../domain/jwt-token";
 
 @Component({
   selector: 'app-navbar',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Book} from "../book";
-import {Constants} from "../constants";
+import {Book} from "../domain/book";
+import {Constants} from "../domain/constants";
 import {BookService} from "../services/book.service";
 
 @Component({

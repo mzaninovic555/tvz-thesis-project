@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {BookService} from "../services/book.service";
-import {Book} from "../book";
-import {Constants} from "../constants";
+import {Book} from "../domain/book";
+import {Constants} from "../domain/constants";
 
 @Component({
   selector: 'app-book-search',

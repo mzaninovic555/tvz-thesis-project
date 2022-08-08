@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Constants} from "../constants";
+import {Constants} from "../domain/constants";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
-import {Order} from "../order";
-import {User} from "../user";
-import {Book} from "../book";
+import {Order} from "../domain/order";
+import {User} from "../domain/user";
+import {Book} from "../domain/book";
 
 @Injectable({
   providedIn: 'root'

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {CartItem} from "../cart-item";
+import {CartItem} from "../domain/cart-item";
 import {BookService} from "../services/book.service";
-import {Book} from "../book";
-import {Constants} from "../constants";
+import {Book} from "../domain/book";
+import {Constants} from "../domain/constants";
 import {OrderService} from "../services/order.service";
-import {Order} from "../order";
+import {Order} from "../domain/order";
 import {Router} from "@angular/router";
-import {User} from "../user";
+import {User} from "../domain/user";
 import {AuthenticationService} from "../services/authentication.service";
 import {UserService} from "../services/user.service";
 

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Book} from "../book";
-import {Constants} from "../constants";
+import {Book} from "../domain/book";
+import {Constants} from "../domain/constants";
 import {ActivatedRoute} from "@angular/router";
 import {BookService} from "../services/book.service";
-import {Publisher} from "../publisher";
+import {Publisher} from "../domain/publisher";
 
 @Component({
   selector: 'app-publisher',
