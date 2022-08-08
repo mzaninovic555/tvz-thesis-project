@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Login} from "../security/login";
 import {JwtToken} from "../domain/jwt-token";
 import jwt_decode from "jwt-decode";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthenticationService {
 
   authenticationUrl = Constants.SPRING_URL + '/authentication'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(login: Login) {
     return this.http.post<JwtToken>(`${this.authenticationUrl}/login`, login);
@@ -75,7 +76,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('accessToken');
-    window.location.reload();
+    this.router.navigate(['/']);
   }
 
   decodeJwt(): string | null {

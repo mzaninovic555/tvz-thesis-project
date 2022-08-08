@@ -1,6 +1,8 @@
 <app-navbar-content></app-navbar-content>
 <article class="container mb-5 mt-3" *ngIf="user">
-  <h5>Dobro došli, {{user.firstName}}  {{user.lastName}}</h5>
+  <h5 *ngIf="!authenticationService.isUserAdmin()">Dobro došli, {{user.firstName}}  {{user.lastName}}</h5>
+  <h5 *ngIf="authenticationService.isUserAdmin()">Podaci o korisniku: {{user.username}} - {{user.firstName}}  {{user.lastName}}</h5>
+  <h5></h5>
   <hr>
   <div class="row" id="group">
     <div class="col-2 border-end">
@@ -21,8 +23,17 @@
                   aria-controls="orders">Narudžbe
           </button>
         </li>
+        <li class="nav-item" *ngIf="authenticationService.isUserAdmin()">
+          <button type="button" class="btn btn-success"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#allUsers"
+                  aria-expanded="false"
+                  aria-controls="allUsers">Korisnici
+          </button>
+        </li>
       </ul>
     </div>
+
     <div class="col-10 collapse show" id="userDetails" data-bs-parent="#group">
       <h5 class="pb-3 border-bottom">Korisnički podaci</h5>
       <ul class="list-group list-group-flush">
@@ -44,11 +55,19 @@
         </li>
       </ul>
     </div>
+
+    <div class="col-10 collapse" id="allUsers" data-bs-parent="#group" *ngIf="authenticationService.isUserAdmin()">
+      <h5 class="pb-3 border-bottom">Svi korisnici</h5>
+      <ul class="list-group list-group-flush">
+        <a routerLink="../../user/{{user.username}}" *ngFor="let user of allUsers">{{user.username}} - {{user.firstName}} {{user.lastName}}</a>
+      </ul>
+    </div>
+
   </div>
 </article>
 
 <script>
-  jQuery('button').click( function(e) {
+  jQuery('button').click( function() {
     jQuery('.collapse').collapse('hide');
   });
 </script>

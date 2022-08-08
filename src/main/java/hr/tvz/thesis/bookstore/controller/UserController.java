@@ -3,6 +3,7 @@ package hr.tvz.thesis.bookstore.controller;
 import hr.tvz.thesis.bookstore.domain.dto.UserDTO;
 import hr.tvz.thesis.bookstore.service.UserService;
 import hr.tvz.thesis.bookstore.user.ApplicationUser;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -37,4 +38,13 @@ public class UserController {
 
     return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
   }
+
+  @GetMapping("/user/all")
+  @Secured("ROLE_ADMIN")
+  public List<UserDTO> findAllUsers() {
+
+    return userService.findAll();
+  }
+
+
 }

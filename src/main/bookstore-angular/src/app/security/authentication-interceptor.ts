@@ -3,8 +3,7 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest,
-  HttpResponse
+  HttpRequest
 } from "@angular/common/http";
 import {Observable, tap} from "rxjs";
 import {Router} from "@angular/router";
@@ -30,10 +29,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
 
     return next.handle(request).pipe(
-        tap((event: HttpEvent<any>) => {
-          if (event instanceof HttpResponse) {
-
-          }
+        tap(() => {
         }, (err: any) => {
           if (err.status === 403) {
             this.router.navigate(['forbidden']);

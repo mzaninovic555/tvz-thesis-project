@@ -26,6 +26,14 @@ export class UserService {
     );
   }
 
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.URL}/user/all`, this.httpOptions)
+    .pipe(
+        tap((users: User[]) => console.log(`get all users ${users}`)),
+        catchError(this.handleError<User[]>('getUsers'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(operation);

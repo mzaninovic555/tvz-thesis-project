@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../domain/user";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {AuthenticationService} from "../services/authentication.service";
 import {Order} from "../domain/order";
@@ -16,9 +16,11 @@ export class UserPageComponent implements OnInit {
   user!: User;
   searchUsername!: string;
   orders!: Order[];
+  allUsers?: User[];
 
   constructor(private route: ActivatedRoute,
-              private authenticationService: AuthenticationService,
+              private router: Router,
+              public authenticationService: AuthenticationService,
               private userService: UserService,
               private orderService: OrderService) {
     this.searchUsername = this.route.snapshot.paramMap.get('username') || '';
@@ -36,6 +38,7 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   fillOrdersByUserId() {
@@ -44,8 +47,22 @@ export class UserPageComponent implements OnInit {
       .subscribe({
         next: (orders) => {
           this.orders = orders;
-        }
+        },
+        error: err => console.error(err),
+        complete: () => this.fillAllUsers()
       });
+  }
+
+  fillAllUsers() {
+
+    if (this.authenticationService.isUserAdmin()) {
+      this.userService.getAllUsers()
+        .subscribe({
+          next: (allUsers) => {
+            this.allUsers = allUsers;
+          }
+        });
+    }
   }
 
   fillZeroes(n: number) {

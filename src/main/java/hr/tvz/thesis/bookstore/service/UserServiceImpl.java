@@ -3,6 +3,7 @@ package hr.tvz.thesis.bookstore.service;
 import hr.tvz.thesis.bookstore.common.DTOConverters;
 import hr.tvz.thesis.bookstore.domain.dto.UserDTO;
 import hr.tvz.thesis.bookstore.repository.UserRepository;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +19,13 @@ public class UserServiceImpl implements UserService {
   @Override
   public Optional<UserDTO> findByUsername(String username) {
     return userRepository.findByUsername(username).map(DTOConverters::mapUserToUserDTO);
+  }
+
+  @Override
+  public List<UserDTO> findAll() {
+    return userRepository.findAll()
+        .stream()
+        .map(DTOConverters::mapUserToUserDTO)
+        .toList();
   }
 }
