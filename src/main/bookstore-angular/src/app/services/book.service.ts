@@ -6,6 +6,7 @@ import {Author} from "../domain/author";
 import {Constants} from "../domain/constants";
 import {Publisher} from "../domain/publisher";
 import {Category} from "../domain/category";
+import {Language} from "../domain/language";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class BookService {
   };
 
   constructor(private http: HttpClient) { }
+
+
+  //GET REQUESTS
 
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.URL}/books`)
@@ -121,6 +125,49 @@ export class BookService {
     .pipe(
         tap(_ => console.log('Fetched books by category id')),
         catchError(this.handleError<Book[]>('getBooksWithCategoryId'))
+    );
+  }
+
+  getAllLanguages(): Observable<Language[]> {
+    return this.http.get<Language[]>(`${this.URL}/api/languages/all`)
+    .pipe(
+        tap(_ => console.log('Fetched all Languages')),
+        catchError(this.handleError<Language[]>('getAllLanguages'))
+    );
+  }
+
+
+  //POST REQUESTS
+
+  addBook(book: Book): Observable<Book> {
+    return this.http.post<Book>(`${this.URL}/api/add/book`, book, this.httpOptions)
+    .pipe(
+        tap((newBook: Book) => console.log(`added book ${newBook}`)),
+        catchError(this.handleError<Book>('addBook'))
+    );
+  }
+
+  addAuthor(author: Author): Observable<Author> {
+    return this.http.post<Author>(`${this.URL}/api/add/author`, author, this.httpOptions)
+    .pipe(
+        tap((newAuthor: Author) => console.log(`added Author ${newAuthor}`)),
+        catchError(this.handleError<Author>('addAuthor'))
+    );
+  }
+
+  addPublisher(publisher: Publisher): Observable<Publisher> {
+    return this.http.post<Publisher>(`${this.URL}/api/add/publisher`, publisher, this.httpOptions)
+    .pipe(
+        tap((newPublisher: Publisher) => console.log(`added Publisher ${newPublisher}`)),
+        catchError(this.handleError<Publisher>('addPublisher'))
+    );
+  }
+
+  addCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(`${this.URL}/api/add/category`, category, this.httpOptions)
+    .pipe(
+        tap((newCategory: Category) => console.log(`added Category ${newCategory}`)),
+        catchError(this.handleError<Category>('addCategory'))
     );
   }
 

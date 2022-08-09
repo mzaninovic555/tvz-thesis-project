@@ -13,6 +13,8 @@ import {AllBooksComponent} from "./all-books/all-books.component";
 import {UserPageComponent} from "./user-page/user-page.component";
 import {LoggedInGuard} from "./security/logged-in-guard";
 import {OrderDetailsComponent} from "./order-details/order-details.component";
+import {InternalErrorComponent} from "./internal-error/internal-error.component";
+import {BadRequestComponent} from "./bad-request/bad-request.component";
 
 const routes: Routes = [
   {
@@ -64,6 +66,14 @@ const routes: Routes = [
   {
     path: '**',
     component: PageNotFoundComponent
+  },
+  {
+    path: 'internalError',
+    component: InternalErrorComponent
+  },
+  {
+    path: 'badRequest',
+    component: BadRequestComponent
   }
 ];
 

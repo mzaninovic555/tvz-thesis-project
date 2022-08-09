@@ -1,18 +1,21 @@
 package hr.tvz.thesis.bookstore.controller;
 
 
+import hr.tvz.thesis.bookstore.domain.Category;
 import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
 import hr.tvz.thesis.bookstore.service.CategoryService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("category")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CategoryController {
 
@@ -22,15 +25,21 @@ public class CategoryController {
     this.categoryService = categoryService;
   }
 
-  @GetMapping
+  @GetMapping("category")
   public List<CategoryDTO> findAll() {
     return categoryService.getAll();
   }
 
-  @GetMapping("{id}")
+  @GetMapping("category/{id}")
   public ResponseEntity<CategoryDTO> findById(@PathVariable Long id) {
     return categoryService.getById(id)
         .map(ResponseEntity::ok)
         .orElseGet(() -> ResponseEntity.notFound().build());
+  }
+
+  @PostMapping("api/add/category")
+  @Secured("ROLE_ADMIN")
+  public ResponseEntity<CategoryDTO> save(@RequestBody @Valid Category category) {
+    return ResponseEntity.ok(categoryService.save(category));
   }
 }

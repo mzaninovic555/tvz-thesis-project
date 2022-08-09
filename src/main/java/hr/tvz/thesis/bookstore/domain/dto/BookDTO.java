@@ -52,5 +52,7 @@ public class BookDTO {
 
   private PublisherDTO publisher;
 
+  private LanguageDTO language;
+
   private List<CategoryDTO> categories;
 }

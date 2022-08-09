@@ -29,10 +29,19 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
         tap(() => {
         }, (err: any) => {
-          if (err.status === 403) {
-            this.router.navigate(['forbidden']);
-          } else if (err.status === 404) {
-            this.router.navigate(['**']);
+          switch (err.status) {
+            case 400:
+              this.router.navigate(['badRequest']);
+              break;
+            case 403:
+              this.router.navigate(['forbidden']);
+              break;
+            case 404:
+              this.router.navigate(['**']);
+              break;
+            case 500:
+              this.router.navigate(['internalError']);
+              break;
           }
         })
     );

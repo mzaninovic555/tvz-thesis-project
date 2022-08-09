@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `book` (
     `price` DECIMAL(6, 2) NOT NULL,
     `description` TEXT NOT NULL,
     `publishing_year` CHAR(4) NOT NULL,
-    `stock` TINYINT NOT NULL,
+    `stock` BIGINT NOT NULL,
     `isbn` VARCHAR(13) NOT NULL,
     `image_path` TEXT NOT NULL,
     `date_added` DATE NOT NULL,

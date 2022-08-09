@@ -1,8 +1,12 @@
 package hr.tvz.thesis.bookstore.service;
 
 import hr.tvz.thesis.bookstore.common.DTOConverters;
+import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
+import hr.tvz.thesis.bookstore.domain.dto.LanguageDTO;
 import hr.tvz.thesis.bookstore.repository.BookRepository;
+import hr.tvz.thesis.bookstore.repository.LanguageRepository;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -11,9 +15,11 @@ import org.springframework.stereotype.Service;
 public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
+  private final LanguageRepository languageRepository;
 
-  public BookServiceImpl(BookRepository bookRepository) {
+  public BookServiceImpl(BookRepository bookRepository, LanguageRepository languageRepository) {
     this.bookRepository = bookRepository;
+    this.languageRepository = languageRepository;
   }
 
   @Override
@@ -73,5 +79,22 @@ public class BookServiceImpl implements BookService {
         .stream()
         .map(DTOConverters::mapBookToBookDTO)
         .toList();
+  }
+
+  @Override
+  public List<LanguageDTO> findAllLanguages() {
+    return languageRepository.findAll()
+        .stream()
+        .map(DTOConverters::mapLanguageToLanguageDTO)
+        .toList();
+  }
+
+  @Override
+  public BookDTO save(Book book) {
+
+    book.setDiscount(null);
+    book.setDateAdded(LocalDate.now());
+
+    return DTOConverters.mapBookToBookDTO(bookRepository.save(book));
   }
 }

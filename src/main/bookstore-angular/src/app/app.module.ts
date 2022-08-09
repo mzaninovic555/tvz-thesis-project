@@ -26,6 +26,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { InternalErrorComponent } from './internal-error/internal-error.component';
+import { BadRequestComponent } from './bad-request/bad-request.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ForbiddenComponent,
     AllBooksComponent,
     UserPageComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    InternalErrorComponent,
+    BadRequestComponent
   ],
   imports: [
     BrowserModule,

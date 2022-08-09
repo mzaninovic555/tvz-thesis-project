@@ -5,11 +5,12 @@ import {UserService} from "../services/user.service";
 import {AuthenticationService} from "../services/authentication.service";
 import {Order} from "../domain/order";
 import {OrderService} from "../services/order.service";
-import {FormControl} from "@angular/forms";
 import {Category} from "../domain/category";
 import {BookService} from "../services/book.service";
 import {Author} from "../domain/author";
 import {Publisher} from "../domain/publisher";
+import {Book} from "../domain/book";
+import {Language} from "../domain/language";
 
 @Component({
   selector: 'app-user-page',
@@ -25,7 +26,8 @@ export class UserPageComponent implements OnInit {
   allAuthors: Author[] = [];
   allCategories: Category[] = [];
   allPublishers: Publisher[] = [];
-  categories = new FormControl('');
+  allLanguages: Language[] = [];
+  currentYear = new Date().getFullYear();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -108,6 +110,19 @@ export class UserPageComponent implements OnInit {
         next: (publishers) => {
           this.allPublishers = publishers;
         },
+        error: err => console.error(err),
+        complete: () => this.fillAllLanguages()
+      });
+    }
+  }
+
+  fillAllLanguages() {
+    if (this.authenticationService.isUserAdmin()) {
+      this.bookService.getAllLanguages()
+      .subscribe({
+        next: (languages) => {
+          this.allLanguages = languages;
+        },
         error: err => console.error(err)
       });
     }
@@ -115,5 +130,86 @@ export class UserPageComponent implements OnInit {
 
   fillZeroes(n: number) {
     return ('00000' + n).slice(-5);
+  }
+
+  submitBook(title: string, author: Author, publisher: Publisher, price: number, stock: number,
+             description: string, year: string, pageNumber: number, binding: string, categories: Category[],
+             language: Language, mass: number, format: string, barcode: string, isbn: string) {
+    let book = new Book(
+        -100,
+        format,
+        pageNumber,
+        binding,
+        mass,
+        barcode,
+        title,
+        price,
+        0,
+        new Date(),
+        description,
+        +year,
+        stock,
+        isbn,
+        "",
+        new Date(),
+        language,
+        author,
+        publisher,
+        categories
+    );
+
+    this.bookService.addBook(book)
+      .subscribe({
+        next: (newBook) => {
+          this.router.navigate([`../../book/${newBook.id}`]);
+        },
+        error: err => alert("Nešto je pošlo po krivu")
+      });
+  }
+
+  submitAuthor(firstName: string, lastName: string) {
+    let author = new Author(
+        0,
+        firstName,
+        lastName
+    );
+
+    this.bookService.addAuthor(author)
+    .subscribe({
+      next: (newAuthor) => {
+        this.router.navigate([`../../author/${newAuthor.id}`]);
+      },
+      error: err => alert("Nešto je pošlo po krivu")
+    });
+  }
+
+  submitPublisher(publisherName: string) {
+    let publisher = new Publisher(
+        0,
+        publisherName
+    );
+
+    this.bookService.addPublisher(publisher)
+    .subscribe({
+      next: (newPublisher) => {
+        this.router.navigate([`../../publisher/${newPublisher.id}`]);
+      },
+      error: err => alert("Nešto je pošlo po krivu")
+    });
+  }
+
+  submitCategory(categoryName: string) {
+    let category = new Category(
+        0,
+        categoryName
+    );
+
+    this.bookService.addCategory(category)
+    .subscribe({
+      next: (newCategory) => {
+        this.router.navigate([`../../category/${newCategory.id}`]);
+      },
+      error: err => alert("Nešto je pošlo po krivu")
+    });
   }
 }

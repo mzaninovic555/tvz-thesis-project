@@ -8,6 +8,7 @@ public class Constants {
       "/api/orders/add",
       "/api/orders/user/",
       "/user/",
-      "/orders/"
+      "/orders/",
+      "/api/add/"
   );
 }

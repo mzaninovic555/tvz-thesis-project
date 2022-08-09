@@ -3,12 +3,14 @@ package hr.tvz.thesis.bookstore.common;
 import hr.tvz.thesis.bookstore.domain.Author;
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Category;
+import hr.tvz.thesis.bookstore.domain.Language;
 import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.Publisher;
 import hr.tvz.thesis.bookstore.domain.User;
 import hr.tvz.thesis.bookstore.domain.dto.AuthorDTO;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
+import hr.tvz.thesis.bookstore.domain.dto.LanguageDTO;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
 import hr.tvz.thesis.bookstore.domain.dto.UserDTO;
@@ -44,6 +46,7 @@ public class DTOConverters {
         .dateAdded(book.getDateAdded())
         .author(DTOConverters.mapAuthorToAuthorDTO(book.getAuthor()))
         .publisher(DTOConverters.mapPublisherToPublisherDTO(book.getPublisher()))
+        .language(DTOConverters.mapLanguageToLanguageDTO(book.getLanguage()))
         .categories(DTOConverters.mapCategoriesToCategoriesDTO(book.getCategories()))
         .build();
   }
@@ -105,6 +108,13 @@ public class DTOConverters {
         .address(user.getAddress())
         .postalCode(user.getPostalCode())
         .city(user.getCity())
+        .build();
+  }
+
+  public static LanguageDTO mapLanguageToLanguageDTO(Language language) {
+    return LanguageDTO.builder()
+        .id(language.getId())
+        .name(language.getName())
         .build();
   }
 }

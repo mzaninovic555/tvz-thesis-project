@@ -1,5 +1,4 @@
-export class Publisher {
-
+export class Language {
 
   constructor(id: number, name: string) {
     this.id = id;

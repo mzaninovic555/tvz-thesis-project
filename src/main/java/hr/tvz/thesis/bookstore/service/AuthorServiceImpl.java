@@ -1,6 +1,7 @@
 package hr.tvz.thesis.bookstore.service;
 
 import hr.tvz.thesis.bookstore.common.DTOConverters;
+import hr.tvz.thesis.bookstore.domain.Author;
 import hr.tvz.thesis.bookstore.domain.dto.AuthorDTO;
 import hr.tvz.thesis.bookstore.repository.AuthorRepository;
 import java.util.List;
@@ -27,5 +28,10 @@ public class AuthorServiceImpl implements AuthorService {
   @Override
   public Optional<AuthorDTO> getAuthorById(Long id) {
     return authorRepository.findById(id).map(DTOConverters::mapAuthorToAuthorDTO);
+  }
+
+  @Override
+  public AuthorDTO save(Author author) {
+    return DTOConverters.mapAuthorToAuthorDTO(authorRepository.save(author));
   }
 }

@@ -1,6 +1,7 @@
 package hr.tvz.thesis.bookstore.service;
 
 import hr.tvz.thesis.bookstore.common.DTOConverters;
+import hr.tvz.thesis.bookstore.domain.Category;
 import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
 import hr.tvz.thesis.bookstore.repository.CategoryRepository;
 import java.util.List;
@@ -27,5 +28,10 @@ public class CategoryServiceImpl implements CategoryService {
   @Override
   public Optional<CategoryDTO> getById(Long id) {
     return categoryRepository.findById(id).map(DTOConverters::mapCategoryToCategoryDTO);
+  }
+
+  @Override
+  public CategoryDTO save(Category category) {
+    return DTOConverters.mapCategoryToCategoryDTO(categoryRepository.save(category));
   }
 }

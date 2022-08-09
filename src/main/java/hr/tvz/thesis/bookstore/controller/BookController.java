@@ -1,12 +1,18 @@
 package hr.tvz.thesis.bookstore.controller;
 
+import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
+import hr.tvz.thesis.bookstore.domain.dto.LanguageDTO;
 import hr.tvz.thesis.bookstore.service.BookService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -54,5 +60,16 @@ public class BookController {
   @GetMapping("/api/books/order/{id}")
   public List<BookDTO> findByOrderId(@PathVariable final Long id) {
     return bookService.findByOrderId(id);
+  }
+
+  @GetMapping("/api/languages/all")
+  public List<LanguageDTO> findAllLanguages() {
+    return bookService.findAllLanguages();
+  }
+
+  @PostMapping("/api/add/book")
+  @Secured("ROLE_ADMIN")
+  public ResponseEntity<BookDTO> save(@RequestBody @Valid Book book) {
+    return ResponseEntity.ok(bookService.save(book));
   }
 }

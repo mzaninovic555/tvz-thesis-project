@@ -106,17 +106,21 @@
     <div class="col-10 collapse" id="newBook" data-bs-parent="#group" *ngIf="authenticationService.isUserAdmin()">
       <h5 class="pb-3 border-bottom mb-3">Nova knjiga</h5>
       <div class="row g-3 align-items-center">
-        <form class="w-50">
+        <form class="w-50" #newBookForm="ngForm"
+              (ngSubmit)="submitBook(bookTitle.value, bookAuthor.value, bookPublisher.value, bookPrice.value,
+                                     bookStock.value, bookDescription.value, bookYear.value, bookPageNumber.value, bookBinding.value,
+                                     bookCategories.value, bookLanguage.value, bookMass.value, bookFormat.value, bookBarcode.value, bookIsbn.value)">
           <div class="mb-3">
             <label for="title" class="form-label">Naslov</label>
-            <input type="title" class="form-control" id="title" aria-describedby="title">
+            <input ngModel name="bookTitle" #bookTitle="ngModel" type="title" class="form-control" id="title" aria-describedby="title" required>
+            <div class="text-danger" *ngIf="bookTitle.touched && !bookTitle.valid">Naslov knjige je obavezan.</div>
           </div>
           <div class="row mb-3">
             <div class="col">
               <label for="author" class="form-label">Autor</label><br>
               <mat-form-field appearance="fill">
                 <mat-label>Autor...</mat-label>
-                <mat-select id="author">
+                <mat-select id="author" ngModel name="bookAuthor" #bookAuthor="ngModel" required>
                   <mat-option>-</mat-option>
                   <mat-option *ngFor="let author of allAuthors" [value]="author">{{author.firstName}} {{author.lastName}}</mat-option>
                 </mat-select>
@@ -126,7 +130,7 @@
               <label for="publisher" class="form-label">Izdavač</label><br>
               <mat-form-field appearance="fill">
                 <mat-label>Izdavač...</mat-label>
-                <mat-select id="publisher">
+                <mat-select id="publisher" ngModel name="bookPublisher" #bookPublisher="ngModel" required>
                   <mat-option>-</mat-option>
                   <mat-option *ngFor="let publisher of allPublishers" [value]="publisher">{{publisher.name}}</mat-option>
                 </mat-select>
@@ -136,72 +140,145 @@
          <div class="row mb-3">
            <div class="col">
              <label for="price" class="form-label">Cijena (kn)</label>
-             <input type="number" class="form-control" id="price" aria-describedby="price" placeholder="Cijena...">
+             <input type="number" class="form-control" id="price" aria-describedby="price"
+                    ngModel name="bookPrice" #bookPrice="ngModel"
+                    required min="0.1" max="10000">
+             <div class="" *ngIf="bookPrice.touched">
+               <div class="text-danger" *ngIf="bookPrice.getError('required')">Cijena knjige je obavezna.</div>
+               <div class="text-danger" *ngIf="bookPrice.getError('min')">Cijena mora biti veća od 0.</div>
+               <div class="text-danger" *ngIf="bookPrice.getError('max')">Cijena mora biti manja od 10000.</div>
+             </div>
            </div>
            <div class="col">
              <label for="stock" class="form-label">Stanje</label>
-             <input type="number" class="form-control" id="stock" aria-describedby="stock" placeholder="Stanje...">
+             <input type="number" class="form-control" id="stock" aria-describedby="stock"
+                    ngModel name="bookStock" #bookStock="ngModel"
+                    required min="0">
+             <div class="" *ngIf="bookStock.touched">
+               <div class="text-danger" *ngIf="bookStock.getError('required')">Količina na stanju je obavezna.</div>
+               <div class="text-danger" *ngIf="bookStock.getError('min')">Količina na stanju mora biti pozitivna.</div>
+             </div>
            </div>
          </div>
           <div class="mb-3">
-            <label for="description" class="form-label">Opis</label>
-            <textarea class="form-control" id="description" aria-describedby="description"> </textarea>
+            <label for="description" class="form-label">Opis (temporary, probati markdown)</label>
+            <textarea class="form-control" id="description" aria-describedby="description"
+                      ngModel name="bookDescription" #bookDescription="ngModel" required></textarea>
+            <div class="text-danger" *ngIf="bookDescription.touched && bookDescription.getError('required')">
+              Opis knjige je obavezan.
+            </div>
           </div>
           <div class="row mb-3">
             <div class="col">
               <label for="year" class="form-label">Godina izdanja</label>
-              <input type="year" class="form-control" id="year" aria-describedby="year">
+              <input type="number" class="form-control" id="year" aria-describedby="year"
+                     ngModel name="bookYear" #bookYear="ngModel"
+                     required min="1900" max="{{currentYear}}" minlength="4" maxlength="4">
+              <div class="text-danger" *ngIf="bookYear.touched">
+                <div *ngIf="bookYear.getError('required')">Godina izdanja je obavezna.</div>
+                <div *ngIf="bookYear.getError('min')">Godina izdanja mora biti veća od 1900.</div>
+                <div *ngIf="bookYear.getError('max')">Godina izdanja mora biti manja od {{currentYear}}.</div>
+                <div *ngIf="bookYear.getError('minlength') || bookPrice.getError('maxlength')">
+                  Godina izdanja mora biti točno 4 znamenke.
+                </div>
+              </div>
             </div>
             <div class="col">
               <label for="pageNumber" class="form-label">Broj stranica</label>
-              <input type="pageNumber" class="form-control" id="pageNumber" aria-describedby="pageNumber">
+              <input type="number" class="form-control" id="pageNumber" aria-describedby="pageNumber"
+                     ngModel name="bookPageNumber" #bookPageNumber="ngModel"
+                     required min="0" max="10000">
+              <div class="" *ngIf="bookPageNumber.touched">
+                <div class="text-danger" *ngIf="bookPageNumber.getError('required')">Broj stranica je obavezan.</div>
+                <div class="text-danger" *ngIf="bookPageNumber.getError('min')">Broj stranica mora biti pozitivan.</div>
+                <div class="text-danger" *ngIf="bookPageNumber.getError('max')">Broj stranica mora biti manji od 10000.</div>
+              </div>
             </div>
             <div class="col">
               <label for="binding" class="form-label">Uvez</label>
               <mat-form-field appearance="fill">
                 <mat-label>Uvez...</mat-label>
-                <mat-select id="binding">
+                <mat-select id="binding" ngModel name="bookBinding" #bookBinding="ngModel" required>
                   <mat-option>-</mat-option>
-                  <mat-option>Tvrdi</mat-option>
-                  <mat-option>Meki</mat-option>
+                  <mat-option [value]="'Tvrdi'">Tvrdi</mat-option>
+                  <mat-option [value]="'Meki'">Meki</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
           </div>
 
-          <div class="mb-3">
-            <label for="categories" class="form-label">Kategorije</label> <br>
-            <mat-form-field appearance="fill">
-              <mat-label>Kategorije...</mat-label>
-              <mat-select [formControl]="categories" multiple id="categories">
-                <mat-option *ngFor="let category of allCategories" [value]="category">{{category.name}}</mat-option>
-              </mat-select>
-            </mat-form-field>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="categories" class="form-label">Kategorije</label> <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Kategorije...</mat-label>
+                <mat-select multiple id="categories" ngModel name="bookCategories" #bookCategories="ngModel" required>
+                  <mat-option *ngFor="let category of allCategories" [value]="category">{{category.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <label for="languages" class="form-label">Jezik:</label> <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Jezik...</mat-label>
+                <mat-select id="languages" ngModel name="bookLanguage" #bookLanguage="ngModel">
+                  <mat-option>-</mat-option>
+                  <mat-option *ngFor="let language of allLanguages" [value]="language">{{language.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
 
           <div class="row mb-3">
             <div class="col">
               <label for="mass" class="form-label">Masa (kg)</label>
-              <input type="number" step="0.1" class="form-control" id="mass" aria-describedby="mass">
+              <input type="number" step="0.1" class="form-control" id="mass" aria-describedby="mass"
+                     ngModel name="bookMass" #bookMass="ngModel"
+                     required min="0.1" max="100">
+              <div class="" *ngIf="bookMass.touched">
+                <div class="text-danger" *ngIf="bookMass.getError('required')">Masa je obavezma.</div>
+                <div class="text-danger" *ngIf="bookMass.getError('min')">Masa mora biti pozitivna.</div>
+                <div class="text-danger" *ngIf="bookMass.getError('max')">Masa mora biti manja od 100kg.</div>
+              </div>
             </div>
             <div class="col">
-              <label for="format" class="form-label">Format (MxN)</label>
-              <input type="text" class="form-control" id="format" aria-describedby="format">
+              <label for="format" class="form-label">Format, cm (MMxNN)</label>
+              <input type="text" class="form-control" id="format" aria-describedby="format"
+                     ngModel name="bookFormat" #bookFormat="ngModel"
+                     required pattern="^\d\d?x\d\d?$">
+              <div class="" *ngIf="bookFormat.touched">
+                <div class="text-danger" *ngIf="bookFormat.getError('required')">Format je obavezan.</div>
+                <div class="text-danger" *ngIf="bookFormat.getError('pattern')">Format knjige mora biti u zadanom formatu.</div>
+              </div>
             </div>
           </div>
 
           <div class="row mb-3">
             <div class="col">
-              <label for="barcode" class="form-label">Barkod</label>
-              <input type="text" class="form-control" id="barcode" aria-describedby="barcode">
+              <label for="barcode" class="form-label">Barkod (11 znamenki)</label>
+              <input type="text" class="form-control" id="barcode" aria-describedby="barcode"
+                     ngModel name="bookBarcode" #bookBarcode="ngModel"
+                     required pattern="[0-9]{11}">
+              <div class="" *ngIf="bookBarcode.touched">
+                <div class="text-danger" *ngIf="bookBarcode.getError('required')">Barkod je obavezan.</div>
+                <div class="text-danger" *ngIf="bookBarcode.getError('pattern')">Barkod mora biti u zadanom formatu.</div>
+              </div>
             </div>
             <div class="col">
-              <label for="isbn" class="form-label">ISBN</label>
-              <input type="text" class="form-control" id="isbn" aria-describedby="isbn">
+              <label for="isbn" class="form-label">ISBN (11 znamenki)</label>
+              <input type="text" class="form-control" id="isbn" aria-describedby="isbn"
+                     ngModel name="bookIsbn" #bookIsbn="ngModel"
+                     required pattern="[0-9]{11}">
+              <div class="" *ngIf="bookIsbn.touched">
+                <div class="text-danger" *ngIf="bookIsbn.getError('required')">ISBN je obavezan.</div>
+                <div class="text-danger" *ngIf="bookIsbn.getError('pattern')">ISBN mora biti u zadanom formatu.</div>
+              </div>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-outline-success">Submit</button>
+          <button type="submit" class="btn btn-outline-success" [disabled]="!newBookForm.form.valid">
+            Upiši knjigu
+          </button>
         </form>
       </div>
     </div>
@@ -209,17 +286,21 @@
     <div class="col-10 collapse" id="newAuthor" data-bs-parent="#group" *ngIf="authenticationService.isUserAdmin()">
       <h5 class="pb-3 border-bottom mb-3">Novi autor</h5>
       <div class="row g-3 align-items-center">
-        <form class="w-50">
+        <form class="w-50" #newAuthorForm="ngForm" (ngSubmit)="submitAuthor(authorFirstName.value, authorLastName.value)">
           <div class="mb-3">
             <label for="firstName" class="form-label">Ime</label>
-            <input type="text" class="form-control" id="firstName" aria-describedby="firstName">
+            <input type="text" class="form-control" id="firstName" aria-describedby="firstName"
+                   ngModel name="authorFirstName" #authorFirstName="ngModel" required>
+            <div class="text-danger" *ngIf="authorFirstName.touched && !authorFirstName.valid">Ime autora je obavezno.</div>
           </div>
           <div class="mb-3">
             <label for="lastName" class="form-label">Prezime</label>
-            <input type="title" class="form-control" id="lastName" aria-describedby="lastName">
+            <input type="title" class="form-control" id="lastName" aria-describedby="lastName"
+                   ngModel name="authorLastName" #authorLastName="ngModel" required>
+            <div class="text-danger" *ngIf="authorLastName.touched && !authorLastName.valid">Prezime autora je obavezno.</div>
           </div>
 
-          <button type="submit" class="btn btn-outline-success">Submit</button>
+          <button type="submit" class="btn btn-outline-success" [disabled]="!newAuthorForm.form.valid">Submit</button>
         </form>
       </div>
     </div>
@@ -227,13 +308,15 @@
     <div class="col-10 collapse" id="newPublisher" data-bs-parent="#group" *ngIf="authenticationService.isUserAdmin()">
       <h5 class="pb-3 border-bottom mb-3">Novi izdavač</h5>
       <div class="row g-3 align-items-center">
-        <form class="w-50">
+        <form class="w-50" #newPublisherForm="ngForm" (ngSubmit)="submitPublisher(publisherName.value)">
           <div class="mb-3">
             <label for="publisherName" class="form-label">Naziv izdavača</label>
-            <input type="text" class="form-control" id="publisherName" aria-describedby="publisherName">
+            <input type="text" class="form-control" id="publisherName" aria-describedby="publisherName"
+                   ngModel name="publisherName" #publisherName="ngModel" required>
+            <div class="text-danger" *ngIf="publisherName.touched && !publisherName.valid">Ime izdavača je obavezno.</div>
           </div>
 
-          <button type="submit" class="btn btn-outline-success">Submit</button>
+          <button type="submit" class="btn btn-outline-success" [disabled]="!newPublisherForm.form.valid">Submit</button>
         </form>
       </div>
     </div>
@@ -241,13 +324,15 @@
     <div class="col-10 collapse" id="newCategory" data-bs-parent="#group" *ngIf="authenticationService.isUserAdmin()">
       <h5 class="pb-3 border-bottom mb-3">Nova kategorija</h5>
       <div class="row g-3 align-items-center">
-        <form class="w-50">
+        <form class="w-50" #newCategoryForm="ngForm" (ngSubmit)="submitCategory(categoryName.value)">
           <div class="mb-3">
             <label for="categoryName" class="form-label">Ime kategorije</label>
-            <input type="text" class="form-control" id="categoryName" aria-describedby="categoryName">
+            <input type="text" class="form-control" id="categoryName" aria-describedby="categoryName"
+                   ngModel name="categoryName" #categoryName="ngModel" required>
+            <div class="text-danger" *ngIf="categoryName.touched && !categoryName.valid">Ime kategorije je obavezno.</div>
           </div>
 
-          <button type="submit" class="btn btn-outline-success">Submit</button>
+          <button type="submit" class="btn btn-outline-success" [disabled]="!newCategoryForm.form.valid">Submit</button>
         </form>
       </div>
     </div>

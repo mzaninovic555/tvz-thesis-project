@@ -1,6 +1,7 @@
 package hr.tvz.thesis.bookstore.service;
 
 import hr.tvz.thesis.bookstore.common.DTOConverters;
+import hr.tvz.thesis.bookstore.domain.Publisher;
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
 import hr.tvz.thesis.bookstore.repository.PublisherRepository;
 import java.util.List;
@@ -27,5 +28,10 @@ public class PublisherServiceImpl implements PublisherService {
   @Override
   public Optional<PublisherDTO> findById(Long id) {
     return publisherRepository.findById(id).map(DTOConverters::mapPublisherToPublisherDTO);
+  }
+
+  @Override
+  public PublisherDTO save(Publisher publisher) {
+    return DTOConverters.mapPublisherToPublisherDTO(publisherRepository.save(publisher));
   }
 }

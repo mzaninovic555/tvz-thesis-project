@@ -17,6 +17,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -63,12 +64,15 @@ public class Book {
 
   @Column(name = "publishing_year")
   @NotNull
+  @Pattern(regexp = "[0-9]{11}")
   private Integer publishingYear;
 
   @NotNull
+  @PositiveOrZero
   private Integer stock;
 
   @NotNull
+  @Pattern(regexp = "\\d{11}")
   private String isbn;
 
   @Column(name = "image_path")
