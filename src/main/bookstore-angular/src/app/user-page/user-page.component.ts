@@ -6,6 +6,10 @@ import {AuthenticationService} from "../services/authentication.service";
 import {Order} from "../domain/order";
 import {OrderService} from "../services/order.service";
 import {FormControl} from "@angular/forms";
+import {Category} from "../domain/category";
+import {BookService} from "../services/book.service";
+import {Author} from "../domain/author";
+import {Publisher} from "../domain/publisher";
 
 @Component({
   selector: 'app-user-page',
@@ -17,12 +21,16 @@ export class UserPageComponent implements OnInit {
   user!: User;
   searchUsername!: string;
   orders!: Order[];
-  allUsers?: User[];
+  allUsers!: User[];
+  allAuthors: Author[] = [];
+  allCategories: Category[] = [];
+  allPublishers: Publisher[] = [];
   categories = new FormControl('');
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               public authenticationService: AuthenticationService,
+              private bookService: BookService,
               private userService: UserService,
               private orderService: OrderService) {
     this.searchUsername = this.route.snapshot.paramMap.get('username') || '';
@@ -44,7 +52,6 @@ export class UserPageComponent implements OnInit {
   }
 
   fillOrdersByUserId() {
-
     this.orderService.getOrdersByUserId(this.user.id)
       .subscribe({
         next: (orders) => {
@@ -56,14 +63,53 @@ export class UserPageComponent implements OnInit {
   }
 
   fillAllUsers() {
-
     if (this.authenticationService.isUserAdmin()) {
       this.userService.getAllUsers()
         .subscribe({
           next: (allUsers) => {
             this.allUsers = allUsers;
-          }
+          },
+          error: err => console.error(err),
+          complete: () => this.fillAllAuthors()
         });
+    }
+  }
+
+  fillAllAuthors() {
+    if (this.authenticationService.isUserAdmin()) {
+      this.bookService.getAllAuthors()
+      .subscribe({
+        next: (authors) => {
+          this.allAuthors = authors;
+        },
+        error: err => console.error(err),
+        complete: () => this.fillAllCategories()
+      });
+    }
+  }
+
+  fillAllCategories() {
+    if (this.authenticationService.isUserAdmin()) {
+      this.bookService.getAllCategories()
+      .subscribe({
+        next: (categories) => {
+          this.allCategories = categories;
+        },
+        error: err => console.error(err),
+        complete: () => this.fillAllPublishers()
+      });
+    }
+  }
+
+  fillAllPublishers() {
+    if (this.authenticationService.isUserAdmin()) {
+      this.bookService.getAllPublishers()
+      .subscribe({
+        next: (publishers) => {
+          this.allPublishers = publishers;
+        },
+        error: err => console.error(err)
+      });
     }
   }
 

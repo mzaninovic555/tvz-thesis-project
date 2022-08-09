@@ -1,9 +1,12 @@
 package hr.tvz.thesis.bookstore.service;
 
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
+import java.util.List;
 import java.util.Optional;
 
 public interface PublisherService {
 
-  public Optional<PublisherDTO> findById(Long id);
+  List<PublisherDTO> getAllPublishers();
+
+  Optional<PublisherDTO> findById(Long id);
 }

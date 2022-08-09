@@ -2,6 +2,7 @@ package hr.tvz.thesis.bookstore.controller;
 
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
 import hr.tvz.thesis.bookstore.service.PublisherService;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,11 @@ public class PublisherController {
 
   public PublisherController(PublisherService publisherService) {
     this.publisherService = publisherService;
+  }
+
+  @GetMapping("/all")
+  public List<PublisherDTO> getAllPublishers() {
+    return publisherService.getAllPublishers();
   }
 
   @GetMapping("{id}")

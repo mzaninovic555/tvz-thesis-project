@@ -2,6 +2,7 @@ package hr.tvz.thesis.bookstore.controller;
 
 import hr.tvz.thesis.bookstore.domain.dto.AuthorDTO;
 import hr.tvz.thesis.bookstore.service.AuthorService;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,11 @@ public class AuthorController {
 
   public AuthorController(AuthorService authorService) {
     this.authorService = authorService;
+  }
+
+  @GetMapping("/all")
+  public List<AuthorDTO> getAllAuthors() {
+    return authorService.getAllAuthors();
   }
 
   @GetMapping("{id}")
