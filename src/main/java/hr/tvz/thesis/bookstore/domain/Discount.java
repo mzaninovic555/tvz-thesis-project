@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,12 +27,15 @@ public class Discount {
   private Long id;
 
   @Column(name = "discount_price")
+  @NotNull
   private BigDecimal discountPrice;
 
   @Column(name = "started_at")
+  @NotNull
   private LocalDate startedAt;
 
   @Column(name = "ends_at")
+  @NotNull
   private LocalDate endsAt;
 
   @OneToOne
