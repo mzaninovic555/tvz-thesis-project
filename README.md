@@ -4,6 +4,8 @@ Backend projekta je izrađen u Javi, Frontend je izrađen pomoću Angular Javasc
 Za pokretanje aplikacije koristiti profile: dev, flywaytestdata, flywayreset.
 
 Korištene tehnologije:
+* Java 17
+* Angular
 * Spring Boot
 * Spring Data JPA
 * Spring Security
