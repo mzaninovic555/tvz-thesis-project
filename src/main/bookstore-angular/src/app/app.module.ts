@@ -29,6 +29,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { InternalErrorComponent } from './internal-error/internal-error.component';
 import { BadRequestComponent } from './bad-request/bad-request.component';
 import { RegisterComponent } from './register/register.component';
+import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { RegisterComponent } from './register/register.component';
     OrderDetailsComponent,
     InternalErrorComponent,
     BadRequestComponent,
-    RegisterComponent
+    RegisterComponent,
+    RegistrationSuccessComponent
   ],
   imports: [
     BrowserModule,

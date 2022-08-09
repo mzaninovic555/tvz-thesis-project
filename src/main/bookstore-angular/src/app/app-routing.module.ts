@@ -16,6 +16,7 @@ import {OrderDetailsComponent} from "./order-details/order-details.component";
 import {InternalErrorComponent} from "./internal-error/internal-error.component";
 import {BadRequestComponent} from "./bad-request/bad-request.component";
 import {RegisterComponent} from "./register/register.component";
+import {RegistrationSuccessComponent} from "./registration-success/registration-success.component";
 
 const routes: Routes = [
   {
@@ -79,6 +80,10 @@ const routes: Routes = [
   {
     path: 'badRequest',
     component: BadRequestComponent
+  },
+  {
+    path: 'registrationSuccess',
+    component: RegistrationSuccessComponent
   }
 ];
 

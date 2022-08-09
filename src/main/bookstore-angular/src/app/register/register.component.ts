@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../services/authentication.service";
 import {RegisterUser} from "../domain/register-user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import {RegisterUser} from "../domain/register-user";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +32,9 @@ export class RegisterComponent implements OnInit {
     );
 
     this.authenticationService.registerUser(newUser)
-      .subscribe();
+      .subscribe({
+        next: value => this.router.navigate(['registrationSuccess'])
+      });
   }
 
 }
