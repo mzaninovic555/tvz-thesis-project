@@ -42,6 +42,11 @@
   box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
 }
 
+textarea.form-control {
+  border-radius: 10px;
+  box-shadow: #424242;
+}
+
 @media screen and (max-width: 1199px) {
   .discount-icon {
     left:70px;

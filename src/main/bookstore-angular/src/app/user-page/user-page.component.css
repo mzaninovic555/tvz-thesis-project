@@ -8,7 +8,7 @@ h5 {
   font-weight: 450;
   font-size: 25px;
 }
-.form-control:focus,.btn-success:focus {
+.form-control:focus,.btn-success:focus, .form-select:focus {
   border-color: #28a745;
   box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
 }
@@ -23,12 +23,22 @@ a:hover{
   opacity: 0.6;
 }
 
+.form-select {
+  border-radius: 60px;
+  margin-top: 5px;
+}
+
 .btn-success {
   border-radius: 0;
   margin: 0;
   width: 100%;
   border-bottom: 1px white solid;
 }
+
+.btn-outline-success:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
+  }
 
 .collapsing{
   transition: none;

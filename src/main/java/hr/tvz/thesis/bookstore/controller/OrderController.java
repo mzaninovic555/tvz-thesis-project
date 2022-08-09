@@ -4,6 +4,7 @@ import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.service.OrderService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -40,7 +41,7 @@ public class OrderController {
 
   @PostMapping ("/api/orders/add")
   @Secured({"ROLE_USER", "ROLE_ADMIN"})
-  public ResponseEntity<OrderDTO> save(@RequestBody final Order order) {
+  public ResponseEntity<OrderDTO> save(@RequestBody @Valid final Order order) {
     if (order.getBooks().isEmpty()) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
