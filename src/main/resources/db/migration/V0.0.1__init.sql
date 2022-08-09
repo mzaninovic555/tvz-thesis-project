@@ -74,15 +74,7 @@ CREATE TABLE IF NOT EXISTS `book_category` (
     CONSTRAINT `fk_book_category_book` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
     CONSTRAINT `fk_book_category_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
--- -----------------------------------------------------
--- Table `country`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `country` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(45) NOT NULL,
-    `country_code` CHAR(2) NOT NULL,
-    PRIMARY KEY (`id`)
-);
+
 -- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
@@ -97,10 +89,7 @@ CREATE TABLE IF NOT EXISTS `user` (
     `address` VARCHAR(255) NOT NULL,
     `postal_code` CHAR(5) NOT NULL,
     `city` VARCHAR(255) NOT NULL,
-    `country_id` INT NOT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `fk_user_country1_idx` (`country_id` ASC),
-    CONSTRAINT `fk_user_country1` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    PRIMARY KEY (`id`)
 );
 -- -----------------------------------------------------
 -- Table `orders`

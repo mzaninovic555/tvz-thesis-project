@@ -84,10 +84,6 @@ public class User {
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
   private List<Order> orders;
 
-  @ManyToOne
-  @JoinColumn(name = "country_id")
-  private Country country;
-
   @JsonIgnore
   @ManyToMany
   @JoinTable(

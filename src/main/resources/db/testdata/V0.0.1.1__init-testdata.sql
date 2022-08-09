@@ -1,7 +1,3 @@
--- Country
-insert into country(name, country_code)
-values('Hrvatska', 'HR');
-
 -- Category
 insert into category(name)
 values ('Fantasy'),
