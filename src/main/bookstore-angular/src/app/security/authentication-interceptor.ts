@@ -26,13 +26,13 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       });
     }
 
-
-
     return next.handle(request).pipe(
         tap(() => {
         }, (err: any) => {
           if (err.status === 403) {
             this.router.navigate(['forbidden']);
+          } else if (err.status === 404) {
+            this.router.navigate(['**']);
           }
         })
     );

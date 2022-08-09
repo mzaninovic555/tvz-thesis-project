@@ -11,7 +11,7 @@ import {Constants} from "../domain/constants";
 })
 export class BookDetailsComponent implements OnInit {
 
-  book?: Book;
+  book!: Book;
   cartAmount!: number;
   imagePath = Constants.IMAGE_PATH;
 

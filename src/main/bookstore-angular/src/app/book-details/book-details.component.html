@@ -2,71 +2,71 @@
   <hr>
   <div class="row mt-5">
     <div class="col-lg col-md-8 col-sm-12">
-      <img src="{{imagePath}}/{{book?.imagePath}}" alt="{{book?.title}}">
+      <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}">
     </div>
     <div class="col-lg-8 col-md-8 col-sm-12 ms-5">
-      <h2>{{book?.title}}</h2>
-      <a routerLink="../../author/{{book?.author?.id}}">
-        <h4>{{book?.author?.firstName}} {{book?.author?.lastName}}</h4>
+      <h2>{{book.title}}</h2>
+      <a routerLink="../../author/{{book.author.id}}">
+        <h4>{{book.author.firstName}} {{book.author.lastName}}</h4>
       </a>
-      <ng-container *ngIf="book?.discountPrice != 0">
-        <h5 class="discount-details"> {{book?.price}} kn </h5>
-        <h5 style="display: inline; margin-left: 10px; color: darkred;"> {{book?.discountPrice}} kn </h5>
-        <span class="badge bg-success"> Popust vrijedi do {{book?.discountExpiration | date: 'dd.MM.yyyy.'}} </span>
+      <ng-container *ngIf="book.discountPrice != 0">
+        <h5 class="discount-details"> {{book.price}} kn </h5>
+        <h5 style="display: inline; margin-left: 10px; color: darkred;"> {{book.discountPrice}} kn </h5>
+        <span class="badge bg-success"> Popust vrijedi do {{book.discountExpiration | date: 'dd.MM.yyyy.'}} </span>
       </ng-container>
-      <h5 *ngIf="book?.discountPrice == 0"> {{book?.price}} kn </h5>
+      <h5 *ngIf="book.discountPrice == 0"> {{book.price}} kn </h5>
       <hr>
       <div class="row align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-6">
-          <input *ngIf="book?.stock != 0" type="number" class="form-control" placeholder="Količina" [(ngModel)]="cartAmount">
-          <input *ngIf="book?.stock == 0" type="number" class="form-control disabled-input" placeholder="Nedostupno" disabled>
+          <input *ngIf="book.stock > 0" type="number" class="form-control" placeholder="Količina" [(ngModel)]="cartAmount">
+          <input *ngIf="book.stock <= 0" type="number" class="form-control disabled-input" placeholder="Nedostupno" disabled>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6">
-          <span *ngIf="book?.stock != 0" ><i class="fa-solid fa-circle-check"></i>  Dostupno</span>
-          <span *ngIf="book?.stock == 0"> <i class="fa-solid fa-circle-xmark"> </i>  Nedostupno</span>
+          <span *ngIf="book.stock > 0" ><i class="fa-solid fa-circle-check"></i>  Dostupno</span>
+          <span *ngIf="book.stock <= 0"> <i class="fa-solid fa-circle-xmark"> </i>  Nedostupno</span>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-12 text-end">
-          <button *ngIf="book?.stock != 0" type="button" class="btn btn-success" (click)="addToCart(book!.id)">Dodaj u košaricu  <i class="bi bi-cart4"></i></button>
-          <button *ngIf="book?.stock == 0" type="button" class="btn btn-dark" disabled>Nedostupno</button>
+          <button *ngIf="book.stock > 0" type="button" class="btn btn-success" (click)="addToCart(book!.id)">Dodaj u košaricu  <i class="bi bi-cart4"></i></button>
+          <button *ngIf="book.stock <= 0" type="button" class="btn btn-dark" disabled>Nedostupno</button>
         </div>
       </div>
       <hr>
-      <markdown>{{book?.description}}</markdown>
+      <markdown>{{book.description}}</markdown>
       <hr>
       <div class="row">
         <div class="col-lg-6 col-md-6 sol-sm-12">
           <span class="book-detail-title">Dodano</span><br>
-          <span class="book-detail-body">{{book?.dateAdded | date: 'dd.MM.yyyy.'}}</span><br>
+          <span class="book-detail-body">{{book.dateAdded | date: 'dd.MM.yyyy.'}}</span><br>
 
           <span class="book-detail-title">Godina izdanja</span><br>
-          <span class="book-detail-body">{{book?.publishingYear}}</span><br>
+          <span class="book-detail-body">{{book.publishingYear}}</span><br>
 
           <span class="book-detail-title">Broj stranica</span><br>
-          <span class="book-detail-body">{{book?.pageNumber}}</span><br>
+          <span class="book-detail-body">{{book.pageNumber}}</span><br>
 
           <span class="book-detail-title">Uvez</span><br>
-          <span class="book-detail-body">{{book?.binding}}</span><br>
+          <span class="book-detail-body">{{book.binding}}</span><br>
 
           <span class="book-detail-title">Kategorije</span><br>
-          <span *ngFor="let category of book?.categories; let i = index" class="book-detail-body">
-            <a routerLink="../../category/{{category?.id}}">{{category?.name}}{{i === book?.categories!.length - 1 ? '' : ', '}} </a>
+          <span *ngFor="let category of book.categories; let i = index" class="book-detail-body">
+            <a routerLink="../../category/{{category.id}}">{{category.name}}{{i === book.categories!.length - 1 ? '' : ', '}} </a>
           </span><br>
         </div>
         <div class="col-lg-4 col-md-6">
           <span class="book-detail-title">Masa</span><br>
-          <span class="book-detail-body">{{book?.mass}}kg</span><br>
+          <span class="book-detail-body">{{book.mass}}kg</span><br>
 
           <span class="book-detail-title">Format</span><br>
-          <span class="book-detail-body">{{book?.format}}</span><br>
+          <span class="book-detail-body">{{book.format}}</span><br>
 
           <span class="book-detail-title">Barkod</span><br>
-          <span class="book-detail-body">{{book?.barcode}}</span><br>
+          <span class="book-detail-body">{{book.barcode}}</span><br>
 
           <span class="book-detail-title">ISBN</span><br>
-          <span class="book-detail-body">{{book?.isbn}}</span><br>
+          <span class="book-detail-body">{{book.isbn}}</span><br>
 
           <span class="book-detail-title">Izdavač</span><br>
-          <a routerLink="../../publisher/{{book?.publisher?.id}}"> <span class="book-detail-body">{{book?.publisher!.name}}</span><br> </a>
+          <a routerLink="../../publisher/{{book.publisher.id}}"> <span class="book-detail-body">{{book.publisher!.name}}</span><br> </a>
         </div>
       </div>
     </div>

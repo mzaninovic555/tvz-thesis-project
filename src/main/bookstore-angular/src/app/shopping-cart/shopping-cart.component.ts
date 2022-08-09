@@ -32,7 +32,6 @@ export class ShoppingCartComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit(): void {
-
     if (this.localStorageCart) {
       this.bookService.getBooks()
         .subscribe({
@@ -52,26 +51,23 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   fillCartItems() {
-
     let uniqueItems = Array.from(new Set(this.localStorageCart)).filter(x => !isNaN(+x));
     let localStorageCartArray = Array.from(this.localStorageCart).filter(x => !isNaN(+x));
+
     for (let elem of uniqueItems) {
       let numberOfElems = localStorageCartArray.filter(x => +x === +elem).length;
       let book = this.books.filter(b => b.id === +elem)[0];
       this.cartItems.push(new CartItem(book, numberOfElems));
     }
-
     this.totalCartPrice = this.cartItems.reduce((previous, current) =>
         current.book.discountPrice !== 0 ? previous + (current.book.discountPrice * current.amount) : previous + (current.book.price * current.amount), 0
     )
-
     this.cartItems.sort((a, b) => {
       return b.amount - a.amount;
     });
   }
 
   fetchLoggedInUser() {
-
     if (this.isUserLoggedIn) {
       let username = this.authenticationService.getAuthenticatedUserUsername();
 
@@ -85,7 +81,6 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   amountChanged(book: Book, event: any) {
-
     let newAmount = event.target.value;
     if (newAmount > book.stock) {
       newAmount = book.stock;
@@ -98,20 +93,17 @@ export class ShoppingCartComponent implements OnInit {
     }
 
     localStorage.setItem('cart', JSON.stringify(localStorageTemp));
-    location.reload();
+    window.location.reload();
   }
 
   purchaseBooks() {
-
     if (this.cartItems !== undefined && this.cartItems !== [] && this.loggedInUser !== undefined) {
-
       let bookArray: Book[] = [];
       for (let cartItem of this.cartItems) {
         for (let i of new Array(+cartItem.amount)) {
           bookArray.push(cartItem.book);
         }
       }
-
       let newOrder = new Order(
           0,
           new Date(),
@@ -127,5 +119,12 @@ export class ShoppingCartComponent implements OnInit {
         }
       });
     }
+  }
+
+  removeItem(itemId: number) {
+    let localStorageCartArray = Array.from(this.localStorageCart).filter(x => !isNaN(+x));
+    localStorageCartArray = localStorageCartArray.filter(x => +x !== itemId);
+    localStorage.setItem('cart', JSON.stringify(localStorageCartArray));
+    window.location.reload();
   }
 }
