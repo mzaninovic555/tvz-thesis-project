@@ -4,7 +4,7 @@
     <p class="mb-0">Datum i vrijeme narudžbe: {{order.datePlaced | date: 'dd.MM.yyyy., HH:mm'}}</p>
     <p class="mb-0">Ukupna cijena: {{order.totalPrice}} kn</p>
     <p class="mb-0" *ngIf="!authenticationService.isUserAdmin()">Korisnik: {{order.user.firstName}} {{order.user.lastName}}</p>
-    <p>Korisnik: <a routerLink="../../user/{{order.user.username}}" class="mb-0 alert-link" *ngIf="authenticationService.isUserAdmin()">{{order.user.firstName}} {{order.user.lastName}}</a></p>
+    <p *ngIf="authenticationService.isUserAdmin()">Korisnik: <a routerLink="../../user/{{order.user.username}}" class="mb-0 alert-link">{{order.user.firstName}} {{order.user.lastName}}</a></p>
   </div>
   <div class="row w-50">
     <ul class="list-group list-group-flush">

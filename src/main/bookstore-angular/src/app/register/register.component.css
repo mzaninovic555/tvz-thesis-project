@@ -1,0 +1,45 @@
+h1, h2, .book-detail-title {
+  font-family: Bahnschrift, sans-serif;
+}
+
+h5 {
+  color: #424242;
+  margin: 0;
+  font-weight: 450;
+  font-size: 25px;
+}
+.form-control:focus,.btn-success:focus, .form-select:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
+}
+
+a {
+  text-decoration: none;
+  color: rgba(40, 167, 69, 1.0);
+  transition: all 0.07s linear;
+}
+
+a:hover{
+  opacity: 0.6;
+}
+
+.form-select {
+  border-radius: 60px;
+  margin-top: 5px;
+}
+
+.btn-success {
+  border-radius: 0;
+  margin: 0;
+  width: 100%;
+  border-bottom: 1px white solid;
+}
+
+.btn-outline-success:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
+}
+
+.collapsing{
+  transition: none;
+}

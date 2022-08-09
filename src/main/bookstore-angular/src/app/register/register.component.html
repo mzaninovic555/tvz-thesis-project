@@ -1,0 +1,108 @@
+<app-navbar-content></app-navbar-content>
+<article class="container mb-5 mt-3">
+  <h2>Registracija</h2>
+  <hr>
+  <div class="row">
+    <div class="col-10" id="newCategory">
+      <div class="row g-3 align-items-center">
+        <form class="w-50" #registrationForm="ngForm"
+              (ngSubmit)="registerUser(newUsername.value, newPassword.value, email.value, firstName.value,
+                                       lastName.value, phoneNumber.value, address.value, postalCode.value, city.value)">
+          <div class="mb-3">
+            <label for="newUsername" class="form-label">Korisničko ime</label>
+            <input type="text" class="form-control" id="newUsername" aria-describedby="newUsername"
+                   ngModel name="newUsername" #newUsername="ngModel"
+                   required minlength="5" maxlength="20">
+            <div class="text-danger" *ngIf="newUsername.touched">
+              <div *ngIf="newUsername.getError('required')">Korisničko ime je obavezno.</div>
+              <div *ngIf="newUsername.getError('minlength')">Korisničko ime mora imati minimalno 5 znakova.</div>
+              <div *ngIf="newUsername.getError('maxlength')">Korisničko ime mora imati maksimalno 20 znakova.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="newPassword" class="form-label">Lozinka</label>
+            <input type="newPassword" class="form-control" id="newPassword" aria-describedby="newPassword"
+                   ngModel name="newPassword" #newPassword="ngModel"
+                   required minlength="7" maxlength="32">
+            <div class="text-danger" *ngIf="newPassword.touched">
+              <div *ngIf="newPassword.getError('required')">Lozinka je obavezna.</div>
+              <div *ngIf="newPassword.getError('minlength')">Lozinka mora imati minimalno 7 znakova.</div>
+              <div *ngIf="newPassword.getError('maxlength')">Lozinka mora imati maksimalno 32 znaka.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" aria-describedby="email"
+                   ngModel name="email" #email="ngModel" required pattern="^(.+)@(.+)$">
+            <div class="text-danger" *ngIf="email.touched && email.getError('required')">E-mail ne smije biti prazan.</div>
+            <div class="text-danger" *ngIf="email.touched && email.getError('pattern')">E-mail nije u točnom formatu.</div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="firstName" class="form-label">Ime</label>
+              <input type="text" class="form-control" id="firstName" aria-describedby="firstName"
+                     ngModel name="firstName" #firstName="ngModel" required maxlength="100">
+              <div class="text-danger" *ngIf="firstName.touched && firstName.getError('required')">Ime ne smije biti prazno.</div>
+              <div class="text-danger" *ngIf="firstName.touched && firstName.getError('maxlength')">Ime mora biti kraće od 100 znakova.</div>
+            </div>
+            <div class="col">
+              <label for="lastName" class="form-label">Prezime</label>
+              <input type="text" class="form-control" id="lastName" aria-describedby="lastName"
+                     ngModel name="lastName" #lastName="ngModel" required maxlength="100">
+              <div class="text-danger" *ngIf="lastName.touched && lastName.getError('required')">Prezime ne smije biti prazno.</div>
+              <div class="text-danger" *ngIf="lastName.touched && lastName.getError('maxlength')">Prezime mora biti kraće od 100 znakova.</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Broj telefona (Format: +3859...)</label>
+            <input type="text" class="form-control" id="phoneNumber" aria-describedby="phoneNumber"
+                   ngModel name="phoneNumber" #phoneNumber="ngModel"
+                   required pattern="^\+385\d{8,10}">
+            <div class="text-danger" *ngIf="phoneNumber.touched">
+              <div *ngIf="phoneNumber.getError('required')">Broj telefona je obavezan.</div>
+              <div *ngIf="phoneNumber.getError('pattern')">Broj telefona nije u točnom formatu.</div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="address" class="form-label">Adresa</label>
+              <input type="text" class="form-control" id="address" aria-describedby="address"
+                     ngModel name="address" #address="ngModel"
+                     required>
+              <div class="text-danger" *ngIf="address.touched">
+                <div *ngIf="address.getError('required')">Adresa je obavezna.</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="postalCode" class="form-label">Poštanski broj</label>
+              <input type="text" class="form-control" id="postalCode" aria-describedby="postalCode"
+                     ngModel name="postalCode" #postalCode="ngModel"
+                     required minlength="2" maxlength="5">
+              <div class="text-danger" *ngIf="postalCode.touched">
+                <div *ngIf="postalCode.getError('required')">Poštanski broj je obavezan.</div>
+                <div *ngIf="postalCode.getError('minlength')">Poštanski broj mora imati minimalno 2 znamenke.</div>
+                <div *ngIf="postalCode.getError('maxlength')">Poštanski broj može imati maksimalno 5 znamenki.</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="city" class="form-label">Grad</label>
+              <input type="text" class="form-control" id="city" aria-describedby="phoneNumber"
+                     ngModel name="city" #city="ngModel"
+                     required>
+              <div class="text-danger" *ngIf="city.touched">
+                <div *ngIf="city.getError('required')">Grad je obavezan.</div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-outline-success" [disabled]="!registrationForm.form.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</article>

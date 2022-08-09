@@ -32,12 +32,13 @@ export class AuthenticationInterceptor implements HttpInterceptor {
           switch (err.status) {
             case 400:
               this.router.navigate(['badRequest']);
+              alert(1);
               break;
             case 403:
               this.router.navigate(['forbidden']);
               break;
             case 404:
-              this.router.navigate(['**']);
+              this.router.navigate(['notFound']);
               break;
             case 500:
               this.router.navigate(['internalError']);

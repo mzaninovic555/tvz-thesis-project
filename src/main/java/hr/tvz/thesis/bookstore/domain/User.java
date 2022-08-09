@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -38,10 +39,12 @@ public class User {
   private Long id;
 
   @NotNull
+  @NotBlank
+  @Size(min = 5, max = 20)
   private String username;
 
   @NotNull
-  @Size(min = 7)
+  @Size(min = 7, max = 32)
   private String password;
 
   @NotNull
@@ -50,20 +53,23 @@ public class User {
 
   @Column(name = "first_name")
   @NotNull
-  @Max(100)
+  @NotBlank
+  @Size(max = 100)
   private String firstName;
 
   @Column(name = "last_name")
   @NotNull
-  @Max(100)
+  @NotBlank
+  @Size(max = 100)
   private String lastName;
 
   @Column(name = "phone_number")
   @NotNull
-  @Pattern(regexp = "\\d{9,14}")
+  @Pattern(regexp = "^\\+385\\d{8,10}")
   private String phoneNumber;
 
   @NotNull
+  @NotBlank
   private String address;
 
   @Column(name = "postal_code")
@@ -72,6 +78,7 @@ public class User {
   private String postalCode;
 
   @NotNull
+  @NotBlank
   private String city;
 
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)

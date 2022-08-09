@@ -53,4 +53,8 @@ export class NavbarComponent implements OnInit {
         }
       })
   }
+
+  registerFunction() {
+    this.router.navigate(['authentication/register'])
+  }
 }

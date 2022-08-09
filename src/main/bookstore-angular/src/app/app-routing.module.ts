@@ -15,6 +15,7 @@ import {LoggedInGuard} from "./security/logged-in-guard";
 import {OrderDetailsComponent} from "./order-details/order-details.component";
 import {InternalErrorComponent} from "./internal-error/internal-error.component";
 import {BadRequestComponent} from "./bad-request/bad-request.component";
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
   {
@@ -60,11 +61,15 @@ const routes: Routes = [
     canActivate: [LoggedInGuard]
   },
   {
+    path: 'authentication/register',
+    component: RegisterComponent
+  },
+  {
     path: 'forbidden',
     component: ForbiddenComponent
   },
   {
-    path: '**',
+    path: 'notFound',
     component: PageNotFoundComponent
   },
   {

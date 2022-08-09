@@ -1,9 +1,14 @@
 package hr.tvz.thesis.bookstore.controller;
 
 import hr.tvz.thesis.bookstore.domain.Login;
+import hr.tvz.thesis.bookstore.domain.User;
 import hr.tvz.thesis.bookstore.domain.dto.LoginDTO;
+import hr.tvz.thesis.bookstore.domain.dto.UserDTO;
 import hr.tvz.thesis.bookstore.service.LoginService;
+import javax.validation.Valid;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +32,12 @@ public class LoginController {
   }
 
   @PostMapping("/authentication/register")
-  public LoginDTO register(@RequestBody final Login login) {
-    return null;
+  public ResponseEntity<UserDTO> register(@RequestBody @Valid final User user) {
+    UserDTO registeredUser = loginService.register(user);
+
+    if (registeredUser == null) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+    return ResponseEntity.ok(registeredUser);
   }
 }

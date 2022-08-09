@@ -5,6 +5,8 @@ import {Login} from "../security/login";
 import {JwtToken} from "../domain/jwt-token";
 import jwt_decode from "jwt-decode";
 import {Router} from "@angular/router";
+import {User} from "../domain/user";
+import {RegisterUser} from "../domain/register-user";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,10 @@ export class AuthenticationService {
 
   login(login: Login) {
     return this.http.post<JwtToken>(`${this.authenticationUrl}/login`, login);
+  }
+
+  registerUser(newUser: RegisterUser) {
+    return this.http.post<RegisterUser>(`${this.authenticationUrl}/register`, newUser);
   }
 
   saveJwtToLocalStorage(jwt: string) {

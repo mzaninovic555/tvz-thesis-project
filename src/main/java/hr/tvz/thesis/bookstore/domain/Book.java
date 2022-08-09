@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
@@ -42,16 +43,19 @@ public class Book {
   private Integer pageNumber;
 
   @NotNull
+  @NotBlank
   private String binding;
 
   @NotNull
   private Double mass;
 
   @NotNull
+  @NotBlank
   @Pattern(regexp = "\\d{11}")
   private String barcode;
 
   @NotNull
+  @NotBlank
   private String title;
 
   @NotNull
@@ -60,6 +64,7 @@ public class Book {
   private BigDecimal price;
 
   @NotNull
+  @NotBlank
   private String description;
 
   @Column(name = "publishing_year")
@@ -72,11 +77,13 @@ public class Book {
   private Integer stock;
 
   @NotNull
+  @NotBlank
   @Pattern(regexp = "\\d{11}")
   private String isbn;
 
   @Column(name = "image_path")
   @NotNull
+  @NotBlank
   private String imagePath;
 
   @Column(name = "date_added")
