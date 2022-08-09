@@ -160,14 +160,13 @@
           </div>
 
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Kategorije (HUIGFEW)</label>
-            <select id="multi-select-categories" multiple="multiple">
-              <option value="jQuery">jQuery tutorial</option>
-              <option value="Bootstrap">Bootstrap Tips</option>
-              <option value="HTML">HTML</option>
-              <option value="CSS">CSS tricks</option>
-              <option value="angular">Angular JS</option>
-            </select>
+            <label for="categories" class="form-label">Kategorije</label> <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Kategorije</mat-label>
+              <mat-select [formControl]="categories" multiple>
+                <mat-option *ngFor="let topping of allUsers" [value]="topping">{{topping.username}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
           <div class="row mb-3">
@@ -199,10 +198,3 @@
 
   </div>
 </article>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#multi-select-categories').multiselect();
-  });
-
-</script>

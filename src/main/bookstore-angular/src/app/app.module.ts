@@ -13,7 +13,7 @@ import {BookDetailsComponent} from './book-details/book-details.component';
 import {MarkdownModule} from "ngx-markdown";
 import {AuthorComponent} from './author/author.component';
 import {PublisherComponent} from './publisher/publisher.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BookSearchComponent} from './book-search/book-search.component';
 import {CategoryComponent} from './category/category.component';
 import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
@@ -23,6 +23,9 @@ import {AuthenticationInterceptor} from "./security/authentication-interceptor";
 import {AllBooksComponent} from './all-books/all-books.component';
 import {UserPageComponent} from './user-page/user-page.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -46,11 +49,15 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     MarkdownModule,
     MarkdownModule.forRoot({loader: HttpClient, sanitize: SecurityContext.NONE}),
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

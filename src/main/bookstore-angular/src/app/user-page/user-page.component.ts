@@ -5,6 +5,7 @@ import {UserService} from "../services/user.service";
 import {AuthenticationService} from "../services/authentication.service";
 import {Order} from "../domain/order";
 import {OrderService} from "../services/order.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-user-page',
@@ -17,6 +18,7 @@ export class UserPageComponent implements OnInit {
   searchUsername!: string;
   orders!: Order[];
   allUsers?: User[];
+  categories = new FormControl('');
 
   constructor(private route: ActivatedRoute,
               private router: Router,
