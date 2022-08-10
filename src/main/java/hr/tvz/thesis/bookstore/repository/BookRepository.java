@@ -24,6 +24,15 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
   @Modifying
   @Query(value =
+      """
+        update book
+        set image_path = :imagePath
+        where id = :bookId
+      """, nativeQuery = true)
+  int saveBookImage(Long bookId, String imagePath);
+
+  @Modifying
+  @Query(value =
     """
       update book
       set stock = stock - :quantityToReduce

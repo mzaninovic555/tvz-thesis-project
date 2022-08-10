@@ -88,7 +88,7 @@
       </ul>
     </div>
 
-    <div class="col-10 collapse" id="orders" data-bs-parent="#group">
+    <div class="col-10 collapse" id="orders" data-bs-parent="#group" *ngIf="orders">
       <h5 class="pb-3 border-bottom">Narudžbe</h5>
       <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngIf="orders.length == 0">
@@ -115,13 +115,20 @@
       <h5 class="pb-3 border-bottom mb-3">Nova knjiga</h5>
       <div class="row g-3 align-items-center">
         <form class="w-50" #newBookForm="ngForm"
-              (ngSubmit)="submitBook(bookTitle.value, bookAuthor.value, bookPublisher.value, bookPrice.value,
+              (ngSubmit)="submitBook(bookTitle.value, bookImage, bookAuthor.value, bookPublisher.value, bookPrice.value,
                                      bookStock.value, bookDescription.value, bookYear.value, bookPageNumber.value, bookBinding.value,
                                      bookCategories.value, bookLanguage.value, bookMass.value, bookFormat.value, bookBarcode.value, bookIsbn.value)">
           <div class="mb-3">
             <label for="title" class="form-label">Naslov</label>
             <input ngModel name="bookTitle" #bookTitle="ngModel" type="title" class="form-control" id="title" aria-describedby="title" required>
             <div class="text-danger" *ngIf="bookTitle.touched && !bookTitle.valid">Naslov knjige je obavezan.</div>
+          </div>
+          <div class="mb-3">
+            <label for="bookImage" class="form-label">Slika knjige</label>
+            <input type="file" accept="image/*" class="form-control" id="bookImage" aria-describedby="bookImage"
+                   ngModel name="bookImage" #bookImage="ngModel" required
+                   (change)="changeBookImage($event)">
+            <div class="text-danger" *ngIf="bookImage.touched && !bookImage.valid">Slika knjige je obavezna.</div>
           </div>
           <div class="row mb-3">
             <div class="col">
@@ -365,7 +372,7 @@
               <label for="isbn" class="form-label">Cijena nakon popusta: </label>
               <input type="number" class="form-control" id="discountPrice" aria-describedby="discountPrice" step="0.1"
                      ngModel name="discountPrice" #discountPrice="ngModel"
-                     required min="0.1" max="{{discountBook.value.price - 1}}">
+                     required min="0.1" max="{{discountBook.touched ? discountBook.value.price - 1 : -1}}">
               <div class="" *ngIf="discountPrice.touched">
                 <div class="mb-3">
                   <div class="text-danger" *ngIf="discountPrice.getError('required')">Cijena je obavezna.</div>

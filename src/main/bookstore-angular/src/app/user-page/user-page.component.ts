@@ -31,6 +31,8 @@ export class UserPageComponent implements OnInit {
   allLanguages: Language[] = [];
   discountAvailableBooks: Book[] = [];
   currentYear = new Date().getFullYear();
+  bookImage!: File;
+  savedBook!: Book;
 
   range: FormGroup<{ start: FormControl<Date | null>; end: FormControl<Date | null> }> = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -154,7 +156,7 @@ export class UserPageComponent implements OnInit {
     return ('00000' + n).slice(-5);
   }
 
-  submitBook(title: string, author: Author, publisher: Publisher, price: number, stock: number,
+  submitBook(title: string, image: any, author: Author, publisher: Publisher, price: number, stock: number,
              description: string, year: string, pageNumber: number, binding: string, categories: Category[],
              language: Language, mass: number, format: string, barcode: string, isbn: string) {
     let book = new Book(
@@ -172,7 +174,7 @@ export class UserPageComponent implements OnInit {
         +year,
         stock,
         isbn,
-        "",
+        "-",
         new Date(),
         language,
         author,
@@ -183,9 +185,21 @@ export class UserPageComponent implements OnInit {
     this.bookService.addBook(book)
       .subscribe({
         next: (newBook) => {
-          this.router.navigate([`../../book/${newBook.id}`]);
+          this.savedBook = newBook;
         },
-        error: err => alert("Nešto je pošlo po krivu")
+        error: err => alert("Nešto je pošlo po krivu"),
+        complete: () => this.saveBookImage()
+      });
+  }
+
+  saveBookImage() {
+
+    let formData = new FormData();
+    formData.append('image', this.bookImage);
+
+    this.bookService.addBookImage(this.savedBook.id, formData)
+      .subscribe({
+        next: value => this.router.navigate([`../../book/${this.savedBook.id}`])
       });
   }
 
@@ -248,5 +262,9 @@ export class UserPageComponent implements OnInit {
       .subscribe({
         next: savedDiscount => this.router.navigate([`../../book/${discount.book.id}`])
       });
+  }
+
+  changeBookImage(event: any) {
+    this.bookImage = event.target.files[0];
   }
 }

@@ -5,7 +5,6 @@ import {Language} from "./language";
 
 export class Book {
 
-
   constructor(id: number, format: string, pageNumber: number, binding: string, mass: number, barcode: string,
               title: string, price: number, discountPrice: number, discountExpiration: Date, description: string,
               publishingYear: number, stock: number, isbn: string, imagePath: string, dateAdded: Date, language: Language,

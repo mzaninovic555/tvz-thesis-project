@@ -30,5 +30,7 @@ public interface BookService {
 
   BookDTO save(Book book);
 
+  void saveBookImage(Long bookId, String bookImage);
+
   DiscountDTO saveDiscount(Discount discount);
 }

@@ -180,6 +180,11 @@ export class BookService {
     );
   }
 
+  addBookImage(bookId: number, bookImage: FormData): Observable<any> {
+    console.log(bookImage);
+    return this.http.post(`${this.URL}/api/add/book/image/${bookId}`, bookImage);
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(operation);

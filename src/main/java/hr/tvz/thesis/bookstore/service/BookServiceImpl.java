@@ -104,6 +104,11 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  public void saveBookImage(Long bookId, String bookImage) {
+    bookRepository.saveBookImage(bookId, bookImage);
+  }
+
+  @Override
   public DiscountDTO saveDiscount(Discount discount) {
     if (discount.getDiscountPrice().compareTo(discount.getBook().getPrice()) >= 0
         || discount.getStartedAt().isAfter(discount.getEndsAt())) {
