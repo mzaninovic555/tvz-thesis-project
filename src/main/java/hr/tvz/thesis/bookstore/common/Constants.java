@@ -11,4 +11,6 @@ public class Constants {
       "/orders/",
       "/api/add/"
   );
+
+  public static final String IMAGE_PATH = "C:\\Users\\mzani\\Desktop\\Thesis\\images\\";
 }

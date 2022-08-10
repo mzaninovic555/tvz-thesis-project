@@ -1,5 +1,6 @@
 package hr.tvz.thesis.bookstore.controller;
 
+import hr.tvz.thesis.bookstore.common.Constants;
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Discount;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
@@ -82,12 +83,11 @@ public class BookController {
 
   @PostMapping("/api/add/book/image/{bookId}")
   @Secured("ROLE_ADMIN")
-  public ResponseEntity<BookDTO> save(@RequestParam("image") MultipartFile bookImage, @PathVariable Long bookId)
-      throws IOException {
-
+  public ResponseEntity<BookDTO> save(@RequestParam("image") MultipartFile bookImage,
+      @PathVariable Long bookId) throws IOException {
 
     String bookImageFileName = bookImage.getOriginalFilename();
-    String destination = "C:\\Users\\mzani\\Desktop\\Thesis\\images\\" + bookImageFileName;
+    String destination = Constants.IMAGE_PATH + bookImageFileName;
 
     File bookImageFile = new File(destination);
     bookImage.transferTo(bookImageFile);
