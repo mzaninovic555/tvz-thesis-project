@@ -19,7 +19,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getByUsername(username: any): Observable<User> {
-    return this.http.get<User>(`${this.URL}/user/${username}`, this.httpOptions)
+    return this.http.get<User>(`${this.URL}/api/user/${username}`, this.httpOptions)
     .pipe(
         tap((user: User) => console.log(`get user w username=${user.username}`)),
         catchError(this.handleError<User>('getUserByUsername'))

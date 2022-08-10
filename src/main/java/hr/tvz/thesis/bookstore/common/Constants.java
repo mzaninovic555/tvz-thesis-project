@@ -7,6 +7,7 @@ public class Constants {
   public static final List<String> AUTHENTICATED_ENDPOINTS = List.of(
       "/api/orders/add",
       "/api/orders/user/",
+      "/api/user/",
       "/orders/",
       "/api/add/"
   );
