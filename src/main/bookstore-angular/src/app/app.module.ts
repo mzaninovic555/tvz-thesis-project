@@ -30,6 +30,9 @@ import { InternalErrorComponent } from './internal-error/internal-error.componen
 import { BadRequestComponent } from './bad-request/bad-request.component';
 import { RegisterComponent } from './register/register.component';
 import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatInputModule} from "@angular/material/input";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { RegistrationSuccessComponent } from './registration-success/registratio
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   providers: [
     {

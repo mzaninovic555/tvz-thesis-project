@@ -7,6 +7,7 @@ import {Constants} from "../domain/constants";
 import {Publisher} from "../domain/publisher";
 import {Category} from "../domain/category";
 import {Language} from "../domain/language";
+import {Discount} from "../domain/discount";
 
 @Injectable({
   providedIn: 'root'
@@ -168,6 +169,14 @@ export class BookService {
     .pipe(
         tap((newCategory: Category) => console.log(`added Category ${newCategory}`)),
         catchError(this.handleError<Category>('addCategory'))
+    );
+  }
+
+  addDiscount(discount: Discount): Observable<Discount> {
+    return this.http.post<Discount>(`${this.URL}/api/add/discount`, discount, this.httpOptions)
+    .pipe(
+        tap((newCategory: Discount) => console.log(`added Discount ${newCategory}`)),
+        catchError(this.handleError<Discount>('addDiscount'))
     );
   }
 

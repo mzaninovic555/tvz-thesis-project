@@ -63,6 +63,14 @@
                   aria-controls="newCategory">Nova kategorija
           </button>
         </li>
+        <li class="nav-item" *ngIf="authenticationService.isUserAdmin()">
+          <button type="button" class="btn btn-success"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#newDiscount"
+                  aria-expanded="false"
+                  aria-controls="newDiscount">Novi popust
+          </button>
+        </li>
       </ul>
     </div>
 
@@ -333,6 +341,58 @@
           </div>
 
           <button type="submit" class="btn btn-outline-success" [disabled]="!newCategoryForm.form.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-10 collapse" id="newDiscount" data-bs-parent="#group" *ngIf="authenticationService.isUserAdmin()">
+      <h5 class="pb-3 border-bottom mb-3">Nova kategorija</h5>
+      <div class="row g-3 align-items-center">
+        <form class="w-50" #newDiscountForm="ngForm"
+              (ngSubmit)="submitDiscount(discountBook.value, discountPrice.value, range.value!.start, range.value!.end)">
+          <div class="mb-3">
+            <label for="discountBook" class="form-label">Knjiga za popust:</label><br>
+            <mat-form-field appearance="fill">
+              <mat-label>Knjiga...</mat-label>
+              <mat-select id="discountBook" ngModel name="discountBook" #discountBook="ngModel" required>
+                <mat-option>-</mat-option>
+                <mat-option *ngFor="let book of discountAvailableBooks" [value]="book">{{book.title}} - {{book.author.firstName}} {{book.author.lastName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="mb-3">
+              <label for="isbn" class="form-label">Cijena nakon popusta: </label>
+              <input type="number" class="form-control" id="discountPrice" aria-describedby="discountPrice" step="0.1"
+                     ngModel name="discountPrice" #discountPrice="ngModel"
+                     required min="0.1" max="{{discountBook.value.price - 1}}">
+              <div class="" *ngIf="discountPrice.touched">
+                <div class="mb-3">
+                  <div class="text-danger" *ngIf="discountPrice.getError('required')">Cijena je obavezna.</div>
+                  <div class="text-danger" *ngIf="discountPrice.getError('min')">Cijena mora biti veca od 0.</div>
+                  <div class="text-danger" *ngIf="discountPrice.getError('max')">
+                    Cijena popusta ne smije biti veca od originalne cijene ({{discountBook.value.price}} kn).
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="range" [rangePicker]="picker" required>
+                  <input matStartDate formControlName="start" placeholder="Start date">
+                  <input matEndDate formControlName="end" placeholder="End date">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-outline-success" [disabled]="!newDiscountForm.form.valid">Submit</button>
         </form>
       </div>
     </div>

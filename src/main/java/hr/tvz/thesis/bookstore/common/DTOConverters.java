@@ -3,6 +3,7 @@ package hr.tvz.thesis.bookstore.common;
 import hr.tvz.thesis.bookstore.domain.Author;
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Category;
+import hr.tvz.thesis.bookstore.domain.Discount;
 import hr.tvz.thesis.bookstore.domain.Language;
 import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.Publisher;
@@ -10,6 +11,7 @@ import hr.tvz.thesis.bookstore.domain.User;
 import hr.tvz.thesis.bookstore.domain.dto.AuthorDTO;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
+import hr.tvz.thesis.bookstore.domain.dto.DiscountDTO;
 import hr.tvz.thesis.bookstore.domain.dto.LanguageDTO;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
@@ -115,6 +117,15 @@ public class DTOConverters {
     return LanguageDTO.builder()
         .id(language.getId())
         .name(language.getName())
+        .build();
+  }
+
+  public static DiscountDTO mapDiscountTODiscountDTO(Discount discount) {
+    return DiscountDTO.builder()
+        .id(discount.getId())
+        .discountPrice(discount.getDiscountPrice())
+        .startedAt(discount.getStartedAt())
+        .endsAt(discount.getEndsAt())
         .build();
   }
 }

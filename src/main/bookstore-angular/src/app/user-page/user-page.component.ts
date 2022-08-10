@@ -11,6 +11,8 @@ import {Author} from "../domain/author";
 import {Publisher} from "../domain/publisher";
 import {Book} from "../domain/book";
 import {Language} from "../domain/language";
+import {Discount} from "../domain/discount";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-user-page',
@@ -27,7 +29,13 @@ export class UserPageComponent implements OnInit {
   allCategories: Category[] = [];
   allPublishers: Publisher[] = [];
   allLanguages: Language[] = [];
+  discountAvailableBooks: Book[] = [];
   currentYear = new Date().getFullYear();
+
+  range: FormGroup<{ start: FormControl<Date | null>; end: FormControl<Date | null> }> = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -36,8 +44,6 @@ export class UserPageComponent implements OnInit {
               private userService: UserService,
               private orderService: OrderService) {
     this.searchUsername = this.route.snapshot.paramMap.get('username') || '';
-
-    console.log(this.searchUsername)
 
     this.userService.getByUsername(this.searchUsername)
       .subscribe({
@@ -123,7 +129,23 @@ export class UserPageComponent implements OnInit {
         next: (languages) => {
           this.allLanguages = languages;
         },
-        error: err => console.error(err)
+        error: err => console.error(err),
+        complete: () => this.fillAllBooks()
+      });
+    }
+  }
+
+  fillAllBooks() {
+    if (this.authenticationService.isUserAdmin()) {
+      this.bookService.getBooks()
+      .subscribe({
+        next: (allBooks) => {
+          this.discountAvailableBooks = allBooks;
+        },
+        error: err => console.error(err),
+        complete: () => {
+          this.discountAvailableBooks = this.discountAvailableBooks.filter(b => b.discountPrice === 0 && b.discountExpiration === null);
+        }
       });
     }
   }
@@ -211,5 +233,20 @@ export class UserPageComponent implements OnInit {
       },
       error: err => alert("Nešto je pošlo po krivu")
     });
+  }
+
+  submitDiscount(book: Book, discountPrice: number, startsAt: any, endsAt: any) {
+    let discount = new Discount(
+        0,
+        discountPrice,
+        startsAt,
+        endsAt,
+        book
+    );
+
+    this.bookService.addDiscount(discount)
+      .subscribe({
+        next: savedDiscount => this.router.navigate([`../../book/${discount.book.id}`])
+      });
   }
 }

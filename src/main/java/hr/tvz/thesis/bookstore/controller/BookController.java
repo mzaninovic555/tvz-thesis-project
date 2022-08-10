@@ -1,11 +1,14 @@
 package hr.tvz.thesis.bookstore.controller;
 
 import hr.tvz.thesis.bookstore.domain.Book;
+import hr.tvz.thesis.bookstore.domain.Discount;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
+import hr.tvz.thesis.bookstore.domain.dto.DiscountDTO;
 import hr.tvz.thesis.bookstore.domain.dto.LanguageDTO;
 import hr.tvz.thesis.bookstore.service.BookService;
 import java.util.List;
 import javax.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -71,5 +74,16 @@ public class BookController {
   @Secured("ROLE_ADMIN")
   public ResponseEntity<BookDTO> save(@RequestBody @Valid Book book) {
     return ResponseEntity.ok(bookService.save(book));
+  }
+
+  @PostMapping("/api/add/discount")
+  @Secured("ROLE_ADMIN")
+  public ResponseEntity<DiscountDTO> save(@RequestBody @Valid Discount discount) {
+    DiscountDTO newDiscount = bookService.saveDiscount(discount);
+
+    if (newDiscount == null) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+    return ResponseEntity.ok(newDiscount);
   }
 }
