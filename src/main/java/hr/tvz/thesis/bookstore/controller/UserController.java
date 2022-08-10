@@ -23,7 +23,7 @@ public class UserController {
     this.userService = userService;
   }
 
-  @GetMapping("/user/{username}")
+  @GetMapping("/api/user/{username}")
   @Secured({"ROLE_USER", "ROLE_ADMIN"})
   public ResponseEntity<UserDTO> finyByUsername(@PathVariable String username) {
 
