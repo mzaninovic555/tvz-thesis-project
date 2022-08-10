@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../services/authentication.service";
 import {RegisterUser} from "../domain/register-user";
 import {Router} from "@angular/router";
+import {User} from "../domain/user";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,18 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  allUsers: User[] = [];
+
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router,
+              private userService: UserService) {
+    this.userService.getAllUsers()
+      .subscribe({
+        next: (users) => {
+          this.allUsers = users;
+        }
+      })
+  }
 
   ngOnInit(): void {
   }

@@ -40,7 +40,6 @@ public class UserController {
   }
 
   @GetMapping("/user/all")
-  @Secured("ROLE_ADMIN")
   public List<UserDTO> findAllUsers() {
     return userService.findAll();
   }

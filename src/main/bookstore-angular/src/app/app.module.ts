@@ -33,6 +33,8 @@ import { RegistrationSuccessComponent } from './registration-success/registratio
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
+import {ExistingUsernameValidator} from "./validators/existing-username-validator.directive";
+import {EmailInUseValidator} from "./validators/email-in-use-validator";
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import {MatNativeDateModule} from "@angular/material/core";
     InternalErrorComponent,
     BadRequestComponent,
     RegisterComponent,
-    RegistrationSuccessComponent
+    RegistrationSuccessComponent,
+    ExistingUsernameValidator,
+    EmailInUseValidator
   ],
   imports: [
     BrowserModule,

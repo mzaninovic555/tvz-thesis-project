@@ -1,5 +1,5 @@
 <app-navbar-content></app-navbar-content>
-<article class="container mb-5 mt-3">
+<article class="container mb-5 mt-3" *ngIf="allUsers && allUsers.length > 0">
   <h2>Registracija</h2>
   <hr>
   <div class="row">
@@ -11,12 +11,13 @@
           <div class="mb-3">
             <label for="newUsername" class="form-label">Korisničko ime</label>
             <input type="text" class="form-control" id="newUsername" aria-describedby="newUsername"
-                   ngModel name="newUsername" #newUsername="ngModel"
+                   ngModel name="newUsername" #newUsername="ngModel" [usernameInUse]="allUsers"
                    required minlength="5" maxlength="20">
             <div class="text-danger" *ngIf="newUsername.touched">
               <div *ngIf="newUsername.getError('required')">Korisničko ime je obavezno.</div>
               <div *ngIf="newUsername.getError('minlength')">Korisničko ime mora imati minimalno 5 znakova.</div>
               <div *ngIf="newUsername.getError('maxlength')">Korisničko ime mora imati maksimalno 20 znakova.</div>
+              <div *ngIf="newUsername.getError('usernameInUse')">Uneseno korisničko ime je već u upotrebi.</div>
             </div>
           </div>
           <div class="mb-3">
@@ -33,9 +34,11 @@
           <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
             <input type="email" class="form-control" id="email" aria-describedby="email"
-                   ngModel name="email" #email="ngModel" required pattern="^(.+)@(.+)$">
+                   ngModel name="email" #email="ngModel" [emailInUse]="allUsers"
+                   required pattern="^(.+)@(.+)$" >
             <div class="text-danger" *ngIf="email.touched && email.getError('required')">E-mail ne smije biti prazan.</div>
             <div class="text-danger" *ngIf="email.touched && email.getError('pattern')">E-mail nije u točnom formatu.</div>
+            <div class="text-danger" *ngIf="email.touched && email.getError('emailInUse')">Uneseni e-mail je već korišten.</div>
           </div>
 
           <div class="row mb-3">
