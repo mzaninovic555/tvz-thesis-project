@@ -33,6 +33,7 @@ export class UserPageComponent implements OnInit {
   currentYear = new Date().getFullYear();
   bookImage!: File;
   savedBook!: Book;
+  today = new Date();
 
   range: FormGroup<{ start: FormControl<Date | null>; end: FormControl<Date | null> }> = new FormGroup({
     start: new FormControl<Date | null>(null),

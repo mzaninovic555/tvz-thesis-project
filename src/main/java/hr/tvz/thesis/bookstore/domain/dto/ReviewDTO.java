@@ -1,6 +1,5 @@
 package hr.tvz.thesis.bookstore.domain.dto;
 
-import hr.tvz.thesis.bookstore.domain.Book;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,5 +17,5 @@ public class ReviewDTO {
 
   private Integer score;
 
-  private Long userId;
+  private UserDTO user;
 }

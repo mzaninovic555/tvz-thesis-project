@@ -19,8 +19,8 @@
       <div class="mt-2">
         <span *ngFor="let number of [1, 2, 3, 4, 5]">
           <i *ngIf="number <= reviewAverage" style="font-size: 25px; color: orange;" class="fa-solid fa-star"></i>
-          <i *ngIf="number > reviewAverage" style="font-size: 25px; color: darkgray;" class="fa-solid fa-star"></i>
-        </span> <span style="font-size: 13px">({{reviewAverage}})</span>
+          <i *ngIf="number > reviewAverage || !reviewAverage" style="font-size: 25px; color: darkgray;" class="fa-solid fa-star"></i>
+        </span> <span *ngIf="reviewAverage" style="font-size: 13px">({{reviewAverage.toFixed(1)}})</span>
       </div>
       <hr>
       <div class="row align-items-center">
@@ -36,12 +36,11 @@
           <button *ngIf="book.stock > 0" type="button" class="btn btn-success" (click)="addToCart(book!.id)">Dodaj u košaricu  <i class="bi bi-cart4"></i></button>
           <button *ngIf="book.stock <= 0" type="button" class="btn btn-dark" disabled>Nedostupno</button>
         </div>
-        <div class="col-lg-3 col-lg-3 col-md-5 col-sm-12" *ngIf="!isUserLeaveReview">
-          <p>Nova recenzija: </p>
-          <span *ngFor="let number of [1, 2, 3, 4, 5]">
-          <i *ngIf="number <= reviewAverage" style="font-size: 25px; color: orange;" class="fa-solid fa-star"></i>
-          <i *ngIf="number > reviewAverage" style="font-size: 25px; color: darkgray;" class="fa-solid fa-star"></i>
-        </span> <span style="font-size: 13px">({{reviewAverage}})</span>
+        <div class="col-lg-4 col-lg-3 col-md-5 col-sm-12" *ngIf="!isUserLeaveReview">
+          <p class="mb-0">Nova recenzija: </p>
+          <mat-slider color="primary" min="1" max="5" step="1" value="1" thumbLabel ngModel name="reviewSlider" #reviewSlider="ngModel"></mat-slider>
+          <span class="badge bg-success me-1">{{reviewSlider.value}}/5</span>
+          <button type="button" class="btn btn-success" (click)="newReview(reviewSlider.value)">Unesi</button>
         </div>
       </div>
       <hr>

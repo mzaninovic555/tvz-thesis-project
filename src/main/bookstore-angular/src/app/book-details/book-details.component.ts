@@ -6,6 +6,7 @@ import {Constants} from "../domain/constants";
 import {User} from "../domain/user";
 import {UserService} from "../services/user.service";
 import {AuthenticationService} from "../services/authentication.service";
+import {Review} from "../domain/review";
 
 @Component({
   selector: 'app-book-details',
@@ -81,8 +82,21 @@ export class BookDetailsComponent implements OnInit {
       .subscribe({
         next: (user) => this.loggedInUser = user,
         complete: () => {
-          this.isUserLeaveReview = this.book.reviews.filter(r => r.userId === this.loggedInUser.id).length > 0;
+          this.isUserLeaveReview = this.book.reviews.filter(r => r.user.id === this.loggedInUser.id).length > 0;
         }
       })
+  }
+
+  newReview(reviewValue: number) {
+    if (reviewValue) {
+      let newReview = new Review(
+          0,
+          reviewValue,
+          this.loggedInUser,
+          this.book
+      );
+
+      this.bookService.addReview(newReview).subscribe(() => window.location.reload());
+    }
   }
 }

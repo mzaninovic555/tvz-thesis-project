@@ -35,6 +35,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
 import {ExistingUsernameValidator} from "./validators/existing-username-validator.directive";
 import {EmailInUseValidator} from "./validators/email-in-use-validator";
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {EmailInUseValidator} from "./validators/email-in-use-validator";
     ReactiveFormsModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSliderModule
   ],
   providers: [
     {

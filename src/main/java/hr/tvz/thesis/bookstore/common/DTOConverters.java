@@ -136,7 +136,7 @@ public class DTOConverters {
     return ReviewDTO.builder()
         .id(review.getId())
         .score(review.getScore())
-        .userId(review.getUser().getId())
+        .user(DTOConverters.mapUserToUserDTO(review.getUser()))
         .build();
   }
 
