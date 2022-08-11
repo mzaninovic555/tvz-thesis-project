@@ -8,6 +8,7 @@ Korištene tehnologije:
 * Spring Boot
 * Spring Data JPA
 * Spring Security
+* JWT Token
 * Spring Validation
 * Spring Mail + Thymeleaf template-ovi
 * Project Lombok
