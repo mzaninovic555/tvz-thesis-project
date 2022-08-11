@@ -179,7 +179,8 @@ export class UserPageComponent implements OnInit {
         language,
         author,
         publisher,
-        categories
+        categories,
+        []
     );
 
     this.bookService.addBook(book)

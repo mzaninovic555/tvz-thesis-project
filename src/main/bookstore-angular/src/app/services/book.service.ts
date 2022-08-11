@@ -8,6 +8,7 @@ import {Publisher} from "../domain/publisher";
 import {Category} from "../domain/category";
 import {Language} from "../domain/language";
 import {Discount} from "../domain/discount";
+import {Review} from "../domain/review";
 
 @Injectable({
   providedIn: 'root'
@@ -183,6 +184,14 @@ export class BookService {
   addBookImage(bookId: number, bookImage: FormData): Observable<any> {
     console.log(bookImage);
     return this.http.post(`${this.URL}/api/add/book/image/${bookId}`, bookImage);
+  }
+
+  addReview(review: Review): Observable<Review> {
+    return this.http.post<Review>(`${this.URL}/api/add/review`, review, this.httpOptions)
+    .pipe(
+        tap((newreview: Review) => console.log(`added review ${newreview}`)),
+        catchError(this.handleError<Review>('addReview'))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

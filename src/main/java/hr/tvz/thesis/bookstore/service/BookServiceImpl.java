@@ -3,12 +3,15 @@ package hr.tvz.thesis.bookstore.service;
 import hr.tvz.thesis.bookstore.common.DTOConverters;
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Discount;
+import hr.tvz.thesis.bookstore.domain.Review;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.domain.dto.DiscountDTO;
 import hr.tvz.thesis.bookstore.domain.dto.LanguageDTO;
+import hr.tvz.thesis.bookstore.domain.dto.ReviewDTO;
 import hr.tvz.thesis.bookstore.repository.BookRepository;
 import hr.tvz.thesis.bookstore.repository.DiscountRepository;
 import hr.tvz.thesis.bookstore.repository.LanguageRepository;
+import hr.tvz.thesis.bookstore.repository.ReviewRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -20,12 +23,14 @@ public class BookServiceImpl implements BookService {
   private final BookRepository bookRepository;
   private final LanguageRepository languageRepository;
   private final DiscountRepository discountRepository;
+  private final ReviewRepository reviewRepository;
 
   public BookServiceImpl(BookRepository bookRepository, LanguageRepository languageRepository,
-      DiscountRepository discountRepository) {
+      DiscountRepository discountRepository, ReviewRepository reviewRepository) {
     this.bookRepository = bookRepository;
     this.languageRepository = languageRepository;
     this.discountRepository = discountRepository;
+    this.reviewRepository = reviewRepository;
   }
 
   @Override
@@ -115,5 +120,10 @@ public class BookServiceImpl implements BookService {
       return null;
     }
     return DTOConverters.mapDiscountTODiscountDTO(discountRepository.save(discount));
+  }
+
+  @Override
+  public ReviewDTO saveReview(Review review) {
+    return DTOConverters.mapReviewToReviewDTO(reviewRepository.save(review));
   }
 }

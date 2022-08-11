@@ -82,6 +82,9 @@ public class User {
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
   private List<Order> orders;
 
+  @OneToMany(mappedBy = "user")
+  private List<Review> reviews;
+
   @JsonIgnore
   @ManyToMany
   @JoinTable(

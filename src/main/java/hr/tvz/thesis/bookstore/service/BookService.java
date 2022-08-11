@@ -2,9 +2,11 @@ package hr.tvz.thesis.bookstore.service;
 
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Discount;
+import hr.tvz.thesis.bookstore.domain.Review;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.domain.dto.DiscountDTO;
 import hr.tvz.thesis.bookstore.domain.dto.LanguageDTO;
+import hr.tvz.thesis.bookstore.domain.dto.ReviewDTO;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,4 +35,6 @@ public interface BookService {
   void saveBookImage(Long bookId, String bookImage);
 
   DiscountDTO saveDiscount(Discount discount);
+
+  ReviewDTO saveReview(Review review);
 }

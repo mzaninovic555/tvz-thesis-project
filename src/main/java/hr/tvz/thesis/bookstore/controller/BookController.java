@@ -3,9 +3,11 @@ package hr.tvz.thesis.bookstore.controller;
 import hr.tvz.thesis.bookstore.common.Constants;
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Discount;
+import hr.tvz.thesis.bookstore.domain.Review;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.domain.dto.DiscountDTO;
 import hr.tvz.thesis.bookstore.domain.dto.LanguageDTO;
+import hr.tvz.thesis.bookstore.domain.dto.ReviewDTO;
 import hr.tvz.thesis.bookstore.service.BookService;
 import java.io.File;
 import java.io.IOException;
@@ -105,5 +107,11 @@ public class BookController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
     return ResponseEntity.ok(newDiscount);
+  }
+
+  @PostMapping("/api/add/review")
+  @Secured({"ROLE_ADMIN", "ROLE_USER"})
+  public ResponseEntity<ReviewDTO> saveReview(@RequestBody @Valid Review review) {
+    return ResponseEntity.ok(bookService.saveReview(review));
   }
 }

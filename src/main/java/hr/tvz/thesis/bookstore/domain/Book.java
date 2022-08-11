@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -111,6 +112,9 @@ public class Book {
 
   @ManyToMany(mappedBy = "books")
   private List<Order> orders;
+
+  @OneToMany(mappedBy = "book")
+  private List<Review> reviews;
 
   @Override
   public boolean equals(Object o) {

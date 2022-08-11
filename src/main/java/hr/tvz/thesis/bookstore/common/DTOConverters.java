@@ -7,6 +7,7 @@ import hr.tvz.thesis.bookstore.domain.Discount;
 import hr.tvz.thesis.bookstore.domain.Language;
 import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.Publisher;
+import hr.tvz.thesis.bookstore.domain.Review;
 import hr.tvz.thesis.bookstore.domain.User;
 import hr.tvz.thesis.bookstore.domain.dto.AuthorDTO;
 import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
@@ -15,6 +16,7 @@ import hr.tvz.thesis.bookstore.domain.dto.DiscountDTO;
 import hr.tvz.thesis.bookstore.domain.dto.LanguageDTO;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
+import hr.tvz.thesis.bookstore.domain.dto.ReviewDTO;
 import hr.tvz.thesis.bookstore.domain.dto.UserDTO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -50,6 +52,7 @@ public class DTOConverters {
         .publisher(DTOConverters.mapPublisherToPublisherDTO(book.getPublisher()))
         .language(DTOConverters.mapLanguageToLanguageDTO(book.getLanguage()))
         .categories(DTOConverters.mapCategoriesToCategoriesDTO(book.getCategories()))
+        .reviews(DTOConverters.mapReviewsToReviewsDTO(book.getReviews()))
         .build();
   }
 
@@ -127,5 +130,20 @@ public class DTOConverters {
         .startedAt(discount.getStartedAt())
         .endsAt(discount.getEndsAt())
         .build();
+  }
+
+  public static ReviewDTO mapReviewToReviewDTO(Review review) {
+    return ReviewDTO.builder()
+        .id(review.getId())
+        .score(review.getScore())
+        .userId(review.getUser().getId())
+        .build();
+  }
+
+  public static List<ReviewDTO> mapReviewsToReviewsDTO(List<Review> reviews) {
+    return reviews
+        .stream()
+        .map(DTOConverters::mapReviewToReviewDTO)
+        .toList();
   }
 }

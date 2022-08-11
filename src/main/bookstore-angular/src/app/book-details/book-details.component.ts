@@ -3,6 +3,9 @@ import {Book} from "../domain/book";
 import {BookService} from "../services/book.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Constants} from "../domain/constants";
+import {User} from "../domain/user";
+import {UserService} from "../services/user.service";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-book-details',
@@ -14,8 +17,15 @@ export class BookDetailsComponent implements OnInit {
   book!: Book;
   cartAmount!: number;
   imagePath = Constants.IMAGE_PATH;
+  reviewAverage!: number;
+  loggedInUser!: User;
+  isUserLeaveReview: boolean = false;
 
-  constructor(private route: ActivatedRoute, private bookService: BookService, private router: Router) { }
+  constructor(private route: ActivatedRoute,
+              private bookService: BookService,
+              private router: Router,
+              private authenticationService: AuthenticationService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -30,7 +40,11 @@ export class BookDetailsComponent implements OnInit {
           complete: () => {
             this.book?.categories.sort((a, b) => {
               return a.name.localeCompare(b.name);
-            })
+            });
+            this.reviewAverage = this.book.reviews
+              .map(r => r.score)
+              .reduce((a, b) => a+b,0) / this.book.reviews.length;
+            this.didUserLeaveReview();
           }
         });
     } else {
@@ -60,5 +74,15 @@ export class BookDetailsComponent implements OnInit {
       .then(() => {
         window.location.reload();
       });
+  }
+
+  didUserLeaveReview() {
+    this.userService.getByUsername(this.authenticationService.getAuthenticatedUserUsername())
+      .subscribe({
+        next: (user) => this.loggedInUser = user,
+        complete: () => {
+          this.isUserLeaveReview = this.book.reviews.filter(r => r.userId === this.loggedInUser.id).length > 0;
+        }
+      })
   }
 }

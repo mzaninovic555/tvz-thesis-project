@@ -55,4 +55,6 @@ public class BookDTO {
   private LanguageDTO language;
 
   private List<CategoryDTO> categories;
+
+  private List<ReviewDTO> reviews;
 }

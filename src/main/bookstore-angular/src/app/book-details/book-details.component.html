@@ -15,19 +15,33 @@
         <span class="badge bg-success"> Popust vrijedi do {{book.discountExpiration | date: 'dd.MM.yyyy.'}} </span>
       </ng-container>
       <h5 *ngIf="book.discountPrice == 0"> {{book.price}} kn </h5>
+
+      <div class="mt-2">
+        <span *ngFor="let number of [1, 2, 3, 4, 5]">
+          <i *ngIf="number <= reviewAverage" style="font-size: 25px; color: orange;" class="fa-solid fa-star"></i>
+          <i *ngIf="number > reviewAverage" style="font-size: 25px; color: darkgray;" class="fa-solid fa-star"></i>
+        </span> <span style="font-size: 13px">({{reviewAverage}})</span>
+      </div>
       <hr>
       <div class="row align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-6">
           <input *ngIf="book.stock > 0" type="number" class="form-control" placeholder="Količina" [(ngModel)]="cartAmount">
           <input *ngIf="book.stock <= 0" type="number" class="form-control disabled-input" placeholder="Nedostupno" disabled>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="col-lg-2 col-md-4 col-sm-6">
           <span *ngIf="book.stock > 0" ><i class="fa-solid fa-circle-check"></i>  Dostupno</span>
           <span *ngIf="book.stock <= 0"> <i class="fa-solid fa-circle-xmark"> </i>  Nedostupno</span>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-12 text-end">
+        <div class="col-lg-3 col-md-4 col-sm-12">
           <button *ngIf="book.stock > 0" type="button" class="btn btn-success" (click)="addToCart(book!.id)">Dodaj u košaricu  <i class="bi bi-cart4"></i></button>
           <button *ngIf="book.stock <= 0" type="button" class="btn btn-dark" disabled>Nedostupno</button>
+        </div>
+        <div class="col-lg-3 col-lg-3 col-md-5 col-sm-12" *ngIf="!isUserLeaveReview">
+          <p>Nova recenzija: </p>
+          <span *ngFor="let number of [1, 2, 3, 4, 5]">
+          <i *ngIf="number <= reviewAverage" style="font-size: 25px; color: orange;" class="fa-solid fa-star"></i>
+          <i *ngIf="number > reviewAverage" style="font-size: 25px; color: darkgray;" class="fa-solid fa-star"></i>
+        </span> <span style="font-size: 13px">({{reviewAverage}})</span>
         </div>
       </div>
       <hr>
