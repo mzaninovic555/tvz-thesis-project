@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.mail.MessagingException;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -28,9 +28,10 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public OrderDTO save(Order order) {
+  public OrderDTO save(Order order) throws MessagingException {
     List<Book> books = order.getBooks().stream().distinct().toList();
     List<Pair<Long, Integer>> bookIdQuantity = new ArrayList<>();
+    List<Pair<Book, Integer>> bookQuantity = new ArrayList<>();
 
     for (Book book : books) {
       Integer quantity = Math.toIntExact(order.getBooks()
@@ -38,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
           .filter(b -> b.getId().equals(book.getId()))
           .count());
       bookIdQuantity.add(Pair.of(book.getId(), quantity));
+      bookQuantity.add(Pair.of(book, quantity));
     }
 
     bookIdQuantity.forEach(bq ->
@@ -47,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
 
     order = orderRepository.save(order);
     String subject = "Potvrda narudžbe #" + String.format("%05d", order.getId().intValue());
-    emailService.sendNewOrderEmail("tvzbookstoremail@gmail.com", subject, "test email");
+    emailService.sendNewOrderEmail("tvzbookstoremail@gmail.com", subject,  order, bookQuantity);
 
     return DTOConverters.mapOrderToOrderDTO(order);
   }

@@ -4,6 +4,7 @@ import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import hr.tvz.thesis.bookstore.service.OrderService;
 import java.util.List;
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,10 @@ public class OrderController {
     if (order.getBooks().isEmpty()) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-    return ResponseEntity.ok(orderService.save(order));
+    try {
+      return ResponseEntity.ok(orderService.save(order));
+    } catch (MessagingException e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
   }
 }

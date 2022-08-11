@@ -4,10 +4,11 @@ import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
 import java.util.List;
 import java.util.Optional;
+import javax.mail.MessagingException;
 
 public interface OrderService {
 
-  OrderDTO save(Order order);
+  OrderDTO save(Order order) throws MessagingException;
 
   List<OrderDTO> getByUserId(Long userId);
 

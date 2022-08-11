@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="hr">
+<head>
+  <title th:remove="all"></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<article style="font-family: Bahnschrift, sans-serif; width: 30%;">
+  <div style="background-color: #6ec486; color: white; padding: 1rem; border-radius: 10px;">
+    <h4 class="alert-heading" th:text="${'Detalji o narudžbi #' + order.id}">Detalji o narudžbi #</h4>
+    <p style="margin-bottom: 0" th:text="${'Datum i vrijeme narudžbe: ' + #temporals.format(order.datePlaced, 'dd-MM-yyyy HH:mm')}">Datum i vrijeme narudžbe: </p>
+    <p style="margin-bottom: 0" th:text="${'Ukupna cijena: ' + order.totalPrice + ' kn'}"></p>
+    <p style="margin-bottom: 0" th:text="${'Korisnik: ' + user}">Korisnik: </p>
+  </div>
+  <div>
+    <ul>
+      <li th:each="bookQuantity : ${bookIdQuantity}">
+        <div>
+          <div style="display: inline-block;">
+            <a th:src="@{http://localhost:4200/book/ID}" th:text="${bookQuantity.getFirst().title}"></a><br>
+          </div>
+          <div style="display: inline-block;">
+            <p style="margin-bottom: 0" th:text="${'Količina: ' + bookQuantity.getSecond()}">Količina: </p>
+          </div>
+          <div style="display: inline-block;">
+            <p style="margin-bottom: 0" th:text="${'Ukupna cijena: ' + (bookQuantity.getFirst().discount != null
+                ? bookQuantity.getFirst().discount.discountPrice * bookQuantity.getSecond() : bookQuantity.getFirst().price * bookQuantity.getSecond()) + ' kn'}">Ukupna cijena:  kn</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</article>
+</body>
+</html>
