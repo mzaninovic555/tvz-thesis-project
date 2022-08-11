@@ -7,7 +7,6 @@ import hr.tvz.thesis.bookstore.domain.dto.UserDTO;
 import hr.tvz.thesis.bookstore.service.LoginService;
 import javax.mail.MessagingException;
 import javax.validation.Valid;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
