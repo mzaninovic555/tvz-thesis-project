@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<article style="font-family: Bahnschrift, sans-serif; width: 30%;">
+<article style="font-family: Bahnschrift, sans-serif; width: 100%;">
   <div style="background-color: #6ec486; color: white; padding: 1rem; border-radius: 10px;">
     <h4 class="alert-heading" th:text="${'Detalji o narudžbi #' + order.id}">Detalji o narudžbi #</h4>
     <p style="margin-bottom: 0" th:text="${'Datum i vrijeme narudžbe: ' + #temporals.format(order.datePlaced, 'dd-MM-yyyy HH:mm')}">Datum i vrijeme narudžbe: </p>
