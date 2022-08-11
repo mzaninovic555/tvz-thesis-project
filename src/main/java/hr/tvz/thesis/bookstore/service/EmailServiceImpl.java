@@ -2,6 +2,7 @@ package hr.tvz.thesis.bookstore.service;
 
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Order;
+import hr.tvz.thesis.bookstore.domain.User;
 import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -41,6 +42,22 @@ public class EmailServiceImpl implements EmailService {
     String html = springTemplateEngine.process("/new-order.html", context);
     helper.setText(html, true);
     javaMailSender.send(message);
+  }
 
+  @Override
+  public void sendRegistrationEmail(String to, String subject, User user) throws MessagingException {
+    MimeMessage message = javaMailSender.createMimeMessage();
+    MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");
+
+    helper.setFrom("tvzbookstoremail@gmail.com");
+    helper.setTo(to);
+    helper.setSubject(subject);
+
+    Context context = new Context();
+    context.setVariable("user", user);
+
+    String html = springTemplateEngine.process("/registration.html", context);
+    helper.setText(html, true);
+    javaMailSender.send(message);
   }
 }

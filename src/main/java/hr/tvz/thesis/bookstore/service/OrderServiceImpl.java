@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
 
     order = orderRepository.save(order);
     String subject = "Potvrda narudžbe #" + String.format("%05d", order.getId().intValue());
-    emailService.sendNewOrderEmail("tvzbookstoremail@gmail.com", subject,  order, bookQuantity);
+    emailService.sendNewOrderEmail(order.getUser().getEmail(), subject,  order, bookQuantity);
 
     return DTOConverters.mapOrderToOrderDTO(order);
   }

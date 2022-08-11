@@ -10,6 +10,7 @@ import hr.tvz.thesis.bookstore.repository.RoleRepository;
 import hr.tvz.thesis.bookstore.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.mail.MessagingException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,14 @@ public class LoginServiceImpl implements LoginService {
   private final JwtService jwtService;
   private final UserRepository userRepository;
   private final RoleRepository roleRepository;
+  private final EmailService emailService;
 
   public LoginServiceImpl(JwtService jwtService, UserRepository userRepository,
-      RoleRepository roleRepository) {
+      RoleRepository roleRepository, EmailService emailService) {
     this.jwtService = jwtService;
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
+    this.emailService = emailService;
   }
 
   @Override
@@ -39,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
   }
 
   @Override
-  public UserDTO register(User user) {
+  public UserDTO register(User user) throws MessagingException {
     List<User> allUsers = userRepository.findAll();
 
     if (allUsers.stream().anyMatch(u -> u.getUsername().equalsIgnoreCase(user.getUsername()))
@@ -52,6 +55,8 @@ public class LoginServiceImpl implements LoginService {
     user.setPassword("temporaryPassword");
     Role userRole = roleRepository.findByName("ROLE_USER").get();
     user.getAuthorities().add(userRole);
+
+    emailService.sendRegistrationEmail(user.getEmail(), "Potvrda o registraciji", user);
 
     UserDTO savedUser =  DTOConverters.mapUserToUserDTO(userRepository.save(user));
     userRepository.updatePassword(savedUser.getId(), cryptedPassword);

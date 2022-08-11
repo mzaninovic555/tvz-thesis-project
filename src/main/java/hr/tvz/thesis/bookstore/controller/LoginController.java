@@ -5,6 +5,7 @@ import hr.tvz.thesis.bookstore.domain.User;
 import hr.tvz.thesis.bookstore.domain.dto.LoginDTO;
 import hr.tvz.thesis.bookstore.domain.dto.UserDTO;
 import hr.tvz.thesis.bookstore.service.LoginService;
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -33,11 +34,14 @@ public class LoginController {
 
   @PostMapping("/authentication/register")
   public ResponseEntity<UserDTO> register(@RequestBody @Valid final User user) {
-    UserDTO registeredUser = loginService.register(user);
-
-    if (registeredUser == null) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    try {
+      UserDTO registeredUser = loginService.register(user);
+      if (registeredUser == null) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+      }
+      return ResponseEntity.ok(registeredUser);
+    } catch (MessagingException e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
-    return ResponseEntity.ok(registeredUser);
   }
 }
