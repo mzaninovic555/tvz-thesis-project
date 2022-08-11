@@ -9,6 +9,7 @@ Korištene tehnologije:
 * Spring Boot
 * Spring Data JPA
 * Spring Security
+* Spring Mail + Thymeleaf template-ovi
 * Project Lombok
 * MySQL
 * Flyway Migracije
