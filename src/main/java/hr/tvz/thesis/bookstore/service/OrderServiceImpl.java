@@ -11,16 +11,20 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
   private final OrderRepository orderRepository;
   private final BookService bookService;
+  private final EmailService emailService;
 
-  public OrderServiceImpl(OrderRepository orderRepository, BookService bookService) {
+  public OrderServiceImpl(OrderRepository orderRepository, BookService bookService,
+      EmailService emailService) {
     this.orderRepository = orderRepository;
     this.bookService = bookService;
+    this.emailService = emailService;
   }
 
   @Override
@@ -40,7 +44,12 @@ public class OrderServiceImpl implements OrderService {
         bookService.updateStock(bq.getFirst(), bq.getSecond())
     );
     order.setDatePlaced(LocalDateTime.now());
-    return DTOConverters.mapOrderToOrderDTO(orderRepository.save(order));
+
+    order = orderRepository.save(order);
+    String subject = "Potvrda narudžbe #" + String.format("%05d", order.getId().intValue());
+    emailService.sendNewOrderEmail("tvzbookstoremail@gmail.com", subject, "test email");
+
+    return DTOConverters.mapOrderToOrderDTO(order);
   }
 
   @Override
