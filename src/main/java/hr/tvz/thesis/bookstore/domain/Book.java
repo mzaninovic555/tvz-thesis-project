@@ -1,5 +1,6 @@
 package hr.tvz.thesis.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -94,26 +95,33 @@ public class Book {
 
   @ManyToOne
   @JoinColumn(name = "author_id")
+  @JsonIgnore
   private Author author;
 
   @ManyToOne
   @JoinColumn(name = "publisher_id")
+  @JsonIgnore
   private Publisher publisher;
 
   @OneToOne(mappedBy = "book", fetch = FetchType.EAGER)
+  @JsonIgnore
   private Discount discount;
 
   @ManyToOne
   @JoinColumn(name = "language_id")
+  @JsonIgnore
   private Language language;
 
   @ManyToMany(mappedBy = "books")
+  @JsonIgnore
   private List<Category> categories;
 
   @ManyToMany(mappedBy = "books")
+  @JsonIgnore
   private List<Order> orders;
 
   @OneToMany(mappedBy = "book")
+  @JsonIgnore
   private List<Review> reviews;
 
   @Override

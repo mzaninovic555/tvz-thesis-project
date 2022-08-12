@@ -82,9 +82,11 @@ public class User {
   private String city;
 
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+  @JsonIgnore
   private List<Order> orders;
 
   @OneToMany(mappedBy = "user")
+  @JsonIgnore
   private List<Review> reviews;
 
   @JsonIgnore
