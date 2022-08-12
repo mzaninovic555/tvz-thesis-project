@@ -5,6 +5,7 @@ import hr.tvz.thesis.bookstore.domain.dto.PublisherDTO;
 import hr.tvz.thesis.bookstore.service.PublisherService;
 import java.util.List;
 import javax.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,6 +40,6 @@ public class PublisherController {
   @PostMapping("/api/add/publisher")
   @Secured("ROLE_ADMIN")
   public ResponseEntity<PublisherDTO> save(@RequestBody @Valid Publisher publisher) {
-    return ResponseEntity.ok(publisherService.save(publisher));
+    return ResponseEntity.status(HttpStatus.CREATED).body(publisherService.save(publisher));
   }
 }
