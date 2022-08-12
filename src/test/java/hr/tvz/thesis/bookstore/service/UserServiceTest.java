@@ -47,7 +47,7 @@ class UserServiceTest {
 
   @Test
   void findByNonExistentUsername() {
-    Optional<UserDTO> mockUser = userService.findByUsername(mockUsers.get(0).getUsername());
+    Optional<UserDTO> mockUser = userService.findByUsername("E al fakat ne postoji");
 
     assertFalse(mockUser.isPresent());
   }
