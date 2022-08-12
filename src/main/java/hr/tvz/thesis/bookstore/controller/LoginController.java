@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://localhost:4200")
 public class LoginController {
 
   private final LoginService loginService;

@@ -17,7 +17,7 @@
       <li th:each="bookQuantity : ${bookIdQuantity}">
         <div>
           <div style="display: inline-block;">
-            <a th:src="@{http://localhost:4200/book/ID}" th:text="${bookQuantity.getFirst().title}"></a><br>
+            <a th:src="@{https://localhost:4200/book/ID}" th:text="${bookQuantity.getFirst().title}"></a><br>
           </div>
           <div style="display: inline-block;">
             <p style="margin-bottom: 0" th:text="${'Količina: ' + bookQuantity.getSecond()}">Količina: </p>
