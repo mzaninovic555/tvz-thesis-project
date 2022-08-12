@@ -66,7 +66,7 @@ class PublisherControllerTest {
   @Test
   void getAllPublishersTest() throws Exception {
     this.mockMvc.perform(
-            get("/publisher/all")
+            get("/publisher/all").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -78,7 +78,7 @@ class PublisherControllerTest {
   @Test
   void getpublisherById() throws Exception {
     this.mockMvc.perform(
-            get("/publisher/1")
+            get("/publisher/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -90,7 +90,7 @@ class PublisherControllerTest {
   @Test
   void getPublisherByNonExistentId() throws Exception {
     this.mockMvc.perform(
-            get("/publisher/1000001")
+            get("/publisher/1000001").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -100,7 +100,7 @@ class PublisherControllerTest {
   @Test
   void savePublisherAdmin() throws Exception {
     this.mockMvc.perform(
-            post("/api/add/publisher/")
+            post("/api/add/publisher/").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken)
@@ -116,7 +116,7 @@ class PublisherControllerTest {
   @Test
   void savePublisherUser() throws Exception {
     this.mockMvc.perform(
-            post("/api/add/publisher/")
+            post("/api/add/publisher/").secure(true)
                 .with(user("mzaninovic").password("mzaninovic").roles("user"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken)

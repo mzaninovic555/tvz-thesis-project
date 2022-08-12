@@ -94,7 +94,7 @@ class OrderControllerTest {
   @Test
   void getOrderById() throws Exception {
     this.mockMvc.perform(
-            get("/orders/1")
+            get("/orders/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -106,7 +106,7 @@ class OrderControllerTest {
   @Test
   void getOrderByIdUnauthenticated() throws Exception {
     this.mockMvc.perform(
-            get("/orders/1")
+            get("/orders/1").secure(true)
                 .with(csrf()))
         .andExpect(status().isUnauthorized());
   }
@@ -114,7 +114,7 @@ class OrderControllerTest {
   @Test
   void getOrderByNonExistentId() throws Exception {
     this.mockMvc.perform(
-            get("/orders/1000001")
+            get("/orders/1000001").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -124,7 +124,7 @@ class OrderControllerTest {
   @Test
   void getOrderByUserId() throws Exception {
     this.mockMvc.perform(
-            get("/orders/1")
+            get("/orders/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -136,7 +136,7 @@ class OrderControllerTest {
   @Test
   void saveOrderAdmin() throws Exception {
     this.mockMvc.perform(
-            post("/api/orders/add")
+            post("/api/orders/add").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken)
@@ -151,7 +151,7 @@ class OrderControllerTest {
   @Test
   void saveOrderUser() throws Exception {
     this.mockMvc.perform(
-            post("/api/orders/add")
+            post("/api/orders/add").secure(true)
                 .with(user("mzaninovic").password("mzaninovic").roles("user"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken)
@@ -166,7 +166,7 @@ class OrderControllerTest {
   @Test
   void saveOrderUnauthenticated() throws Exception {
     this.mockMvc.perform(
-            post("/api/orders/add")
+            post("/api/orders/add").secure(true)
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(mockOrder))

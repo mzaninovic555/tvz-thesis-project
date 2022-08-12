@@ -67,7 +67,7 @@ class AuthorControllerTest {
   @Test
   void getAllAuthorsTest() throws Exception {
     this.mockMvc.perform(
-        get("/author/all")
+        get("/author/all").secure(true)
             .with(user("admin").password("admin").roles("admin"))
             .with(csrf())
             .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -79,7 +79,7 @@ class AuthorControllerTest {
   @Test
   void getAllAuthorsNotLoggedInTest() throws Exception {
     this.mockMvc.perform(
-            get("/author/all")
+            get("/author/all").secure(true)
                 .with(csrf()))
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -89,7 +89,7 @@ class AuthorControllerTest {
   @Test
   void getAuthorById() throws Exception {
     this.mockMvc.perform(
-            get("/author/1")
+            get("/author/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -101,7 +101,7 @@ class AuthorControllerTest {
   @Test
   void getAuthorByNonExistentId() throws Exception {
     this.mockMvc.perform(
-            get("/author/1000001")
+            get("/author/1000001").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -111,7 +111,7 @@ class AuthorControllerTest {
   @Test
   void saveAuthorAdmin() throws Exception {
     this.mockMvc.perform(
-        post("/api/add/author/")
+        post("/api/add/author/").secure(true)
             .with(user("admin").password("admin").roles("admin"))
             .with(csrf())
             .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken)
@@ -128,7 +128,7 @@ class AuthorControllerTest {
   @Test
   void saveAuthorUser() throws Exception {
     this.mockMvc.perform(
-            post("/api/add/author/")
+            post("/api/add/author/").secure(true)
                 .with(user("mzaninovic").password("mzaninovic").roles("user"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken)

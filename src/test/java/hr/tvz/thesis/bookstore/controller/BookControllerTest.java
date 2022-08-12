@@ -99,7 +99,7 @@ class BookControllerTest {
   @Test
   void findAll() throws Exception {
     this.mockMvc.perform(
-            get("/books")
+            get("/books").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -111,7 +111,7 @@ class BookControllerTest {
   @Test
   void getAllBooksNotLoggedInTest() throws Exception {
     this.mockMvc.perform(
-            get("/books")
+            get("/books").secure(true)
                 .with(csrf()))
         .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -121,7 +121,7 @@ class BookControllerTest {
   @Test
   void findById() throws Exception {
     this.mockMvc.perform(
-            get("/books/1")
+            get("/books/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -133,7 +133,7 @@ class BookControllerTest {
   @Test
   void findByNonExistentId() throws Exception {
     this.mockMvc.perform(
-            get("/books/12223131")
+            get("/books/12223131").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -143,7 +143,7 @@ class BookControllerTest {
   @Test
   void findByAuthorId() throws Exception {
     this.mockMvc.perform(
-            get("/api/books/author/1")
+            get("/api/books/author/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -155,7 +155,7 @@ class BookControllerTest {
   @Test
   void findByPublisherId() throws Exception {
     this.mockMvc.perform(
-            get("/api/books/publisher/1")
+            get("/api/books/publisher/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -167,7 +167,7 @@ class BookControllerTest {
   @Test
   void findByTitle() throws Exception {
     this.mockMvc.perform(
-            get("/api/books/search-by-title/Witcher")
+            get("/api/books/search-by-title/Witcher").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -179,7 +179,7 @@ class BookControllerTest {
   @Test
   void findByCategoryId() throws Exception {
     this.mockMvc.perform(
-            get("/api/books/category/1")
+            get("/api/books/category/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -191,7 +191,7 @@ class BookControllerTest {
   @Test
   void findByOrderId() throws Exception {
     this.mockMvc.perform(
-            get("/api/books/order/1")
+            get("/api/books/order/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -203,7 +203,7 @@ class BookControllerTest {
   @Test
   void findAllLanguages() throws Exception {
     this.mockMvc.perform(
-            get("/api/languages/all")
+            get("/api/languages/all").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -215,7 +215,7 @@ class BookControllerTest {
   @Test
   void saveAdmin() throws Exception {
     this.mockMvc.perform(
-            post("/api/add/book")
+            post("/api/add/book").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken)
@@ -233,7 +233,7 @@ class BookControllerTest {
   @Test
   void saveUser() throws Exception {
     this.mockMvc.perform(
-            post("/api/add/book")
+            post("/api/add/book").secure(true)
                 .with(user("mzaninovic").password("mzaninovic").roles("user"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken)
@@ -254,7 +254,7 @@ class BookControllerTest {
     );
 
     this.mockMvc.perform(
-            post("/api/add/discount")
+            post("/api/add/discount").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken)
@@ -277,7 +277,7 @@ class BookControllerTest {
     );
 
     this.mockMvc.perform(
-            post("/api/add/review")
+            post("/api/add/review").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken)
@@ -300,7 +300,7 @@ class BookControllerTest {
     );
 
     this.mockMvc.perform(
-            post("/api/add/review")
+            post("/api/add/review").secure(true)
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(review))

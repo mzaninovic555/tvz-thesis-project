@@ -52,7 +52,7 @@ class UserControllerTest {
   @Test
   void getAllUsersTest() throws Exception {
     this.mockMvc.perform(
-            get("/user/all")
+            get("/user/all").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -64,7 +64,7 @@ class UserControllerTest {
   @Test
   void getUserByUsername() throws Exception {
     this.mockMvc.perform(
-            get("/api/user/admin")
+            get("/api/user/admin").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -76,7 +76,7 @@ class UserControllerTest {
   @Test
   void getUserByNonExistentUsername() throws Exception {
     this.mockMvc.perform(
-            get("/api/user/nepostojim")
+            get("/api/user/nepostojim").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -86,7 +86,7 @@ class UserControllerTest {
   @Test
   void getUserByUsernameUnauthenticated() throws Exception {
     this.mockMvc.perform(
-            get("/api/user/admin")
+            get("/api/user/admin").secure(true)
                 .with(csrf()))
         .andExpect(status().isUnauthorized());
   }

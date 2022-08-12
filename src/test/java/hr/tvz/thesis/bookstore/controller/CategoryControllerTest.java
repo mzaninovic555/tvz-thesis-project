@@ -66,7 +66,7 @@ class CategoryControllerTest {
   @Test
   void getAllCategoriesTest() throws Exception {
     this.mockMvc.perform(
-            get("/category")
+            get("/category").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -78,7 +78,7 @@ class CategoryControllerTest {
   @Test
   void getAllCategoriesNotLoggedInTest() throws Exception {
     this.mockMvc.perform(
-            get("/category")
+            get("/category").secure(true)
                 .with(csrf()))
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -88,7 +88,7 @@ class CategoryControllerTest {
   @Test
   void getCategoryById() throws Exception {
     this.mockMvc.perform(
-            get("/category/1")
+            get("/category/1").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -100,7 +100,7 @@ class CategoryControllerTest {
   @Test
   void getCategoryByNonExistentId() throws Exception {
     this.mockMvc.perform(
-            get("/category/1000001")
+            get("/category/1000001").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
@@ -110,7 +110,7 @@ class CategoryControllerTest {
   @Test
   void saveCategoryAdmin() throws Exception {
     this.mockMvc.perform(
-            post("/api/add/category/")
+            post("/api/add/category/").secure(true)
                 .with(user("admin").password("admin").roles("admin"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken)
@@ -126,7 +126,7 @@ class CategoryControllerTest {
   @Test
   void saveCategoryUser() throws Exception {
     this.mockMvc.perform(
-            post("/api/add/category/")
+            post("/api/add/category/").secure(true)
                 .with(user("mzaninovic").password("mzaninovic").roles("user"))
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken)

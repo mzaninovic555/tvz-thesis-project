@@ -47,7 +47,7 @@ class LoginControllerTest {
   @Test
   void login_admin() throws Exception {
     this.mockMvc.perform(
-            post("/authentication/login")
+            post("/authentication/login").secure(true)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(bodyAdmin)))
         .andExpect(status().isOk())
@@ -59,7 +59,7 @@ class LoginControllerTest {
   @Test
   void login_user() throws Exception {
     this.mockMvc.perform(
-            post("/authentication/login")
+            post("/authentication/login").secure(true)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(bodyUser)))
         .andExpect(status().isOk())
@@ -71,7 +71,7 @@ class LoginControllerTest {
   @Test
   void login_wrongLoginInfo() throws Exception {
     this.mockMvc.perform(
-            post("/authentication/login")
+            post("/authentication/login").secure(true)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(bodyWrongLogin)))
         .andExpect(status().isBadRequest());
