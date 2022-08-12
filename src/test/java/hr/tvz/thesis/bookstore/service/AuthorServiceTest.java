@@ -2,7 +2,7 @@ package hr.tvz.thesis.bookstore.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import hr.tvz.thesis.bookstore.domain.Author;
@@ -15,9 +15,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @ActiveProfiles("test")
+@Transactional
 class AuthorServiceTest {
 
   @Autowired
@@ -34,10 +36,10 @@ class AuthorServiceTest {
   }
 
   @Test
-  void getAllAuthors() {
+  void getAllAuthorsTest() {
     List<AuthorDTO> allAuthors = authorService.getAllAuthors();
 
-    assertNotNull(allAuthors);
+    assertNotEquals(0, allAuthors.size());
     assertTrue(
         allAuthors
             .stream()
@@ -48,7 +50,7 @@ class AuthorServiceTest {
   }
 
   @Test
-  void getAuthorByFirstId() {
+  void getAuthorByFirstIdTest() {
     Optional<AuthorDTO> foundByFirstId = authorService.getAuthorById(mockAuthors.get(0).getId());
 
     assertTrue(foundByFirstId.isPresent());
@@ -57,13 +59,13 @@ class AuthorServiceTest {
   }
 
   @Test
-  void getAuthorByNonExistendId() {
+  void getAuthorByNonExistendIdTest() {
     Optional<AuthorDTO> foundByFirstId = authorService.getAuthorById(-120L);
     assertFalse(foundByFirstId.isPresent());
   }
 
   @Test
-  void save() {
+  void saveTest() {
     Author mockAuthor = new Author(0L, "Testni", "Tester", null);
     AuthorDTO mockAuthorDTO = authorService.save(mockAuthor);
     Optional<Author> optionalAuthorDTO = authorRepository.findById(mockAuthorDTO.getId());

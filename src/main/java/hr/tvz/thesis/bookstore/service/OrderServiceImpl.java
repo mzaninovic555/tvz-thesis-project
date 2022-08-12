@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public OrderDTO save(Order order) throws MessagingException {
+  public OrderDTO save(Order order, Boolean isSendEmail) throws MessagingException {
     List<Book> books = order.getBooks().stream().distinct().toList();
     List<Pair<Long, Integer>> bookIdQuantity = new ArrayList<>();
     List<Pair<Book, Integer>> bookQuantity = new ArrayList<>();
@@ -48,8 +48,11 @@ public class OrderServiceImpl implements OrderService {
     order.setDatePlaced(LocalDateTime.now());
 
     order = orderRepository.save(order);
-    String subject = "Potvrda narudžbe #" + String.format("%05d", order.getId().intValue());
-    emailService.sendNewOrderEmail(order.getUser().getEmail(), subject,  order, bookQuantity);
+
+    if (isSendEmail) {
+      String subject = "Potvrda narudžbe #" + String.format("%05d", order.getId().intValue());
+      emailService.sendNewOrderEmail(order.getUser().getEmail(), subject,  order, bookQuantity);
+    }
 
     return DTOConverters.mapOrderToOrderDTO(order);
   }

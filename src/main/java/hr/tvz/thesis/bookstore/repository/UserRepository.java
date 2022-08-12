@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
   @Modifying
   @Query(value =
       """
-        update user
+        update users
         set password = :newPassword
         where id = :userId
       """, nativeQuery = true)

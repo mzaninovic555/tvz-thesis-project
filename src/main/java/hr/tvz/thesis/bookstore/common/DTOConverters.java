@@ -57,10 +57,11 @@ public class DTOConverters {
   }
 
   public static List<BookDTO> mapBooksToBooksDTO(List<Book> books) {
-    return books
-        .stream()
-        .map(DTOConverters::mapBookToBookDTO)
-        .toList();
+    return books != null
+        ? books
+          .stream()
+          .map(DTOConverters::mapBookToBookDTO)
+          .toList() : null;
   }
 
   public static PublisherDTO mapPublisherToPublisherDTO(Publisher publisher) {
@@ -79,10 +80,11 @@ public class DTOConverters {
   }
 
   public static List<CategoryDTO> mapCategoriesToCategoriesDTO(List<Category> categories) {
-    return categories
-        .stream()
-        .map(DTOConverters::mapCategoryToCategoryDTO)
-        .toList();
+    return categories != null
+        ? categories
+          .stream()
+          .map(DTOConverters::mapCategoryToCategoryDTO)
+          .toList() : List.of();
   }
 
   public static CategoryDTO mapCategoryToCategoryDTO(Category category) {
@@ -141,9 +143,10 @@ public class DTOConverters {
   }
 
   public static List<ReviewDTO> mapReviewsToReviewsDTO(List<Review> reviews) {
-    return reviews
-        .stream()
-        .map(DTOConverters::mapReviewToReviewDTO)
-        .toList();
+    return reviews != null
+        ? reviews
+          .stream()
+          .map(DTOConverters::mapReviewToReviewDTO)
+          .toList() : List.of();
   }
 }

@@ -36,7 +36,6 @@ public class JwtServiceImpl implements JwtService {
 
   @Override
   public Boolean authenticate(String jwtToken) {
-
     if (isJwtValid(jwtToken)) {
       ApplicationUser applicationUser = getApplicationUserFromJwt(jwtToken);
       saveAuthentication(applicationUser);
@@ -47,7 +46,6 @@ public class JwtServiceImpl implements JwtService {
 
   @Override
   public String createJwtToken(User user) {
-
     Instant expiration = Instant.now().plusSeconds(jwtValiditySeconds);
     String authorities = user.getAuthorities()
         .stream()
@@ -65,7 +63,6 @@ public class JwtServiceImpl implements JwtService {
   }
 
   private Boolean isJwtValid(String jwtToken) {
-
     try {
       Jwts.parser().setSigningKey(jwtSecret).parseClaimsJwt(jwtToken);
       return true;
@@ -89,7 +86,6 @@ public class JwtServiceImpl implements JwtService {
   }
 
   private ApplicationUser getApplicationUserFromJwt(String jwtToken) {
-
     Claims claims = Jwts
         .parser()
         .setSigningKey(jwtSecret)

@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS `review` (
     INDEX `fk_review_book1_idx` (`book_id` ASC),
     CONSTRAINT `fk_review_book` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
     INDEX `fk_review_user_idx` (`user_id` ASC),
-    CONSTRAINT `fk_review_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    CONSTRAINT `fk_review_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );

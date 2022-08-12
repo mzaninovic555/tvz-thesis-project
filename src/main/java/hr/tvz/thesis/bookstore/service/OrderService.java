@@ -8,7 +8,7 @@ import javax.mail.MessagingException;
 
 public interface OrderService {
 
-  OrderDTO save(Order order) throws MessagingException;
+  OrderDTO save(Order order, Boolean isSendEmail) throws MessagingException;
 
   List<OrderDTO> getByUserId(Long userId);
 

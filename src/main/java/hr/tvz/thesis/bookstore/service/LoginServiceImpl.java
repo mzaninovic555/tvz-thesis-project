@@ -50,16 +50,16 @@ public class LoginServiceImpl implements LoginService {
       return null;
     }
 
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    String cryptedPassword = passwordEncoder.encode(user.getPassword());
     user.setPassword("temporaryPassword");
     Role userRole = roleRepository.findByName("ROLE_USER").get();
     user.getAuthorities().add(userRole);
 
-    emailService.sendRegistrationEmail(user.getEmail(), "Potvrda o registraciji", user);
-
     UserDTO savedUser =  DTOConverters.mapUserToUserDTO(userRepository.save(user));
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    String cryptedPassword = passwordEncoder.encode(user.getPassword());
     userRepository.updatePassword(savedUser.getId(), cryptedPassword);
+
+    emailService.sendRegistrationEmail(user.getEmail(), "Potvrda o registraciji", user);
 
     return savedUser;
   }

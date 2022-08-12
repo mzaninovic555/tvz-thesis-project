@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `book_category` (
 -- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `users` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(20) NOT NULL,
     `password` TEXT NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
     `user_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_orders_user1_idx` (`user_id` ASC),
-    CONSTRAINT `fk_orders_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    CONSTRAINT `fk_orders_user1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 -- -----------------------------------------------------
 -- Table `orders_book`
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
     INDEX `fk_user_role_role1_idx` (`role_id` ASC),
     INDEX `fk_user_role_user1_idx` (`user_id` ASC),
     CONSTRAINT `fk_user_role_role1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT `fk_user_role_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    CONSTRAINT `fk_user_role_user1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 -- -----------------------------------------------------
 -- Table `discount`

@@ -43,8 +43,7 @@ public class BookServiceImpl implements BookService {
 
   @Override
   public Optional<BookDTO> findById(Long id) {
-    return bookRepository.findById(id)
-        .map(DTOConverters::mapBookToBookDTO);
+    return bookRepository.findById(id).map(DTOConverters::mapBookToBookDTO);
   }
 
   @Override
