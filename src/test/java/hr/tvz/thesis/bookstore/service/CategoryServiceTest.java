@@ -28,7 +28,7 @@ class CategoryServiceTest {
   @Autowired
   CategoryRepository categoryRepository;
 
-  private static List<Category> mockCategories;
+  List<Category> mockCategories;
 
   @BeforeEach
   void setUp() {

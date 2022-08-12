@@ -29,7 +29,7 @@ class LoginServiceTest {
   @Autowired
   JwtService jwtService;
 
-  private static User testUser;
+  User testUser;
 
   @BeforeEach
   void setUp() {

@@ -28,7 +28,7 @@ class PublisherServiceTest {
   @Autowired
   PublisherRepository publisherRepository;
 
-  private static List<Publisher> mockPublishers;
+  List<Publisher> mockPublishers;
 
   @BeforeEach
   void setUp() {

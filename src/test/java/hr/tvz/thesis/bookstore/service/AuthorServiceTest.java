@@ -28,7 +28,7 @@ class AuthorServiceTest {
   @Autowired
   AuthorRepository authorRepository;
 
-  private static List<Author> mockAuthors;
+  List<Author> mockAuthors;
 
   @BeforeEach
   void setUp() {

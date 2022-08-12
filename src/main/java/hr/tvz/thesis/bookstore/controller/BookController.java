@@ -80,7 +80,7 @@ public class BookController {
   @PostMapping("/api/add/book")
   @Secured("ROLE_ADMIN")
   public ResponseEntity<BookDTO> save(@RequestBody Book book) {
-    return ResponseEntity.ok(bookService.save(book));
+    return ResponseEntity.status(HttpStatus.CREATED).body(bookService.save(book));
   }
 
   @PostMapping("/api/add/book/image/{bookId}")
@@ -106,12 +106,12 @@ public class BookController {
     if (newDiscount == null) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-    return ResponseEntity.ok(newDiscount);
+    return ResponseEntity.status(HttpStatus.CREATED).body(newDiscount);
   }
 
   @PostMapping("/api/add/review")
   @Secured({"ROLE_ADMIN", "ROLE_USER"})
   public ResponseEntity<ReviewDTO> saveReview(@RequestBody @Valid Review review) {
-    return ResponseEntity.ok(bookService.saveReview(review));
+    return ResponseEntity.status(HttpStatus.CREATED).body(bookService.saveReview(review));
   }
 }

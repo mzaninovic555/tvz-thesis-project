@@ -78,13 +78,15 @@ export class BookDetailsComponent implements OnInit {
   }
 
   didUserLeaveReview() {
-    this.userService.getByUsername(this.authenticationService.getAuthenticatedUserUsername())
+    if (this.authenticationService.isUserAuthenticated()) {
+      this.userService.getByUsername(this.authenticationService.getAuthenticatedUserUsername())
       .subscribe({
         next: (user) => this.loggedInUser = user,
         complete: () => {
           this.isUserLeaveReview = this.book.reviews.filter(r => r.user.id === this.loggedInUser.id).length > 0;
         }
       })
+    }
   }
 
   newReview(reviewValue: number) {

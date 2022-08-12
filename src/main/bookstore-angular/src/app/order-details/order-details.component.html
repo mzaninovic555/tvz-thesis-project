@@ -1,4 +1,4 @@
-<article class="container mb-5">
+<article class="container mb-5" *ngIf="order">
   <div class="alert alert-success">
     <h4 class="alert-heading">Detalji o narudžbi #{{fillZeroes(order.id)}}</h4>
     <p class="mb-0">Datum i vrijeme narudžbe: {{order.datePlaced | date: 'dd.MM.yyyy., HH:mm'}}</p>

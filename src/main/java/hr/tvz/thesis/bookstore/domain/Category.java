@@ -1,5 +1,6 @@
 package hr.tvz.thesis.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,5 +35,6 @@ public class Category {
       joinColumns = { @JoinColumn(name = "category_id") },
       inverseJoinColumns = { @JoinColumn(name = "book_id") }
   )
+  @JsonIgnore
   private List<Book> books;
 }

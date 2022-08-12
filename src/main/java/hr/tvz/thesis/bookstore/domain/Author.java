@@ -1,5 +1,6 @@
 package hr.tvz.thesis.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,5 +38,6 @@ public class Author {
   private String lastName;
 
   @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+  @JsonIgnore
   private List<Book> books;
 }

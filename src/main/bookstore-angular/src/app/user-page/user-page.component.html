@@ -176,7 +176,7 @@
            </div>
          </div>
           <div class="mb-3">
-            <label for="description" class="form-label">Opis (temporary, probati markdown)</label>
+            <label for="description" class="form-label">Opis</label>
             <textarea class="form-control" id="description" aria-describedby="description"
                       ngModel name="bookDescription" #bookDescription="ngModel" required></textarea>
             <div class="text-danger" *ngIf="bookDescription.touched && bookDescription.getError('required')">

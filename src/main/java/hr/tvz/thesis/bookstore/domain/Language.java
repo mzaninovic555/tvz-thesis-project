@@ -1,5 +1,6 @@
 package hr.tvz.thesis.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,5 +29,6 @@ public class Language {
   private String name;
 
   @OneToMany(mappedBy = "language", fetch = FetchType.EAGER)
+  @JsonIgnore
   private List<Book> books;
 }

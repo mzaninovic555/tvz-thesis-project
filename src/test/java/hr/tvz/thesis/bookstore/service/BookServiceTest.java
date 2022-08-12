@@ -49,7 +49,7 @@ class BookServiceTest {
   DiscountRepository discountRepository;
 
 
-  private static List<Book> mockBooks;
+  List<Book> mockBooks;
 
   @BeforeEach
   void setUp() {

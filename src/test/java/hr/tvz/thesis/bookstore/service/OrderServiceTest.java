@@ -42,11 +42,11 @@ class OrderServiceTest {
   @Autowired
   BookRepository bookRepository;
 
-  private static Order mockOrder;
+  Order mockOrder;
 
-  private static List<Book> mockBooks;
+  List<Book> mockBooks;
 
-  private static User mockUser;
+  User mockUser;
 
   @BeforeEach
   void setUp() {

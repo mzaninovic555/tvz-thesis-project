@@ -1,4 +1,4 @@
-<article class="container mb-5">
+<article class="container mb-5" *ngIf="book">
   <hr>
   <div class="row mt-5">
     <div class="col-lg col-md-8 col-sm-12">
@@ -36,7 +36,7 @@
           <button *ngIf="book.stock > 0" type="button" class="btn btn-success" (click)="addToCart(book!.id)">Dodaj u košaricu  <i class="bi bi-cart4"></i></button>
           <button *ngIf="book.stock <= 0" type="button" class="btn btn-dark" disabled>Nedostupno</button>
         </div>
-        <div class="col-lg-4 col-lg-3 col-md-5 col-sm-12" *ngIf="!isUserLeaveReview">
+        <div class="col-lg-4 col-lg-3 col-md-5 col-sm-12" *ngIf="loggedInUser && !isUserLeaveReview">
           <p class="mb-0">Nova recenzija: </p>
           <mat-slider color="primary" min="1" max="5" step="1" value="1" thumbLabel ngModel name="reviewSlider" #reviewSlider="ngModel"></mat-slider>
           <span class="badge bg-success me-1">{{reviewSlider.value}}/5</span>
