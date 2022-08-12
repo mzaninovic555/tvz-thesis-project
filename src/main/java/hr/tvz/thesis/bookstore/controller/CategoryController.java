@@ -6,6 +6,7 @@ import hr.tvz.thesis.bookstore.domain.dto.CategoryDTO;
 import hr.tvz.thesis.bookstore.service.CategoryService;
 import java.util.List;
 import javax.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,6 +41,6 @@ public class CategoryController {
   @PostMapping("api/add/category")
   @Secured("ROLE_ADMIN")
   public ResponseEntity<CategoryDTO> save(@RequestBody @Valid Category category) {
-    return ResponseEntity.ok(categoryService.save(category));
+    return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.save(category));
   }
 }
