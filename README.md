@@ -5,11 +5,15 @@ Za pokretanje aplikacije koristiti profile: dev, flywaytestdata, flywayreset.
 
 Korištene tehnologije:
 * Java 17
-* Angular
 * Spring Boot
 * Spring Data JPA
 * Spring Security
+* JWT Token
+* Spring Validation
 * Spring Mail + Thymeleaf template-ovi
 * Project Lombok
+* JUnit
 * MySQL
 * Flyway Migracije
+* Angular
+* Angular material
