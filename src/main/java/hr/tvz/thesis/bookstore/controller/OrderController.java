@@ -47,7 +47,7 @@ public class OrderController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
     try {
-      return ResponseEntity.ok(orderService.save(order, true));
+      return ResponseEntity.status(HttpStatus.CREATED).body(orderService.save(order, true));
     } catch (MessagingException e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }

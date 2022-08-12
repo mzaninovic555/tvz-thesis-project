@@ -13,6 +13,7 @@ import hr.tvz.thesis.bookstore.domain.Author;
 import hr.tvz.thesis.bookstore.domain.User;
 import hr.tvz.thesis.bookstore.repository.UserRepository;
 import hr.tvz.thesis.bookstore.service.JwtService;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,7 +72,8 @@ class AuthorControllerTest {
             .with(csrf())
             .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+        .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -80,7 +82,8 @@ class AuthorControllerTest {
             get("/author/all")
                 .with(csrf()))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+        .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -91,7 +94,8 @@ class AuthorControllerTest {
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+        .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -115,7 +119,8 @@ class AuthorControllerTest {
             .content(mapper.writeValueAsString(mockAuthor))
             .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isCreated())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8))
         .andExpect(jsonPath("$.firstName").value("Test"))
         .andExpect(jsonPath("$.lastName").value("Tester"));
   }

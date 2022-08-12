@@ -18,6 +18,7 @@ import hr.tvz.thesis.bookstore.repository.BookRepository;
 import hr.tvz.thesis.bookstore.repository.UserRepository;
 import hr.tvz.thesis.bookstore.service.JwtService;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
@@ -103,7 +104,8 @@ class BookControllerTest {
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -112,7 +114,8 @@ class BookControllerTest {
             get("/books")
                 .with(csrf()))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -123,7 +126,8 @@ class BookControllerTest {
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -144,7 +148,8 @@ class BookControllerTest {
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -155,7 +160,8 @@ class BookControllerTest {
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -166,7 +172,8 @@ class BookControllerTest {
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -177,7 +184,8 @@ class BookControllerTest {
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -188,7 +196,8 @@ class BookControllerTest {
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -199,7 +208,8 @@ class BookControllerTest {
                 .with(csrf())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8));
   }
 
   @Test
@@ -213,7 +223,8 @@ class BookControllerTest {
                 .content(mapper.writeValueAsString(mockBook))
                 .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isCreated())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8))
         .andExpect(jsonPath("$.title").value("Testna knjiga"))
         .andExpect(jsonPath("$.description").value("testni opis"))
         .andExpect(jsonPath("$.price").value("10"));
@@ -251,7 +262,8 @@ class BookControllerTest {
                 .content(mapper.writeValueAsString(discount))
                 .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isCreated())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8))
         .andExpect(jsonPath("$.discountPrice").value("10"));
   }
 
@@ -273,7 +285,8 @@ class BookControllerTest {
                 .content(mapper.writeValueAsString(review))
                 .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isCreated())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(content().encoding(StandardCharsets.UTF_8))
         .andExpect(jsonPath("$.score").value("4"));
   }
 
