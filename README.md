@@ -1,7 +1,7 @@
 # TVZ Bookstore
 Završni rad za preddiplomski stručni studij na Tehničkom Veleučilištu u Zagrebu.<br>
 Backend projekta je izrađen u Javi, Frontend je izrađen pomoću Angular Javascripta.
-Za pokretanje aplikacije koristiti profile: `dev, flywaytestdata, flywayreset, ssl`.
+Za pokretanje aplikacije koristiti profile: `dev, flywaytestdata, flywayreset`.
 URL aplikacije: `https://localhost:4200`
 
 Korištene tehnologije:
