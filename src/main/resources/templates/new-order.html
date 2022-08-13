@@ -20,7 +20,7 @@
             <a th:src="@{https://localhost:4200/book/ID}" th:text="${bookQuantity.getFirst().title}"></a><br>
           </div>
           <div style="display: inline-block;">
-            <p style="margin-bottom: 0" th:text="${'Količina: ' + bookQuantity.getSecond()}">Količina: </p>
+            <p style="margin-bottom: 0" th:text="${'Količina: ' + bookQuantity.getSecond() + ', '}">Količina: </p>
           </div>
           <div style="display: inline-block;">
             <p style="margin-bottom: 0" th:text="${'Ukupna cijena: ' + (bookQuantity.getFirst().discount != null

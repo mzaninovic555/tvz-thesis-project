@@ -105,7 +105,7 @@ public class BookController {
 
   @PostMapping("/api/add/book/image/{bookId}")
   @Secured("ROLE_ADMIN")
-  public ResponseEntity<BookDTO> save(@RequestParam("image") MultipartFile bookImage,
+  public ResponseEntity<BookDTO> saveBookImage(@RequestParam("image") MultipartFile bookImage,
       @PathVariable Long bookId) throws IOException {
 
     String bookImageFileName = bookImage.getOriginalFilename();
@@ -120,7 +120,7 @@ public class BookController {
 
   @PostMapping("/api/add/discount")
   @Secured("ROLE_ADMIN")
-  public ResponseEntity<DiscountDTO> save(@RequestBody @Valid Discount discount) {
+  public ResponseEntity<DiscountDTO> saveDiscount(@RequestBody @Valid Discount discount) {
     DiscountDTO newDiscount = bookService.saveDiscount(discount);
 
     if (newDiscount == null) {

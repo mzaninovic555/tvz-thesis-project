@@ -12,6 +12,5 @@ public class Constants {
       "/api/add/"
   );
 
-  public static final String IMAGE_PATH =
-      "C:\\Users\\mzani\\Desktop\\Thesis\\src\\main\\bookstore-angular\\src\\assets\\books\\";
+  public static final String IMAGE_PATH = "C:\\Users\\mzani\\Desktop\\Thesis\\books\\";
 }
