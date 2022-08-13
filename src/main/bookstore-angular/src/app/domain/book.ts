@@ -47,7 +47,7 @@ export class Book {
   publishingYear: number;
   stock: number;
   isbn: string;
-  imagePath: string;
+  imagePath: any;
   dateAdded: Date;
   language: Language;
   author: Author;

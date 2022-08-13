@@ -39,6 +39,7 @@ export class BookDetailsComponent implements OnInit {
           },
           error: err => console.error(err),
           complete: () => {
+            this.book.imagePath = this.bookService.bypassImageSecurity(this.book);
             this.book?.categories.sort((a, b) => {
               return a.name.localeCompare(b.name);
             });

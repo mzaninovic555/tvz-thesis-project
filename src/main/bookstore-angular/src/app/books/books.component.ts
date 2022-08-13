@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Book} from "../domain/book";
 import {BookService} from "../services/book.service";
 import {Constants} from "../domain/constants";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-books',
@@ -16,7 +17,7 @@ export class BooksComponent implements OnInit {
   imagePath = Constants.IMAGE_PATH;
   isCompleted: boolean = false;
 
-  constructor(bookService: BookService) {
+  constructor(bookService: BookService, private sanitizer: DomSanitizer) {
     this.bookService = bookService;
     this.getBooks();
   }
@@ -37,6 +38,9 @@ export class BooksComponent implements OnInit {
           this.sortBooksByDateNewest();
           this.filterBooksByDiscount();
           this.isCompleted = true;
+          for (const book of this.books) {
+            book.imagePath = this.bookService.bypassImageSecurity(book);
+          }
         },
       })
   }
@@ -52,6 +56,10 @@ export class BooksComponent implements OnInit {
       }
       return 0;
     });
+
+    for (const book of this.newBooks) {
+      book.imagePath = this.bookService.bypassImageSecurity(book);
+    }
   }
 
   filterBooksByDiscount() {

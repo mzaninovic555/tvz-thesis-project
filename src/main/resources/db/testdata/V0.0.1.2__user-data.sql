@@ -1,7 +1,7 @@
 insert into `users`(id, username, password, email, first_name, last_name, phone_number, address, postal_code, city)
 values
     (1, 'admin', '$2a$12$OoSwiBE3.MtO5x83BkbUPOymhKLSeiXzPTmIxFKOJPIjnSZQLDNXy', 'admin@bookstore.hr', 'admin', 'admin', 000000000, '-', '-', '-'),
-    (2, 'mzaninovic', '$2a$12$1Vk8wB0F1gnzqD7WLr6lS.DBj0D3//o1cmbHbCBRzimLEA/n0iBoS', 'mzaninovi@tvz.hr', 'Marko', 'Zaninović', '0996794376', 'Ilica 23', '10000', 'Zagreb');
+    (2, 'mzaninovic', '$2a$12$1Vk8wB0F1gnzqD7WLr6lS.DBj0D3//o1cmbHbCBRzimLEA/n0iBoS', 'mzaninovi@bookstore.hr', 'Marko', 'Zaninović', '0996794376', 'Ilica 23', '10000', 'Zagreb');
 
 insert into role(id, name)
 values

@@ -7,7 +7,7 @@
       <li *ngFor="let item of cartItems" class="list-group-item">
         <div class="row align-items-center mb-2">
           <div class="col-lg-2">
-            <img src="{{imagePath}}/{{item.book.imagePath}}" alt="{{item.book.title}}">
+            <img [src]="item.book.imagePath" alt="{{item.book.title}}">
           </div>
           <div class="col-lg-3">
             <a routerLink="../book/{{item.book.id}}">{{item.book.title}}</a>

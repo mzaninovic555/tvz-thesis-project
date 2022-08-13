@@ -37,39 +37,59 @@ public class BookController {
 
   @GetMapping("books")
   public List<BookDTO> findAll() {
-    return bookService.findAll();
+    return bookService.findAll()
+        .stream()
+        .map(bookService::encodeImagePath)
+        .toList();
   }
+
 
   @GetMapping("books/{id}")
   public ResponseEntity<BookDTO> findById(@PathVariable final Long id) {
-    return bookService.findById(id)
-        .map(ResponseEntity::ok)
-        .orElseGet(() -> ResponseEntity.notFound().build());
+    BookDTO book = bookService.findById(id).map(bookService::encodeImagePath).orElse(null);
+    return book != null
+        ? ResponseEntity.ok(book)
+        : ResponseEntity.notFound().build();
   }
 
   @GetMapping("api/books/author/{id}")
   public List<BookDTO> findByAuthorId(@PathVariable final Long id) {
-    return bookService.findByAuthorId(id);
+    return bookService.findByAuthorId(id)
+        .stream()
+        .map(bookService::encodeImagePath)
+        .toList();
   }
 
   @GetMapping("api/books/publisher/{id}")
   public List<BookDTO> findByPublisherId(@PathVariable final Long id) {
-    return bookService.findByPublisherId(id);
+    return bookService.findByPublisherId(id)
+        .stream()
+        .map(bookService::encodeImagePath)
+        .toList();
   }
 
   @GetMapping("/api/books/search-by-title/{searchTerm}")
   public List<BookDTO> findByTitle(@PathVariable final String searchTerm) {
-    return bookService.findByTitle(searchTerm);
+    return bookService.findByTitle(searchTerm)
+        .stream()
+        .map(bookService::encodeImagePath)
+        .toList();
   }
 
   @GetMapping("/api/books/category/{id}")
   public List<BookDTO> findByCategoryId(@PathVariable final Long id) {
-    return bookService.findByCategoryId(id);
+    return bookService.findByCategoryId(id)
+        .stream()
+        .map(bookService::encodeImagePath)
+        .toList();
   }
 
   @GetMapping("/api/books/order/{id}")
   public List<BookDTO> findByOrderId(@PathVariable final Long id) {
-    return bookService.findByOrderId(id);
+    return bookService.findByOrderId(id)
+        .stream()
+        .map(bookService::encodeImagePath)
+        .toList();
   }
 
   @GetMapping("/api/languages/all")
@@ -113,5 +133,11 @@ public class BookController {
   @Secured({"ROLE_ADMIN", "ROLE_USER"})
   public ResponseEntity<ReviewDTO> saveReview(@RequestBody @Valid Review review) {
     return ResponseEntity.status(HttpStatus.CREATED).body(bookService.saveReview(review));
+  }
+
+
+  @GetMapping("/books/original-images")
+  public List<BookDTO> findAllOriginalImages() {
+    return bookService.findAll();
   }
 }

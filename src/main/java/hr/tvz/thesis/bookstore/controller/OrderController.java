@@ -1,7 +1,9 @@
 package hr.tvz.thesis.bookstore.controller;
 
 import hr.tvz.thesis.bookstore.domain.Order;
+import hr.tvz.thesis.bookstore.domain.dto.BookDTO;
 import hr.tvz.thesis.bookstore.domain.dto.OrderDTO;
+import hr.tvz.thesis.bookstore.service.BookService;
 import hr.tvz.thesis.bookstore.service.OrderService;
 import java.util.List;
 import javax.mail.MessagingException;
@@ -21,15 +23,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
   private final OrderService orderService;
+  private final BookService bookService;
 
-  public OrderController(OrderService orderService) {
+  public OrderController(OrderService orderService, BookService bookService) {
     this.orderService = orderService;
+    this.bookService = bookService;
   }
 
   @GetMapping("/orders/{id}")
   @Secured({"ROLE_USER", "ROLE_ADMIN"})
   public ResponseEntity<OrderDTO> getById(@PathVariable final Long id) {
     return orderService.getById(id)
+        .map(o -> {
+          for (BookDTO book : o.getBooks()) {
+            bookService.encodeImagePath(book);
+          }
+          return o;
+        })
         .map(ResponseEntity::ok)
         .orElseGet(() -> ResponseEntity.notFound().build());
   }
@@ -37,7 +47,13 @@ public class OrderController {
   @GetMapping("/api/orders/user/{userId}")
   @Secured({"ROLE_USER", "ROLE_ADMIN"})
   public List<OrderDTO> getByUserId(@PathVariable final Long userId) {
-    return orderService.getByUserId(userId);
+    return orderService.getByUserId(userId)
+        .stream()
+        .peek(o -> {
+          for (BookDTO book : o.getBooks()) {
+            bookService.encodeImagePath(book);
+          }
+        }).toList();
   }
 
   @PostMapping ("/api/orders/add")

@@ -40,6 +40,9 @@ export class CategoryComponent implements OnInit {
           console.log("Error")
         },
         complete: () => {
+          for (const book of this.books) {
+            book.imagePath = this.bookService.bypassImageSecurity(book);
+          }
           this.filteredBooks = this.books;
         }
       });

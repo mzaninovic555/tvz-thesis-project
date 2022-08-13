@@ -12,12 +12,18 @@ import hr.tvz.thesis.bookstore.repository.BookRepository;
 import hr.tvz.thesis.bookstore.repository.DiscountRepository;
 import hr.tvz.thesis.bookstore.repository.LanguageRepository;
 import hr.tvz.thesis.bookstore.repository.ReviewRepository;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import lombok.extern.log4j.Log4j2;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
 @Service
+@Log4j2
 public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
@@ -124,5 +130,23 @@ public class BookServiceImpl implements BookService {
   @Override
   public ReviewDTO saveReview(Review review) {
     return DTOConverters.mapReviewToReviewDTO(reviewRepository.save(review));
+  }
+
+  @Override
+  public BookDTO encodeImagePath(BookDTO bookDTO) {
+    try {
+      bookDTO.setImagePath(convertImageToBase64(bookDTO.getImagePath()));
+    } catch (IOException ex) {
+      log.error(ex);
+    }
+
+    return bookDTO;
+  }
+
+  private String convertImageToBase64(String imagePath) throws IOException {
+    File image = new File("C:\\Users\\mzani\\Desktop\\Thesis\\books\\" + imagePath);
+
+    byte[] imageContent = FileUtils.readFileToByteArray(image);
+    return Base64.getEncoder().encodeToString(imageContent);
   }
 }

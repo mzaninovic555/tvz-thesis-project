@@ -37,4 +37,6 @@ public interface BookService {
   DiscountDTO saveDiscount(Discount discount);
 
   ReviewDTO saveReview(Review review);
+
+  BookDTO encodeImagePath(BookDTO bookDTO);
 }

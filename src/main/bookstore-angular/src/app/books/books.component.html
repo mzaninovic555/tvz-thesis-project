@@ -11,7 +11,7 @@
               <ng-container *ngIf="i < 6">
                 <a routerLink="book/{{book.id}}" class="">
                   <div class="img-container">
-                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                    <img [src]="book.imagePath" alt="{{book.title}}">
                   </div>
                 </a>
                 <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -31,7 +31,7 @@
               <ng-container *ngIf="i < 18">
                 <a routerLink="book/{{book.id}}" class="">
                   <div class="img-container">
-                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                    <img [src]="book.imagePath" alt="{{book.title}}" >
                   </div>
                 </a>
                 <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -51,7 +51,7 @@
               <ng-container *ngIf="i < 12">
                 <a routerLink="book/{{book.id}}" class="">
                   <div class="img-container">
-                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                    <img [src]="book.imagePath" alt="{{book.title}}" >
                   </div>
                 </a>
                 <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -88,7 +88,7 @@
               <ng-container *ngIf="i < 6">
                 <a routerLink="book/{{book.id}}" class="">
                   <div class="img-container">
-                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                    <img [src]="book.imagePath" alt="{{book.title}}" >
                   </div>
                 </a>
                 <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -108,7 +108,7 @@
               <ng-container *ngIf="i < 18">
                 <a routerLink="book/{{book.id}}" class="">
                   <div class="img-container">
-                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                    <img [src]="book.imagePath" alt="{{book.title}}" >
                   </div>
                 </a>
                 <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -128,7 +128,7 @@
               <ng-container *ngIf="i < 12">
                 <a routerLink="book/{{book.id}}" class="">
                   <div class="img-container">
-                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                    <img [src]="book.imagePath" alt="{{book.title}}" >
                   </div>
                 </a>
                 <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -166,7 +166,7 @@
                 <a routerLink="book/{{book.id}}" class="">
                   <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
                   <div class="img-container">
-                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                    <img [src]="book.imagePath" alt="{{book.title}}" >
                   </div>
                 </a>
                 <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -187,7 +187,7 @@
                 <a routerLink="book/{{book.id}}" class="">
                   <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
                   <div class="img-container">
-                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                    <img [src]="book.imagePath" alt="{{book.title}}" >
                   </div>
                 </a>
                 <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>
@@ -208,7 +208,7 @@
                 <a routerLink="book/{{book.id}}" class="">
                   <span class="discount-icon p-2 bg-danger border border-light rounded-circle"><i class="fa-solid fa-percent text-white bg-danger"></i></span>
                   <div class="img-container">
-                    <img src="{{imagePath}}/{{book.imagePath}}" alt="{{book.title}}" >
+                    <img [src]="book.imagePath" alt="{{book.title}}" >
                   </div>
                 </a>
                 <a routerLink="book/{{book.id}}" class="book-title"> {{book.title}} </a> <br>

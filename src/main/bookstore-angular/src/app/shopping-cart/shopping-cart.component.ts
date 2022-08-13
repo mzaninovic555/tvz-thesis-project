@@ -20,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
   localStorageCart: string[] = localStorage['cart'];
   cartItems: CartItem[] = [];
   books!: Book[];
+  booksOriginalImageName!: Book[];
   totalCartPrice: number = 0.00;
   imagePath = Constants.IMAGE_PATH;
   loggedInUser?: User;
@@ -65,6 +66,10 @@ export class ShoppingCartComponent implements OnInit {
     this.cartItems.sort((a, b) => {
       return b.amount - a.amount;
     });
+
+    for (const item of this.cartItems) {
+      item.book.imagePath = this.bookService.bypassImageSecurity(item.book);
+    }
   }
 
   fetchLoggedInUser() {
@@ -75,9 +80,18 @@ export class ShoppingCartComponent implements OnInit {
         .subscribe({
           next: user => {
             this.loggedInUser = user;
-          }
+          },
+          error: err => console.error(err),
+          complete: () => this.fetchOriginalBookImages()
         });
     }
+  }
+
+  fetchOriginalBookImages() {
+    this.bookService.getBooksOriginalImages()
+      .subscribe({
+        next: (originalBookImages) => this.booksOriginalImageName = originalBookImages
+      })
   }
 
   amountChanged(book: Book, event: any) {
@@ -101,7 +115,8 @@ export class ShoppingCartComponent implements OnInit {
       let bookArray: Book[] = [];
       for (let cartItem of this.cartItems) {
         for (let i of new Array(+cartItem.amount)) {
-          bookArray.push(cartItem.book);
+          let orderBook = this.booksOriginalImageName.filter(b => b.id === cartItem.book.id)[0];
+          bookArray.push(orderBook);
         }
       }
       let newOrder = new Order(

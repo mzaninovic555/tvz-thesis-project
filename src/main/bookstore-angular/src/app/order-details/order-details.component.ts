@@ -33,7 +33,9 @@ export class OrderDetailsComponent implements OnInit {
           this.order = order;
         },
         error: err => console.error(err),
-        complete: () => this.fillBooks()
+        complete: () => {
+          this.fillBooks();
+        }
       })
   }
 
@@ -47,7 +49,9 @@ export class OrderDetailsComponent implements OnInit {
           this.books = books;
         },
         error: err => console.error(err),
-        complete: () => this.fillOrderItems()
+        complete: () => {
+          this.fillOrderItems();
+        }
       });
   }
 
@@ -59,6 +63,9 @@ export class OrderDetailsComponent implements OnInit {
       let numberOfElems = orderBooks.filter(b => b.id === item).length;
       let currentBook = orderBooks.filter(b => item === b.id)[0];
       this.orderItems.push(new CartItem(currentBook, numberOfElems));
+    }
+    for (const item of this.orderItems) {
+      item.book.imagePath = this.bookService.bypassImageSecurity(item.book);
     }
   }
 

@@ -9,6 +9,7 @@ import {Category} from "../domain/category";
 import {Language} from "../domain/language";
 import {Discount} from "../domain/discount";
 import {Review} from "../domain/review";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +22,24 @@ export class BookService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
+  bypassImageSecurity(book: Book) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + book.imagePath);
+  }
 
   //GET REQUESTS
 
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.URL}/books`)
+    .pipe(
+        tap(_ => console.log('Fetched books')),
+        catchError(this.handleError<Book[]>('getBooks', []))
+    );
+  }
+
+  getBooksOriginalImages(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.URL}/books/original-images`)
     .pipe(
         tap(_ => console.log('Fetched books')),
         catchError(this.handleError<Book[]>('getBooks', []))
