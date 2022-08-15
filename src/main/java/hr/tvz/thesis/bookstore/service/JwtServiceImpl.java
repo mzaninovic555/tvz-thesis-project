@@ -55,6 +55,7 @@ public class JwtServiceImpl implements JwtService {
     return Jwts
         .builder()
         .signWith(SignatureAlgorithm.HS512, jwtSecret)
+        .setHeaderParam("typ", "JWT")
         .setSubject(user.getUsername())
         .setExpiration(new Date(expiration.toEpochMilli()))
         .setIssuedAt(new Date())
