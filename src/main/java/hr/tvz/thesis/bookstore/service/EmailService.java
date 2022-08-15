@@ -13,4 +13,6 @@ public interface EmailService {
       throws MessagingException;
 
   void sendRegistrationEmail(String to, String subject, User user) throws MessagingException;
+
+  void sendChangePasswordEmail(String to, String subject, User user) throws MessagingException;
 }

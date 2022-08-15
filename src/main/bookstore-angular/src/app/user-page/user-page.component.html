@@ -23,6 +23,14 @@
                   aria-controls="orders">Narudžbe
           </button>
         </li>
+        <li class="nav-item">
+          <button type="button" class="btn btn-success"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#changePassword"
+                  aria-expanded="false"
+                  aria-controls="changePassword">Promjena lozinke
+          </button>
+        </li>
         <li class="nav-item" *ngIf="authenticationService.isUserAdmin()">
           <button type="button" class="btn btn-success"
                   data-bs-toggle="collapse"
@@ -100,6 +108,26 @@
           </a>
         </li>
       </ul>
+    </div>
+
+    <div class="col-10 collapse" id="changePassword" data-bs-parent="#group">
+      <h5 class="pb-3 border-bottom mb-3">Novi autor</h5>
+      <div class="row g-3 align-items-center">
+        <form class="w-50" #newPasswordForm="ngForm" (ngSubmit)="submitChangePassword(newPassword.value)">
+          <div class="mb-3">
+            <label for="newPassword" class="form-label">Nova lozinka </label>
+            <input type="newPassword" class="form-control" id="newPassword" aria-describedby="newPassword"
+                   ngModel name="newPassword" #newPassword="ngModel"
+                   required minlength="7" maxlength="32">
+            <div class="text-danger" *ngIf="newPassword.touched">
+              <div *ngIf="newPassword.getError('required')">Lozinka je obavezna.</div>
+              <div *ngIf="newPassword.getError('minlength')">Lozinka mora imati minimalno 7 znakova.</div>
+              <div *ngIf="newPassword.getError('maxlength')">Lozinka mora imati maksimalno 32 znaka.</div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-outline-success" [disabled]="!newPasswordForm.form.valid">Submit</button>
+        </form>
+      </div>
     </div>
 
     <div class="col-10 collapse" id="allUsers" data-bs-parent="#group" *ngIf="authenticationService.isUserAdmin()">

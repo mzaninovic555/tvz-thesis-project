@@ -194,7 +194,6 @@ export class BookService {
   }
 
   addBookImage(bookId: number, bookImage: FormData): Observable<any> {
-    console.log(bookImage);
     return this.http.post(`${this.URL}/api/add/book/image/${bookId}`, bookImage);
   }
 
@@ -204,6 +203,10 @@ export class BookService {
         tap((newreview: Review) => console.log(`added review ${newreview}`)),
         catchError(this.handleError<Review>('addReview'))
     );
+  }
+
+  changePassword(newPassword: string, userId: number) {
+    return this.http.post<Review>(`${this.URL}/api/user/change-password/${userId}`, newPassword, this.httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

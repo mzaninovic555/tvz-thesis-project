@@ -21,5 +21,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
         set password = :newPassword
         where id = :userId
       """, nativeQuery = true)
-  int updatePassword(Long userId, String newPassword);
+  Integer updatePassword(Long userId, String newPassword);
 }

@@ -1,6 +1,5 @@
 package hr.tvz.thesis.bookstore.domain.dto;
 
-import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +13,6 @@ import lombok.Setter;
 @Builder
 public class UserDTO {
 
-  @Id
   private Long id;
 
   private String username;

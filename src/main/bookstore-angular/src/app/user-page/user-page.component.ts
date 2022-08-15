@@ -269,4 +269,13 @@ export class UserPageComponent implements OnInit {
   changeBookImage(event: any) {
     this.bookImage = event.target.files[0];
   }
+
+  submitChangePassword(newPassword: string) {
+    if (this.user && this.authenticationService.isUserAuthenticated()) {
+      this.bookService.changePassword(newPassword, this.user.id)
+        .subscribe({
+          next: returnValue => this.router.navigate(["/"])
+        })
+    }
+  }
 }

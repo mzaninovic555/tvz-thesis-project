@@ -60,4 +60,21 @@ public class EmailServiceImpl implements EmailService {
     helper.setText(html, true);
     javaMailSender.send(message);
   }
+
+  @Override
+  public void sendChangePasswordEmail(String to, String subject, User user) throws MessagingException {
+    MimeMessage message = javaMailSender.createMimeMessage();
+    MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");
+
+    helper.setFrom("tvzbookstoremail@gmail.com");
+    helper.setTo(to);
+    helper.setSubject(subject);
+
+    Context context = new Context();
+    context.setVariable("user", user);
+
+    String html = springTemplateEngine.process("/changePassword.html", context);
+    helper.setText(html, true);
+    javaMailSender.send(message);
+  }
 }
