@@ -31,6 +31,9 @@ export class AllBooksComponent implements OnInit {
           console.log("Error")
         },
         complete: () => {
+          for (const book of this.books) {
+            book.imagePath = this.bookService.bypassImageSecurity(book);
+          }
           this.filteredBooks = this.books;
           this.filteredBooks.sort((a, b) => {
             return a.title.localeCompare(b.title);
