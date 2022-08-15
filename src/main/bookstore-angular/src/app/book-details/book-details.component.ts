@@ -21,6 +21,7 @@ export class BookDetailsComponent implements OnInit {
   reviewAverage!: number;
   loggedInUser!: User;
   isUserLeaveReview: boolean = false;
+  originalImagePath!: string;
 
   constructor(private route: ActivatedRoute,
               private bookService: BookService,
@@ -39,6 +40,7 @@ export class BookDetailsComponent implements OnInit {
           },
           error: err => console.error(err),
           complete: () => {
+            this.originalImagePath = this.book.imagePath;
             this.book.imagePath = this.bookService.bypassImageSecurity(this.book);
             this.book?.categories.sort((a, b) => {
               return a.name.localeCompare(b.name);
@@ -92,6 +94,7 @@ export class BookDetailsComponent implements OnInit {
 
   newReview(reviewValue: number) {
     if (reviewValue) {
+      this.book.imagePath = this.originalImagePath;
       let newReview = new Review(
           0,
           reviewValue,

@@ -42,7 +42,7 @@ export class BookService {
     return this.http.get<Book[]>(`${this.URL}/books/original-images`)
     .pipe(
         tap(_ => console.log('Fetched books')),
-        catchError(this.handleError<Book[]>('getBooks', []))
+        catchError(this.handleError<Book[]>('getBooksOriginalImages', []))
     );
   }
 
@@ -50,7 +50,7 @@ export class BookService {
     return this.http.get<Book>(`${this.URL}/books/${id}`)
     .pipe(
         tap(_ => console.log('Fetched books')),
-        catchError(this.handleError<Book>('getBook'))
+        catchError(this.handleError<Book>('getBookById'))
     );
   }
 

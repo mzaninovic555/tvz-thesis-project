@@ -11,7 +11,7 @@ import {ForbiddenComponent} from "./forbidden/forbidden.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AllBooksComponent} from "./all-books/all-books.component";
 import {UserPageComponent} from "./user-page/user-page.component";
-import {LoggedInGuard} from "./security/logged-in-guard";
+import {AuthenticationGuard} from "./security/authentication-guard.service";
 import {OrderDetailsComponent} from "./order-details/order-details.component";
 import {InternalErrorComponent} from "./internal-error/internal-error.component";
 import {BadRequestComponent} from "./bad-request/bad-request.component";
@@ -54,12 +54,12 @@ const routes: Routes = [
   {
     path: 'user/:username',
     component: UserPageComponent,
-    canActivate: [LoggedInGuard]
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'order/:id',
     component: OrderDetailsComponent,
-    canActivate: [LoggedInGuard]
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'authentication/register',
