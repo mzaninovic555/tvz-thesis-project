@@ -22,7 +22,7 @@
           </div>
           <div class="mb-3">
             <label for="newPassword" class="form-label">Lozinka</label>
-            <input type="newPassword" class="form-control" id="newPassword" aria-describedby="newPassword"
+            <input type="password" class="form-control" id="newPassword" aria-describedby="newPassword"
                    ngModel name="newPassword" #newPassword="ngModel"
                    required minlength="7" maxlength="32">
             <div class="text-danger" *ngIf="newPassword.touched">
