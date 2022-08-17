@@ -12,12 +12,13 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class BooksComponent implements OnInit {
   bookService: BookService;
   books!: Book[];
+  booksPopularity!: Book[];
   newBooks!: Book[];
   discountBooks!: Book[];
   imagePath = Constants.IMAGE_PATH;
   isCompleted: boolean = false;
 
-  constructor(bookService: BookService, private sanitizer: DomSanitizer) {
+  constructor(bookService: BookService) {
     this.bookService = bookService;
     this.getBooks();
   }
@@ -41,8 +42,23 @@ export class BooksComponent implements OnInit {
           for (const book of this.books) {
             book.imagePath = this.bookService.bypassImageSecurity(book);
           }
+          this.getBooksByPopularity();
         },
       })
+  }
+
+  getBooksByPopularity() {
+    this.bookService.getBooksByOrderCount()
+    .subscribe({
+      next: (books) => {
+        this.booksPopularity = books;
+      },
+      complete: () => {
+        for (const book of this.booksPopularity) {
+          book.imagePath = this.bookService.bypassImageSecurity(book);
+        }
+      }
+    });
   }
 
   sortBooksByDateNewest() {

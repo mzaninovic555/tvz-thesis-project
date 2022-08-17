@@ -43,6 +43,14 @@ public class BookController {
         .toList();
   }
 
+  @GetMapping("books/popularity")
+  public List<BookDTO> findAllByOrderCount() {
+    return bookService.findAllByOrderCount()
+        .stream()
+        .map(bookService::encodeImagePath)
+        .toList();
+  }
+
 
   @GetMapping("books/{id}")
   public ResponseEntity<BookDTO> findById(@PathVariable final Long id) {

@@ -7,7 +7,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="row align-items-end">
-            <div *ngFor="let book of books; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+            <div *ngFor="let book of booksPopularity; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
               <ng-container *ngIf="i < 6">
                 <a routerLink="book/{{book.id}}" class="">
                   <div class="img-container">
@@ -25,9 +25,9 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item" *ngIf="books.length > 12">
+        <div class="carousel-item" *ngIf="booksPopularity.length > 12">
           <div class="row align-items-end">
-            <div *ngFor="let book of books | slice:12; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+            <div *ngFor="let book of booksPopularity | slice:12; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
               <ng-container *ngIf="i < 18">
                 <a routerLink="book/{{book.id}}" class="">
                   <div class="img-container">
@@ -45,9 +45,9 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item" *ngIf="books.length > 6">
+        <div class="carousel-item" *ngIf="booksPopularity.length > 6">
           <div class="row align-items-end">
-            <div *ngFor="let book of books | slice:6; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
+            <div *ngFor="let book of booksPopularity | slice:6; let i = index" class="col-lg-2 col-md-4 col-sm-6 book-container text-center">
               <ng-container *ngIf="i < 12">
                 <a routerLink="book/{{book.id}}" class="">
                   <div class="img-container">
@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-      <ng-container *ngIf="books.length > 6">
+      <ng-container *ngIf="booksPopularity.length > 6">
         <button class="carousel-control-prev" type="button" data-bs-target="#popularBooksCarousel" data-bs-slide="prev">
           <i class="fa-solid fa-angle-left"></i>
           <span class="visually-hidden">Previous</span>

@@ -1,5 +1,6 @@
 package hr.tvz.thesis.bookstore.service;
 
+import hr.tvz.thesis.bookstore.common.Constants;
 import hr.tvz.thesis.bookstore.common.DTOConverters;
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Discount;
@@ -42,6 +43,14 @@ public class BookServiceImpl implements BookService {
   @Override
   public List<BookDTO> findAll() {
     return bookRepository.findAll()
+        .stream()
+        .map(DTOConverters::mapBookToBookDTO)
+        .toList();
+  }
+
+  @Override
+  public List<BookDTO> findAllByOrderCount() {
+    return bookRepository.findBooksByOrderCount()
         .stream()
         .map(DTOConverters::mapBookToBookDTO)
         .toList();
@@ -144,7 +153,7 @@ public class BookServiceImpl implements BookService {
   }
 
   private String convertImageToBase64(String imagePath) throws IOException {
-    File image = new File("C:\\Users\\mzani\\Desktop\\Thesis\\books\\" + imagePath);
+    File image = new File(Constants.IMAGE_PATH + imagePath);
 
     byte[] imageContent = FileUtils.readFileToByteArray(image);
     return Base64.getEncoder().encodeToString(imageContent);

@@ -38,6 +38,14 @@ export class BookService {
     );
   }
 
+  getBooksByOrderCount(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.URL}/books/popularity`)
+    .pipe(
+        tap(_ => console.log('Fetched books by order count')),
+        catchError(this.handleError<Book[]>('getBooksByOrderCount', []))
+    );
+  }
+
   getBooksOriginalImages(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.URL}/books/original-images`)
     .pipe(
