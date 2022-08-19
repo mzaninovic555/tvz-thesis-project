@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
       .subscribe({
         next: (loginResponse: JwtToken) => {
           this.authenticationService.saveJwtToLocalStorage(loginResponse.jwt);
-          window.location.reload()
+          this.router.navigate(['/']);
         },
         error: () => {
           alert("Krivo korisničko ime ili lozinka.")
