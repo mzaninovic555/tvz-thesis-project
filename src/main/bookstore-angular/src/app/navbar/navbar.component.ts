@@ -1,8 +1,9 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {Login} from "../security/login";
 import {AuthenticationService} from "../services/authentication.service";
 import {JwtToken} from "../domain/jwt-token";
+import {filter, Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +16,8 @@ export class NavbarComponent implements OnInit {
   cartItems!: number
   login = new Login('', '');
   authenticationError: boolean = false;
+  wasLoggedIn: boolean = false;
+  wrongCredentials: boolean = false;
 
   constructor(private router: Router, public authenticationService: AuthenticationService) {
     this.cartItems = JSON.parse(localStorage.getItem('cart') || '[]').length;
@@ -22,6 +25,12 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationStart))
+      .subscribe(e => {
+        this.wrongCredentials = false;
+        this.wasLoggedIn = false;
+      });
   }
 
   @HostListener('document:keypress', ['$event'])
@@ -32,24 +41,23 @@ export class NavbarComponent implements OnInit {
   }
 
   searchForBooks() {
-
     if (this.book !== "") {
       this.router.navigate([`book/search/${this.book}`]);
     }
   }
 
   loginFunction() {
-
     this.authenticationError = false;
-
     this.authenticationService.login(this.login)
       .subscribe({
         next: (loginResponse: JwtToken) => {
+          this.wasLoggedIn = true;
+          this.wrongCredentials = false;
           this.authenticationService.saveJwtToLocalStorage(loginResponse.jwt);
           this.router.navigate(['/']);
         },
         error: () => {
-          alert("Krivo korisničko ime ili lozinka.")
+          this.wrongCredentials = true;
         }
       })
   }

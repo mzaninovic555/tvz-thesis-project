@@ -59,5 +59,11 @@
       </ul>
     </div>
   </nav>
+  <div *ngIf="wasLoggedIn" class="alert alert-success" role="alert">
+    Pozdrav {{authenticationService.getAuthenticatedUserUsername()}}, uspješno ste prijavljeni!
+  </div>
+  <div *ngIf="wrongCredentials" class="alert alert-danger" role="alert">
+    Unijeli ste pogrešno korisničko ime ili lozinku.
+  </div>
 </div>
 <br>
