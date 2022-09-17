@@ -285,10 +285,10 @@
               </div>
             </div>
             <div class="col">
-              <label for="format" class="form-label">Format, cm (MMxNN)</label>
+              <label for="format" class="form-label">Format, mm (MMMxNNN)</label>
               <input type="text" class="form-control" id="format" aria-describedby="format"
                      ngModel name="bookFormat" #bookFormat="ngModel"
-                     required pattern="^\d\d?x\d\d?$">
+                     required pattern="^\d\d?\d?x\d\d?\d?$">
               <div class="" *ngIf="bookFormat.touched">
                 <div class="text-danger" *ngIf="bookFormat.getError('required')">Format je obavezan.</div>
                 <div class="text-danger" *ngIf="bookFormat.getError('pattern')">Format knjige mora biti u zadanom formatu.</div>
