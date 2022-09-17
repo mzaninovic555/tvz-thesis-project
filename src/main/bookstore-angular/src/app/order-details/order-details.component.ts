@@ -20,6 +20,7 @@ export class OrderDetailsComponent implements OnInit {
   searchOrder!: string;
   orderItems: CartItem[] = []
   imagePath = Constants.IMAGE_PATH;
+  euroRate: number = Constants.EURO_RATE;
 
   constructor(private route: ActivatedRoute,
               private orderService: OrderService,

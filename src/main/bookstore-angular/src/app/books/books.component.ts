@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Book} from "../domain/book";
 import {BookService} from "../services/book.service";
 import {Constants} from "../domain/constants";
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-books',
@@ -17,6 +16,7 @@ export class BooksComponent implements OnInit {
   discountBooks!: Book[];
   imagePath = Constants.IMAGE_PATH;
   isCompleted: boolean = false;
+  euroRate: number = Constants.EURO_RATE;
 
   constructor(bookService: BookService) {
     this.bookService = bookService;

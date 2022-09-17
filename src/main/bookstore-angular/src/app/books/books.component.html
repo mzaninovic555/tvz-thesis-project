@@ -18,9 +18,9 @@
                 <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
                 <ng-container *ngIf="book.discountPrice != 0">
                   <br><span class="discount"> {{book.price}} kn </span>
-                  <span class="discount-price"> {{book.discountPrice}} kn </span>
+                  <span class="discount-price"> {{book.discountPrice}} kn, {{(book.discountPrice/euroRate).toFixed(2)}} € </span>
                 </ng-container>
-                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn, {{(book.price/euroRate).toFixed(2)}} € </p>
               </ng-container>
             </div>
           </div>
@@ -38,9 +38,9 @@
                 <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
                 <ng-container *ngIf="book.discountPrice != 0">
                   <br><span class="discount"> {{book.price}} kn </span>
-                  <span class="discount-price"> {{book.discountPrice}} kn </span>
+                  <span class="discount-price"> {{book.discountPrice}} kn, {{(book.discountPrice/euroRate).toFixed(2)}} € </span>
                 </ng-container>
-                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn, {{(book.price/euroRate).toFixed(2)}} € </p>
               </ng-container>
             </div>
           </div>
@@ -58,9 +58,9 @@
                 <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
                 <ng-container *ngIf="book.discountPrice != 0">
                   <br><span class="discount"> {{book.price}} kn </span>
-                  <span class="discount-price"> {{book.discountPrice}} kn </span>
+                  <span class="discount-price"> {{book.discountPrice}} kn, {{(book.discountPrice/euroRate).toFixed(2)}} € </span>
                 </ng-container>
-                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn, {{(book.price/euroRate).toFixed(2)}} € </p>
               </ng-container>
             </div>
           </div>
@@ -95,9 +95,9 @@
                 <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
                 <ng-container *ngIf="book.discountPrice != 0">
                   <br><span class="discount"> {{book.price}} kn </span>
-                  <span class="discount-price"> {{book.discountPrice}} kn </span>
+                  <span class="discount-price"> {{book.discountPrice}} kn, {{(book.discountPrice/euroRate).toFixed(2)}} € </span>
                 </ng-container>
-                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn, {{(book.price/euroRate).toFixed(2)}} € </p>
               </ng-container>
             </div>
           </div>
@@ -115,9 +115,9 @@
                 <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
                 <ng-container *ngIf="book.discountPrice != 0">
                   <br><span class="discount"> {{book.price}} kn </span>
-                  <span class="discount-price"> {{book.discountPrice}} kn </span>
+                  <span class="discount-price"> {{book.discountPrice}} kn, {{(book.discountPrice/euroRate).toFixed(2)}} € </span>
                 </ng-container>
-                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn, {{(book.price/euroRate).toFixed(2)}} € </p>
               </ng-container>
             </div>
           </div>
@@ -135,9 +135,9 @@
                 <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
                 <ng-container *ngIf="book.discountPrice != 0">
                   <br><span class="discount"> {{book.price}} kn </span>
-                  <span class="discount-price"> {{book.discountPrice}} kn </span>
+                  <span class="discount-price"> {{book.discountPrice}} kn, {{(book.discountPrice/euroRate).toFixed(2)}} € </span>
                 </ng-container>
-                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn, {{(book.price/euroRate).toFixed(2)}} € </p>
               </ng-container>
             </div>
           </div>
@@ -173,9 +173,9 @@
                 <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
                 <ng-container *ngIf="book.discountPrice != 0">
                   <br><span class="discount"> {{book.price}} kn </span>
-                  <span class="discount-price"> {{book.discountPrice}} kn </span>
+                  <span class="discount-price"> {{book.discountPrice}} kn, {{(book.discountPrice/euroRate).toFixed(2)}} € </span>
                 </ng-container>
-                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn, {{(book.price/euroRate).toFixed(2)}} € </p>
               </ng-container>
             </div>
           </div>
@@ -194,9 +194,9 @@
                 <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
                 <ng-container *ngIf="book.discountPrice != 0">
                   <br><span class="discount"> {{book.price}} kn </span>
-                  <span class="discount-price"> {{book.discountPrice}} kn </span>
+                  <span class="discount-price"> {{book.discountPrice}} kn, {{(book.discountPrice/euroRate).toFixed(2)}} € </span>
                 </ng-container>
-                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn, {{(book.price/euroRate).toFixed(2)}} € </p>
               </ng-container>
             </div>
           </div>
@@ -215,9 +215,9 @@
                 <a routerLink="author/{{book.author.id}}" class="book-author"> {{book.author.firstName}} {{book.author.lastName}} </a>
                 <ng-container *ngIf="book.discountPrice != 0">
                   <br><span class="discount"> {{book.price}} kn </span>
-                  <span class="discount-price"> {{book.discountPrice}} kn </span>
+                  <span class="discount-price"> {{book.discountPrice}} kn, {{(book.discountPrice/euroRate).toFixed(2)}} € </span>
                 </ng-container>
-                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn </p>
+                <p *ngIf="book.discountPrice == 0"> {{book.price}} kn, {{(book.price/euroRate).toFixed(2)}} € </p>
               </ng-container>
             </div>
           </div>

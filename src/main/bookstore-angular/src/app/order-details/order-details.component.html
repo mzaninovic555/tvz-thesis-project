@@ -2,7 +2,7 @@
   <div class="alert alert-success">
     <h4 class="alert-heading">Detalji o narudžbi #{{fillZeroes(order.id)}}</h4>
     <p class="mb-0">Datum i vrijeme narudžbe: {{order.datePlaced | date: 'dd.MM.yyyy., HH:mm'}}</p>
-    <p class="mb-0">Ukupna cijena: {{order.totalPrice}} kn</p>
+    <p class="mb-0">Ukupna cijena: {{order.totalPrice}} kn, {{(order.totalPrice/euroRate).toFixed(2)}} €</p>
     <p class="mb-0" *ngIf="!authenticationService.isUserAdmin()">Korisnik: {{order.user.firstName}} {{order.user.lastName}}</p>
     <p *ngIf="authenticationService.isUserAdmin()">Korisnik: <a routerLink="../../user/{{order.user.username}}" class="mb-0 alert-link">{{order.user.firstName}} {{order.user.lastName}}</a></p>
   </div>
@@ -16,11 +16,13 @@
           <div class="col-lg-3">
             <a routerLink="../../book/{{item.book.id}}">{{item.book.title}}</a>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-2">
             <p class="mb-0">Količina: {{item.amount}}</p>
           </div>
-          <div class="col-lg-4">
-            <p class="mb-0">Ukupna cijena: {{(item.book.discountPrice !== 0 ? item.book.discountPrice * item.amount : item.book.price * item.amount).toFixed(2)}} kn</p>
+          <div class="col-lg-5">
+            <p class="mb-0">Ukupna cijena: {{(item.book.discountPrice !== 0 ? item.book.discountPrice * item.amount : item.book.price * item.amount).toFixed(2)}} kn,
+              {{(item.book.discountPrice !== 0 ? (item.book.discountPrice/euroRate) * item.amount : (item.book.price/euroRate) * item.amount).toFixed(2)}} €
+            </p>
           </div>
         </div>
       </li>

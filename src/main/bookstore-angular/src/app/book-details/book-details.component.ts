@@ -22,6 +22,7 @@ export class BookDetailsComponent implements OnInit {
   loggedInUser!: User;
   isUserLeaveReview: boolean = false;
   originalImagePath!: string;
+  euroRate: number = Constants.EURO_RATE;
 
   constructor(private route: ActivatedRoute,
               private bookService: BookService,
@@ -61,10 +62,15 @@ export class BookDetailsComponent implements OnInit {
     let bookQuantity = cartItems.filter(b => b === bookId).length;
 
     if (this.cartAmount) {
-      if (this.cartAmount > this.book!.stock || bookQuantity + this.cartAmount > this.book!.stock) {
-        this.cartAmount = this.book!.stock;
+      if (this.cartAmount > 0) {
+        if (this.cartAmount > this.book!.stock || bookQuantity + this.cartAmount > this.book!.stock) {
+          this.cartAmount = this.book!.stock;
+        }
+        for (const i of new Array(this.cartAmount)) {
+          cartItems.push(bookId);
+        }
       }
-      for (const i of new Array(this.cartAmount)) {
+      else {
         cartItems.push(bookId);
       }
     } else {

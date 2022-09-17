@@ -1,8 +1,10 @@
 package hr.tvz.thesis.bookstore.service;
 
+import hr.tvz.thesis.bookstore.common.Constants;
 import hr.tvz.thesis.bookstore.domain.Book;
 import hr.tvz.thesis.bookstore.domain.Order;
 import hr.tvz.thesis.bookstore.domain.User;
+import java.math.RoundingMode;
 import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -38,6 +40,9 @@ public class EmailServiceImpl implements EmailService {
     context.setVariable("user", order.getUser().getFirstName() + " " + order.getUser().getLastName());
     context.setVariable("order", order);
     context.setVariable("bookIdQuantity", bookIdQuantity);
+    context.setVariable("totalPriceEuro",
+        order.getTotalPrice().divide(Constants.EURO_RATE, 2, RoundingMode.CEILING));
+    context.setVariable("euroRate", Constants.EURO_RATE);
 
     String html = springTemplateEngine.process("/new-order.html", context);
     helper.setText(html, true);

@@ -17,10 +17,11 @@
               <input type="number" class="form-control" value="{{item.amount}}" (change)="amountChanged(item.book, $event)">
             </div>
           </div>
-          <div class="col-lg-2">
-            <span>{{(item.book.discountPrice !== 0 ? item.book.discountPrice * item.amount : item.book.price * item.amount).toFixed(2)}} kn</span>
+          <div class="col-lg-3">
+            <span>{{(item.book.discountPrice !== 0 ? item.book.discountPrice * item.amount : item.book.price * item.amount).toFixed(2)}} kn, </span>
+            <span>{{(item.book.discountPrice !== 0 ? (item.book.discountPrice/euroRate) * item.amount : (item.book.price/euroRate) * item.amount).toFixed(2)}} €</span>
           </div>
-          <div class="col-lg-2">
+          <div class="col-lg-1">
             <button type="button" class="btn btn-danger" (click)="removeItem(item.book.id)">
               <i class="fa-solid fa-xmark"></i>
             </button>
@@ -38,7 +39,7 @@
             </button>
             <span class="ms-5 col-2">Morate biti prijavljeni za kupnju.</span>
           </ng-container>
-          <span class="ms-5 col-lg-4 col-md-4 col-sm-4">Ukupno: {{this.totalCartPrice.toFixed(2)}} kn</span>
+          <span class="ms-5 col-lg-4 col-md-4 col-sm-4">Ukupno: {{this.totalCartPrice.toFixed(2)}} kn, {{(this.totalCartPrice/euroRate).toFixed(2)}} € </span>
         </div>
       </li>
     </ul>

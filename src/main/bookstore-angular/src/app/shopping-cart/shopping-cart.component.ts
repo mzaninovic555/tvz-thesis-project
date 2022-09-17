@@ -25,6 +25,7 @@ export class ShoppingCartComponent implements OnInit {
   imagePath = Constants.IMAGE_PATH;
   loggedInUser?: User;
   isUserLoggedIn!: boolean;
+  euroRate: number = Constants.EURO_RATE;
 
   constructor(private bookService: BookService,
               private orderService: OrderService,
